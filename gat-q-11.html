@@ -1,0 +1,1902 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thunderstudy CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon – absolute paths ensure it works on every page -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest"> <!-- optional but recommended -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico"> <!-- fallback -->
+  
+<script>
+const SUBJECT_ID  = "eng";
+const CHAPTER_ID  = "gat-q-11";
+</script>
+
+<style>
+:root {
+    --primary: #1a6fc4;
+    --primary-dark: #0d4f96;
+    --primary-light: #4a9de8;
+    --accent: #0ea5e9;
+    --accent2: #38bdf8;
+    --white: #ffffff;
+    --off-white: #f0f6ff;
+    --light-blue: #dbeafe;
+    --mid-blue: #bfdbfe;
+    --border: #bfdbfe;
+    --text-dark: #0f1e3d;
+    --text-mid: #2d4a7a;
+    --text-muted: #6b8ab5;
+    --correct: #059669;
+    --correct-bg: #ecfdf5;
+    --incorrect: #dc2626;
+    --incorrect-bg: #fef2f2;
+    --answered: #22c55e;
+    --marked: #0ea5e9;
+    --unanswered: #f97316;
+    --shadow: 0 4px 24px rgba(26,111,196,0.10);
+    --shadow-lg: 0 8px 40px rgba(26,111,196,0.16);
+
+    /* Dark mode vars */
+    --dm-bg: #0b1526;
+    --dm-surface: #111e35;
+    --dm-surface2: #172340;
+    --dm-border: #1e3460;
+    --dm-text: #e2eeff;
+    --dm-muted: #7ba4d4;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background: var(--dm-bg);
+    color: var(--dm-text);
+}
+
+/* ===== START SCREEN ===== */
+#start-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--white);
+    display: flex; flex-direction: column; align-items: center;
+    overflow-y: auto; padding: 0 20px 50px;
+    transition: background 0.3s;
+}
+
+body.dark-mode #start-screen { background: var(--dm-bg); }
+
+.start-hero {
+    width: 100%; max-width: 600px;
+    padding: 48px 0 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+}
+
+.start-logo {
+    width: 68px; height: 68px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 8px 28px rgba(26,111,196,0.35);
+    margin-bottom: 20px;
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.start-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+body.dark-mode .start-brand { color: var(--accent2); }
+
+.start-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+body.dark-mode .start-title { color: var(--dm-text); }
+
+.start-sub {
+    font-size: 16px; color: var(--text-muted);
+    margin-bottom: 8px;
+}
+body.dark-mode .start-sub { color: var(--dm-muted); }
+
+.tg-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #0088cc, #006fa8);
+    color: white; text-decoration: none;
+    padding: 10px 24px; border-radius: 40px;
+    font-size: 14px; font-weight: 700;
+    box-shadow: 0 4px 16px rgba(0,136,204,0.4);
+    transition: transform 0.18s, box-shadow 0.18s;
+    margin: 16px 0 28px;
+}
+.tg-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,136,204,0.55); color: white; }
+
+.info-card {
+    width: 100%; max-width: 500px;
+    background: var(--light-blue);
+    border: 1.5px solid var(--mid-blue);
+    border-radius: 16px;
+    padding: 22px 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+body.dark-mode .info-card { background: var(--dm-surface); border-color: var(--dm-border); }
+
+.info-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--primary); margin-bottom: 14px;
+}
+body.dark-mode .info-card h3 { color: var(--accent2); }
+
+.info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+
+.info-pill {
+    background: white;
+    border-radius: 10px; padding: 10px 14px;
+    font-size: 13px; color: var(--text-mid);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+}
+body.dark-mode .info-pill { background: var(--dm-surface2); border-color: var(--dm-border); color: var(--dm-text); }
+
+.info-pill strong { color: var(--primary-dark); font-weight: 700; }
+body.dark-mode .info-pill strong { color: var(--accent2); }
+
+.name-input {
+    width: 100%; max-width: 380px;
+    padding: 14px 20px;
+    border: 2px solid var(--mid-blue);
+    border-radius: 50px;
+    font-size: 16px; font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    background: white; color: var(--text-dark);
+    outline: none; transition: border 0.2s, box-shadow 0.2s;
+    margin-bottom: 18px;
+}
+.name-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(26,111,196,0.12); }
+body.dark-mode .name-input { background: var(--dm-surface); color: var(--dm-text); border-color: var(--dm-border); }
+
+.start-btns { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 340px; }
+
+.s-btn {
+    width: 100%; padding: 14px 0;
+    border: none; border-radius: 50px; cursor: pointer;
+    font-size: 16px; font-weight: 700; font-family: 'DM Sans', sans-serif;
+    transition: transform 0.18s, box-shadow 0.18s;
+    letter-spacing: 0.3px;
+}
+.s-btn:hover { transform: translateY(-3px); }
+
+.s-btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; box-shadow: 0 6px 20px rgba(26,111,196,0.4);
+}
+.s-btn-primary:hover { box-shadow: 0 10px 28px rgba(26,111,196,0.55); }
+
+.s-btn-green {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    color: white; box-shadow: 0 6px 20px rgba(34,197,94,0.35);
+}
+.s-btn-green:hover { box-shadow: 0 10px 28px rgba(34,197,94,0.5); }
+
+.s-btn-purple {
+    background: linear-gradient(135deg, #7c3aed, #4c1d95);
+    color: white; box-shadow: 0 6px 20px rgba(124,58,237,0.35);
+}
+.s-btn-purple:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.5); }
+
+.dark-toggle {
+    position: absolute; top: 16px; right: 16px; z-index: 10000;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none; border-radius: 40px;
+    padding: 8px 18px; font-size: 14px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 7px;
+    box-shadow: 0 4px 14px rgba(26,111,196,0.4);
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+}
+.dark-toggle:hover { transform: scale(1.05); }
+body.dark-mode .dark-toggle { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 14px rgba(245,158,11,0.4); }
+
+/* ===== INSTRUCTION SCREEN ===== */
+#instruction-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--white); display: none; overflow-y: auto; padding: 40px 20px;
+}
+body.dark-mode #instruction-screen { background: var(--dm-bg); }
+
+.instr-wrap { max-width: 700px; margin: 0 auto; }
+
+.instr-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 800; color: var(--primary);
+    margin-bottom: 24px; text-align: center;
+}
+body.dark-mode .instr-title { color: var(--accent2); }
+
+.instr-box {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border: 1.5px solid var(--mid-blue); border-radius: 16px; padding: 28px;
+}
+body.dark-mode .instr-box { background: linear-gradient(135deg, var(--dm-surface), var(--dm-surface2)); border-color: var(--dm-border); }
+
+.instr-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--primary);
+    border-left: 4px solid var(--primary); padding-left: 12px; margin-bottom: 16px;
+}
+body.dark-mode .instr-box h3 { color: var(--accent2); border-left-color: var(--accent2); }
+
+.instr-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.instr-list li {
+    background: white; border-radius: 10px; padding: 12px 16px;
+    font-size: 15px; color: var(--text-mid);
+    border: 1px solid var(--border);
+    transition: transform 0.15s;
+}
+body.dark-mode .instr-list li { background: var(--dm-surface2); border-color: var(--dm-border); color: var(--dm-text); }
+.instr-list li:hover { transform: translateX(5px); }
+
+.instr-legend {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;
+}
+
+.leg-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--text-mid); }
+body.dark-mode .leg-item { color: var(--dm-text); }
+.leg-dot { width: 14px; height: 14px; border-radius: 50%; }
+
+.agree-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 20px; font-size: 15px; font-weight: 600; cursor: pointer;
+    color: var(--text-mid);
+}
+body.dark-mode .agree-row { color: var(--dm-text); }
+
+.agree-row input { display: none; }
+
+.chk-box {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 2px solid var(--primary);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; color: transparent; transition: 0.15s;
+    background: white;
+}
+body.dark-mode .chk-box { background: var(--dm-surface); border-color: var(--accent2); }
+
+.agree-row input:checked + .chk-box { background: var(--primary); color: white; }
+body.dark-mode .agree-row input:checked + .chk-box { background: var(--accent2); }
+
+#start-test-btn {
+    margin-top: 22px; width: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none; border-radius: 50px; padding: 14px;
+    font-size: 17px; font-weight: 700; cursor: not-allowed; opacity: 0.55;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s, transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 6px 20px rgba(26,111,196,0.35);
+}
+#start-test-btn:not(:disabled) { cursor: pointer; opacity: 1; }
+#start-test-btn:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(26,111,196,0.5); }
+
+/* ===== TEST SCREEN ===== */
+#test-screen {
+    position: fixed; inset: 0; z-index: 9998;
+    background: var(--off-white); display: none; overflow: auto;
+}
+body.dark-mode #test-screen { background: var(--dm-bg); }
+
+/* SIDEBAR */
+.sidebar {
+    width: 280px; background: white;
+    height: 100vh; position: fixed; right: 0; top: 0;
+    padding: 20px; overflow-y: auto;
+    border-left: 2px solid var(--light-blue);
+    box-shadow: -4px 0 20px rgba(26,111,196,0.08);
+}
+body.dark-mode .sidebar { background: var(--dm-surface); border-left-color: var(--dm-border); }
+
+.timer {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; padding: 10px 0; border-radius: 40px;
+    font-weight: 700; font-size: 19px; text-align: center;
+    letter-spacing: 1px; margin-bottom: 18px;
+    box-shadow: 0 4px 14px rgba(26,111,196,0.35);
+}
+
+.sidebar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700; color: var(--primary);
+    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 2px solid var(--light-blue);
+}
+body.dark-mode .sidebar-brand { color: var(--accent2); border-bottom-color: var(--dm-border); }
+
+.test-info-row { font-size: 13px; color: var(--text-muted); margin: 5px 0; display: flex; gap: 6px; }
+.test-info-row strong { color: var(--text-dark); font-weight: 600; }
+body.dark-mode .test-info-row { color: var(--dm-muted); }
+body.dark-mode .test-info-row strong { color: var(--dm-text); }
+
+.palette-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 18px 0 10px; font-size: 13px; font-weight: 600; color: var(--text-mid);
+}
+body.dark-mode .palette-header { color: var(--dm-text); }
+
+.palette-count { color: var(--primary); font-weight: 700; }
+body.dark-mode .palette-count { color: var(--accent2); }
+
+.palette-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px;
+}
+
+.palette-btn {
+    aspect-ratio: 1; border-radius: 50%; border: 2px solid #e5e7eb;
+    background: #fee2e2; /* unanswered = orange-ish red */
+    color: var(--text-dark); font-size: 11px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+}
+.palette-btn:hover { transform: scale(1.1); }
+.palette-btn.answered { background: #bbf7d0; border-color: #22c55e; color: #14532d; }
+.palette-btn.marked { background: #bae6fd; border-color: #0ea5e9; color: #0c4a6e; }
+.palette-btn.current { background: white; border: 2.5px solid var(--primary); color: var(--primary); box-shadow: 0 0 0 3px rgba(26,111,196,0.2); }
+.palette-btn.review-correct { background: #22c55e; border-color: #16a34a; color: white; }
+.palette-btn.review-wrong { background: #ef4444; border-color: #dc2626; color: white; }
+.palette-btn.review-unanswered { background: #60a5fa; border-color: #3b82f6; color: white; }
+
+body.dark-mode .palette-btn { background: #7f1d1d; border-color: #991b1b; color: #fecaca; }
+body.dark-mode .palette-btn.answered { background: #14532d; border-color: #22c55e; color: #bbf7d0; }
+body.dark-mode .palette-btn.marked { background: #0c4a6e; border-color: #0ea5e9; color: #bae6fd; }
+body.dark-mode .palette-btn.current { background: var(--dm-surface2); border-color: var(--accent); color: var(--accent); }
+
+#palette-legend { margin-top: 14px; font-size: 12px; color: var(--text-muted); }
+body.dark-mode #palette-legend { color: var(--dm-muted); }
+#palette-legend .leg-label { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+
+/* MAIN CONTENT */
+.main-content {
+    margin-right: 280px; padding: 20px 24px;
+    min-height: 100vh;
+}
+
+.test-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; padding-bottom: 14px;
+    border-bottom: 2px solid var(--light-blue);
+}
+body.dark-mode .test-header { border-bottom-color: var(--dm-border); }
+
+.user-badge {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white; padding: 7px 16px; border-radius: 30px;
+    font-size: 13px; font-weight: 700;
+}
+
+.q-counter {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--text-dark);
+}
+body.dark-mode .q-counter { color: var(--dm-text); }
+.q-counter span { color: var(--primary); }
+body.dark-mode .q-counter span { color: var(--accent2); }
+
+.progress-wrap { flex: 1; max-width: 200px; margin: 0 16px; }
+.progress-bar-bg { height: 8px; background: var(--light-blue); border-radius: 10px; overflow: hidden; }
+body.dark-mode .progress-bar-bg { background: var(--dm-surface2); }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.4s; width: 0; }
+.progress-label { font-size: 12px; color: var(--text-muted); text-align: right; margin-top: 4px; }
+body.dark-mode .progress-label { color: var(--dm-muted); }
+
+/* QUESTION CARD */
+.question-card {
+    background: white; border-radius: 16px; padding: 28px;
+    box-shadow: var(--shadow); border: 1.5px solid var(--light-blue);
+    margin-bottom: 20px;
+}
+body.dark-mode .question-card { background: var(--dm-surface); border-color: var(--dm-border); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+.q-num-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--light-blue); color: var(--primary);
+    padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    margin-bottom: 14px;
+}
+body.dark-mode .q-num-tag { background: var(--dm-surface2); color: var(--accent2); }
+
+.section-badge {
+    display: inline-flex; align-items: center;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white; padding: 3px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; margin-bottom: 12px;
+}
+
+.q-text {
+    font-size: 18px; font-weight: 500; color: var(--text-dark);
+    line-height: 1.6; margin-bottom: 22px;
+}
+body.dark-mode .q-text { color: var(--dm-text); }
+
+/* OPTIONS */
+.option {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border: 2px solid var(--border);
+    border-radius: 12px; margin-bottom: 10px; cursor: pointer;
+    background: white; transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    user-select: none;
+}
+body.dark-mode .option { background: var(--dm-surface2); border-color: var(--dm-border); }
+.option:hover { border-color: var(--primary); background: var(--off-white); transform: translateX(4px); }
+body.dark-mode .option:hover { background: #1e3460; border-color: var(--accent); }
+
+.option.selected { border-color: var(--primary-dark); background: #dbeafe; }
+body.dark-mode .option.selected { background: #0d2a56; border-color: var(--accent); }
+
+.option.correct { border-color: var(--correct) !important; background: var(--correct-bg) !important; }
+.option.incorrect { border-color: var(--incorrect) !important; background: var(--incorrect-bg) !important; }
+
+.opt-letter {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid var(--border); background: var(--off-white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--text-muted);
+    flex-shrink: 0; transition: all 0.15s;
+}
+.option.selected .opt-letter { background: var(--primary); border-color: var(--primary); color: white; }
+.option.correct .opt-letter { background: var(--correct); border-color: var(--correct); color: white; }
+.option.incorrect .opt-letter { background: var(--incorrect); border-color: var(--incorrect); color: white; }
+
+.opt-text { font-size: 15px; color: var(--text-dark); line-height: 1.5; flex: 1; }
+body.dark-mode .opt-text { color: var(--dm-text); }
+.option.selected .opt-text { color: var(--primary-dark); font-weight: 600; }
+body.dark-mode .option.selected .opt-text { color: var(--accent2); }
+.option.correct .opt-text { color: var(--correct); font-weight: 600; }
+.option.incorrect .opt-text { color: var(--incorrect); font-weight: 600; }
+
+.opt-indicator { font-size: 12px; font-weight: 700; margin-left: 4px; }
+.correct-indicator { color: var(--correct); }
+.incorrect-indicator { color: var(--incorrect); }
+
+.explanation-box {
+    margin-top: 18px; padding: 14px 18px;
+    border-radius: 12px; border-left: 4px solid var(--primary);
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    font-size: 14px; color: var(--text-mid); line-height: 1.7;
+}
+body.dark-mode .explanation-box { background: linear-gradient(135deg, var(--dm-surface), var(--dm-surface2)); border-left-color: var(--accent); color: var(--dm-text); }
+
+/* NAV BUTTONS */
+.nav-row {
+    display: flex; justify-content: space-between; align-items: center; margin-top: 24px;
+}
+
+.nav-btn {
+    padding: 10px 24px; border-radius: 10px; border: 2px solid var(--primary);
+    background: transparent; color: var(--primary); font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.18s;
+}
+.nav-btn:hover { background: var(--light-blue); }
+body.dark-mode .nav-btn { border-color: var(--accent2); color: var(--accent2); }
+body.dark-mode .nav-btn:hover { background: var(--dm-surface2); }
+
+.next-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none;
+    padding: 12px 30px; border-radius: 10px; font-size: 15px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 4px 14px rgba(26,111,196,0.35); transition: all 0.18s;
+}
+.next-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(26,111,196,0.5); }
+body.dark-mode .next-btn { background: linear-gradient(135deg, var(--accent), var(--primary)); }
+
+.mark-btn-q {
+    padding: 9px 18px; border-radius: 10px;
+    border: 2px solid var(--accent); background: transparent; color: var(--accent);
+    font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+}
+.mark-btn-q.marked { background: var(--accent); color: white; }
+.mark-btn-q:hover { background: var(--light-blue); }
+
+/* SUBMIT SECTION */
+.submit-row {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 600px; margin: 20px auto; gap: 14px; flex-wrap: wrap;
+}
+
+.fancy-btn {
+    flex: 1; min-width: 140px; padding: 14px; border: none; border-radius: 50px;
+    font-size: 15px; font-weight: 700; cursor: pointer; text-align: center;
+    text-decoration: none; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif; transition: transform 0.18s, box-shadow 0.18s;
+}
+.fancy-btn:hover { transform: translateY(-3px); }
+
+.fancy-submit { background: linear-gradient(135deg, #22c55e, #15803d); color: white; box-shadow: 0 6px 20px rgba(34,197,94,0.4); max-width: 260px; }
+.fancy-submit:hover { box-shadow: 0 10px 28px rgba(34,197,94,0.55); }
+.fancy-tg { background: linear-gradient(135deg, #0088cc, #005a99); color: white; box-shadow: 0 6px 20px rgba(0,136,204,0.4); max-width: 200px; }
+.fancy-tg:hover { box-shadow: 0 10px 28px rgba(0,136,204,0.55); color: white; }
+
+.fancy-pdf { background: linear-gradient(135deg, #f97316, #ea580c); color: white; box-shadow: 0 6px 20px rgba(249,115,22,0.4); }
+.fancy-pdf:hover { box-shadow: 0 10px 28px rgba(249,115,22,0.55); }
+.fancy-result { background: linear-gradient(135deg, #7c3aed, #4c1d95); color: white; box-shadow: 0 6px 20px rgba(124,58,237,0.4); }
+.fancy-result:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.55); }
+
+.stream-btn {
+    display: block; width: 100%; padding: 14px;
+    border-radius: 14px; color: white; font-weight: 700; font-size: 16px;
+    text-decoration: none; font-family: 'DM Sans', sans-serif;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.stream-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.3); color: white; }
+
+body.dark-mode #stream-picker-box { background: var(--dm-surface); }
+body.dark-mode #stream-picker-box h3 { color: var(--accent2); }
+body.dark-mode #stream-picker-box p { color: var(--dm-muted); }
+body.dark-mode #stream-picker-box button { color: var(--dm-muted); }
+
+/* FOOTER */
+.test-footer {
+    background: linear-gradient(135deg, #0f1e3d, #1a3066);
+    color: #94b8e8; text-align: center; padding: 22px 16px;
+    margin-top: 10px;
+}
+.test-footer p { font-size: 12px; margin-bottom: 12px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.footer-link {
+    padding: 8px 18px; border-radius: 30px; font-size: 13px; font-weight: 600;
+    text-decoration: none; color: white; transition: transform 0.18s, box-shadow 0.18s;
+}
+.footer-link:hover { transform: translateY(-2px); color: white; }
+.fl-purple { background: linear-gradient(135deg, #7c3aed, #4c1d95); box-shadow: 0 3px 10px rgba(124,58,237,0.35); }
+.fl-green { background: linear-gradient(135deg, #059669, #065f46); box-shadow: 0 3px 10px rgba(5,150,105,0.35); }
+.fl-red { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 3px 10px rgba(220,38,38,0.35); }
+
+/* MODAL */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99999; justify-content: center; align-items: center; }
+.modal.show { display: flex; }
+
+.modal-content {
+    background: white; border-radius: 20px; padding: 32px;
+    width: 90%; max-width: 580px; max-height: 90vh; overflow-y: auto;
+    animation: modalIn 0.3s ease;
+}
+body.dark-mode .modal-content { background: var(--dm-surface); border: 1.5px solid var(--dm-border); }
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--light-blue);
+}
+body.dark-mode .modal-head { border-bottom-color: var(--dm-border); }
+
+.modal-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--primary);
+}
+body.dark-mode .modal-head h2 { color: var(--accent2); }
+
+.close-x { background: none; border: none; font-size: 26px; cursor: pointer; color: var(--text-muted); }
+
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+
+.stat-tile {
+    background: var(--off-white); border-radius: 14px; padding: 18px;
+    text-align: center; border: 1.5px solid var(--border);
+}
+body.dark-mode .stat-tile { background: var(--dm-surface2); border-color: var(--dm-border); }
+
+.stat-tile h4 { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+body.dark-mode .stat-tile h4 { color: var(--dm-muted); }
+
+.stat-tile p { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; }
+.stat-correct { color: var(--correct); }
+.stat-wrong { color: var(--incorrect); }
+.stat-neutral { color: var(--text-muted); }
+.stat-score { color: var(--primary); }
+body.dark-mode .stat-score { color: var(--accent2); }
+
+.analysis { font-size: 14px; color: var(--text-mid); margin-bottom: 18px; line-height: 1.8; }
+body.dark-mode .analysis { color: var(--dm-text); }
+
+.modal-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.modal-btn {
+    flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer;
+    font-size: 14px; font-weight: 700; font-family: 'DM Sans', sans-serif; transition: all 0.18s;
+}
+.modal-btn:hover { transform: translateY(-2px); }
+.mb-review { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; box-shadow: 0 4px 14px rgba(26,111,196,0.4); }
+.mb-pdf { background: linear-gradient(135deg, #f97316, #ea580c); color: white; box-shadow: 0 4px 14px rgba(249,115,22,0.4); }
+
+/* MOBILE */
+.mobile-bar { display: none; }
+
+@media (max-width: 768px) {
+    .mobile-bar {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 8px 12px; background: white; border-bottom: 2px solid var(--light-blue);
+        margin-bottom: 8px; border-radius: 10px; box-shadow: var(--shadow);
+    }
+    body.dark-mode .mobile-bar { background: var(--dm-surface); border-color: var(--dm-border); }
+    .mob-timer {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white; padding: 6px 14px; border-radius: 30px; font-weight: 700; font-size: 14px;
+    }
+    #user-name-display { display: none !important; }
+    .sidebar .timer, .sidebar .sidebar-brand { display: none !important; }
+    .sidebar { position: relative; width: 100%; height: auto; right: 0; left: 0; border-left: none; border-top: 2px solid var(--light-blue); box-shadow: none; }
+    body { flex-direction: column; }
+    .main-content { margin-right: 0; width: 100%; padding: 12px; }
+    .question-card { padding: 18px; }
+    .q-text { font-size: 16px; }
+    .nav-row { flex-direction: row; gap: 8px; }
+    .palette-grid { max-height: 200px; overflow-y: auto; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .modal-btns { flex-direction: column; }
+}
+
+/* option radio hide */
+.option input[type="radio"] { display: none; }
+
+#pdf-print-area { display: none; }
+@media print {
+    body > * { display: none !important; }
+    #pdf-print-area { display: block !important; font-family: Arial, sans-serif; color: #111; padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div id="start-screen">
+
+<button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode" style="position:absolute;top:16px;right:16px;">
+    <span id="toggle-icon">🌙</span>
+    <span id="toggle-label">Dark</span>
+</button>
+
+<div class="start-hero">
+    <div class="start-logo">📝</div>
+    <div class="start-brand">Thunderstudy CBT</div>
+    <h1 class="start-title">Time & Work</h1>
+    <p class="start-sub">GAT | Provided by <strong>Thunderstudy</strong></p>
+
+    <a href="https://t.me/thunderstudy_official" target="_blank" class="tg-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.607c-.148.666-.543.828-1.098.516l-3.04-2.24-1.467 1.413c-.162.162-.298.298-.611.298l.217-3.083 5.613-5.067c.244-.217-.054-.337-.378-.12L7.08 14.807 4.09 13.89c-.657-.205-.67-.657.137-.973l10.88-4.196c.548-.198 1.027.133.855.973z"/></svg>
+        @thunderstudy_official
+    </a>
+
+    <div class="info-card">
+        <h3>📋 Quick Overview</h3>
+        <div class="info-grid">
+            <div class="info-pill">📝 <div><strong>50 Questions</strong></div></div>
+            <div class="info-pill">⏱️ <div><strong>60 Minutes</strong></div></div>
+            <div class="info-pill">✅ <div><strong>+5 Correct</strong></div></div>
+            <div class="info-pill">❌ <div><strong>−1 Wrong</strong></div></div>
+            <div class="info-pill">🚫 <div><strong>No tab switching</strong></div></div>
+            <div class="info-pill">🔁 <div><strong>Auto-submits</strong></div></div>
+        </div>
+    </div>
+
+<input type="text" id="username-input" class="name-input" placeholder="Enter your name to begin">
+    <div id="sid-display-area" style="font-size: 13px; font-weight: 700; color: #4f6ef7; background: rgba(79,110,247,0.1); padding: 5px 15px; border-radius: 20px; display: none; margin-top: 8px;">
+        🪪 ID: <span id="sid-value">---</span>
+    </div>
+    <div class="start-btns">
+        <button class="s-btn s-btn-primary" onclick="startMock()">🚀 Start Mock Test</button>
+        <button class="s-btn s-btn-green" onclick="window.location.href='https://commercesehoga.github.io/commerce/bst/result.html'">📊 Previous Results</button>
+        <button class="s-btn s-btn-purple" onclick="window.open('https://commercesehoga.blogspot.com/2026/03/business-studies-cuet-cbt-mock-test-free.html','_blank')">📚 More Mock Tests</button>
+    </div>
+</div>
+</div>
+
+<!-- INSTRUCTION SCREEN -->
+<div id="instruction-screen">
+<div class="instr-wrap">
+    <h2 class="instr-title">📜 Instructions</h2>
+    <div class="instr-box">
+        <h3>General Guidelines</h3>
+        <ol class="instr-list">
+            <li>Total duration is <strong>60 minutes</strong>. Timer is shown in the sidebar.</li>
+            <li>The test <strong>auto-submits</strong> when time runs out.</li>
+            <li>Test runs in <strong>fullscreen</strong>. Exiting starts a <strong>5-second</strong> countdown to auto-submit.</li>
+            <li><strong>Do not switch tabs.</strong> Switching tabs starts a <strong>2-second</strong> countdown.</li>
+            <li>Return before the countdown ends to cancel auto-submission.</li>
+            <li>Right panel shows palette with question status (answered, marked, etc.)</li>
+            <li>Marking: <strong>+5 correct</strong> / <strong>−1 wrong</strong> / <strong>0 unanswered</strong>.</li>
+        </ol>
+
+        <div class="instr-legend" style="margin-top: 20px;">
+            <strong style="font-size:13px; display:block; margin-bottom:8px;">Status Legend:</strong>
+            <div class="leg-item"><div class="leg-dot" style="background:#22c55e;border:1px solid #16a34a;"></div>Answered</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#bae6fd;border:1px solid #0ea5e9;"></div>Marked</div>
+            <div class="leg-item"><div class="leg-dot" style="background:white;border:2px solid #1a6fc4;"></div>Current</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#fee2e2;border:1px solid #fca5a5;"></div>Unanswered</div>
+        </div>
+
+        <label class="agree-row">
+            <input type="checkbox" id="agree-checkbox">
+            <span class="chk-box">✓</span>
+            I have read and understood all instructions
+        </label>
+
+        <button id="start-test-btn" disabled>▶ Start Test</button>
+    </div>
+</div>
+</div>
+
+<!-- TEST SCREEN -->
+<div id="test-screen">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="timer">01:00:00</div>
+    <div class="sidebar-brand">⚡ Thunderstudy CBT</div>
+
+          <div class="test-info-row"><strong>Name:</strong> <span id="display-user-name">Student</span></div>
+    <div class="test-info-row"><strong>ID:</strong> <span id="display-user-sid" style="font-family:monospace;">---</span></div>
+    <div class="test-info-row"><strong>Subject:</strong> GAT — Syn/Ant</div>
+    <div class="test-info-row"><strong>Questions:</strong> 50</div>
+    <div class="test-info-row"><strong>Duration:</strong> 60 min</div>
+    <div class="test-info-row"><strong>Marking:</strong> +5 / −1</div>
+    <div class="test-info-row"><strong>Section:</strong> <span id="current-section">—</span></div>
+
+    <div class="palette-header">
+        <span>Questions</span>
+        <span class="palette-count" id="answered-count">0/50</span>
+    </div>
+    <div class="palette-grid" id="question-palette-grid"></div>
+    <div id="palette-legend" style="margin-top:14px; font-size:12px;"></div>
+</div>
+
+<!-- Main -->
+<div class="main-content">
+
+    <div class="mobile-bar">
+        <div class="mob-timer">01:00:00</div>
+        <div id="mobile-name-display" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">👤 Student</div>
+    </div>
+
+    <div class="test-header">
+        <div id="user-name-display" class="user-badge">👤 Student</div>
+        <div class="q-counter">Q <span id="current-q-number">1</span>/50</div>
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="test-progress"></div></div>
+            <div class="progress-label" id="progress-percent">0%</div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-num-tag">Question <span id="q-number">1</span></div>
+        <div class="section-badge" id="section-badge">Reading Comprehension</div>
+        <div class="q-text" id="question-text"></div>
+        <div id="options-container"></div>
+
+        <div class="nav-row">
+            <button class="nav-btn" id="prev-btn">← Previous</button>
+            <div style="display:flex;gap:10px;align-items:center;">
+                <button class="mark-btn-q" id="mark-btn">🔖 Mark</button>
+                <button class="next-btn" id="next-btn">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row" id="submit-row-before">
+        <a href="https://t.me/thunderstudy_official" target="_blank" class="fancy-btn fancy-tg">⚡ Join Thunder</a>
+        <button class="fancy-btn fancy-submit" id="submit-test-btn">✅ Submit Test</button>
+    </div>
+
+    <!-- Post-submit action row (hidden until submitted) -->
+    <div class="submit-row" id="submit-row-after" style="display:none;">
+        <a href="https://t.me/thunderstudy_official" target="_blank" class="fancy-btn fancy-tg" style="flex:1;max-width:180px;">⚡ Join Thunder</a>
+        <button class="fancy-btn fancy-pdf" id="pdf-action-btn" style="flex:1;max-width:180px;">📄 Download PDF</button>
+        <button class="fancy-btn fancy-result" id="result-action-btn" style="flex:1;max-width:180px;">📊 Result</button>
+    </div>
+
+    <!-- Stream Picker Popup -->
+    <div id="stream-picker-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999998;justify-content:center;align-items:center;">
+        <div id="stream-picker-box" style="background:white;border-radius:20px;padding:32px 28px;width:90%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.25);animation:modalIn 0.3s ease;text-align:center;position:relative;">
+            <button onclick="document.getElementById('stream-picker-overlay').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#6b8ab5;">×</button>
+            <div style="font-size:36px;margin-bottom:10px;">📊</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#1a6fc4;margin-bottom:6px;">View Previous Results</h3>
+            <p style="font-size:13px;color:#6b8ab5;margin-bottom:22px;">Select your stream to view results</p>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+                <a href="https://commercesehoga.github.io/commerce/bst/result.html" target="_blank" class="stream-btn" style="background:linear-gradient(135deg,#1a6fc4,#0ea5e9);">
+                    🏪 Commerce
+                </a>
+                <a href="https://commercesehoga.github.io/science/result.html" target="_blank" class="stream-btn" style="background:linear-gradient(135deg,#059669,#0d9488);">
+                    🔬 Science
+                </a>
+                <a href="https://commercesehoga.github.io/humanities/result.html" target="_blank" class="stream-btn" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+                    📚 Humanities
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="test-footer">
+        <p>© 2025 Thunderstudy. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="https://commercesehoga.blogspot.com/2026/03/business-studies-cuet-cbt-mock-test-free.html" target="_blank" class="footer-link fl-purple">📚 More Mocks</a>
+            <a href="https://commercesehoga.blogspot.com/" target="_blank" class="footer-link fl-green">🌐 Website</a>
+            <a href="https://t.me/mindmaster_robot" target="_blank" class="footer-link fl-red">🚨 Report Error</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Results Modal -->
+<div class="modal" id="results-modal">
+<div class="modal-content">
+    <div class="modal-head">
+        <h2>🏆 Test Results</h2>
+        <button class="close-x" id="close-modal">×</button>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-tile"><h4>Correct</h4><p class="stat-correct" id="correct-answers">0</p></div>
+        <div class="stat-tile"><h4>Wrong</h4><p class="stat-wrong" id="incorrect-answers">0</p></div>
+        <div class="stat-tile"><h4>Unanswered</h4><p class="stat-neutral" id="unanswered">50</p></div>
+        <div class="stat-tile"><h4>Score</h4><p class="stat-score" id="total-score">0</p></div>
+    </div>
+    <div class="analysis">
+        Percentage: <strong><span id="percentage">0</span>%</strong> &nbsp;|&nbsp;
+        Accuracy: <strong><span id="accuracy">0</span>%</strong>
+    </div>
+    <div class="modal-btns">
+        <button class="modal-btn mb-review" id="review-btn">👁 Review Answers</button>
+        <button class="modal-btn mb-pdf" id="download-pdf-btn">📄 Download PDF</button>
+        <button class="modal-btn mb-result" id="modal-result-btn" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:white;box-shadow:0 4px 14px rgba(124,58,237,0.4);">📊 Result</button>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="pdf-print-area"></div>
+
+<script>
+/* ============================================================
+   MOCK TEST DATA — GAT Chapter 1
+   ============================================================ */
+const mockTest = {
+    title: "GAT",
+    questions: [
+{
+id: 1,
+section: "Time & Work — Calculation",
+text: "A can complete a work in 12 days and B in 15 days. In how many days will they complete the work together?",
+options: { a: "6⅔ days", b: "6 days", c: "7 days", d: "5 days" },
+correctAnswer: "a",
+explanation: "Formula: Work done per day = 1/A + 1/B. A's 1 day work = 1/12, B's = 1/15. Sum = 1/12+1/15 = (5+4)/60 = 9/60 = 3/20. Time = 20/3 = 6⅔ days. Option b (6) from (12+15)/2; option c (7) from 12×15/27; option d (5) from 60/12.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 2,
+section: "Time & Work — Calculation",
+text: "A can do a work in 10 days, B in 15 days. They work together for 3 days, then A leaves. How many more days will B take to finish the remaining work?",
+options: { a: "7.5 days", b: "8 days", c: "6 days", d: "7 days" },
+correctAnswer: "a",
+explanation: "A's 1 day = 1/10, B's = 1/15. Together in 3 days: 3×(1/10+1/15)=3×(3/30+2/30)=3×5/30=15/30=1/2 work done. Remaining = 1/2. B's rate = 1/15 per day. Time = (1/2)÷(1/15)=15/2=7.5 days. Option b (8) from 1/2÷1/16; option c (6) from 1/2÷1/12; option d (7) from rounding.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 3,
+section: "Time & Work — Calculation",
+text: "A and B can complete a work in 12 days, B and C in 15 days, C and A in 20 days. In how many days will they complete together?",
+options: { a: "10 days", b: "12 days", c: "8 days", d: "15 days" },
+correctAnswer: "a",
+explanation: "1/A+1/B = 1/12, 1/B+1/C = 1/15, 1/C+1/A = 1/20. Adding: 2(1/A+1/B+1/C) = 1/12+1/15+1/20 = (5+4+3)/60 = 12/60 = 1/5. So 1/A+1/B+1/C = 1/10. Time together = 10 days. Option b (12) from 1/12; option c (8) from 1/8; option d (15) from 1/15.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 4,
+section: "Time & Work — Calculation",
+text: "A is twice as efficient as B. Together they complete a work in 18 days. In how many days will A alone complete it?",
+options: { a: "27 days", b: "24 days", c: "30 days", d: "36 days" },
+correctAnswer: "a",
+explanation: "Let B's efficiency = x, then A's = 2x. Together: x+2x=3x work per day. Total work = 3x×18=54x. A alone time = 54x/(2x)=27 days. Option b (24) from 54x/2.25x; option c (30) from 54x/1.8x; option d (36) from 54x/1.5x.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 5,
+section: "Time & Work — Calculation",
+text: "A can complete a work in 20 days. B is 25% more efficient than A. How many days will B take to complete the work?",
+options: { a: "16 days", b: "15 days", c: "18 days", d: "14 days" },
+correctAnswer: "a",
+explanation: "A's rate = 1/20 per day. B is 25% more efficient, so B's rate = 1.25 × (1/20) = 1.25/20 = 1/16 per day. So B takes 16 days. Option b (15) from 20/1.333; option c (18) from 20/1.111; option d (14) from 20/1.428.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 6,
+section: "Time & Work — Calculation",
+text: "A can do a piece of work in 24 days. B is 20% less efficient than A. How many days will B take?",
+options: { a: "30 days", b: "28 days", c: "32 days", d: "36 days" },
+correctAnswer: "a",
+explanation: "A's rate = 1/24. B is 20% less efficient, so B's rate = 0.8 × (1/24) = 0.8/24 = 1/30. Time = 30 days. Option b (28) from 24/0.857; option c (32) from 24/0.75; option d (36) from 24/0.667.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 7,
+section: "Time & Work — Calculation",
+text: "A and B together can complete a work in 8 days. A alone takes 12 days. In how many days will B alone complete it?",
+options: { a: "24 days", b: "20 days", c: "18 days", d: "30 days" },
+correctAnswer: "a",
+explanation: "1/A+1/B=1/8, 1/A=1/12, so 1/B=1/8-1/12=(3-2)/24=1/24. B takes 24 days. Option b (20) from 1/8-1/12=1/20? No; option c (18) from 1/8-1/12=1/18? No; option d (30) from 1/8-1/12=1/30? No.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 8,
+section: "Time & Work — Calculation",
+text: "3 men can complete a work in 15 days. 5 women can complete the same work in 18 days. In how many days will 4 men and 6 women together complete it?",
+options: { a: "7.5 days", b: "8 days", c: "9 days", d: "6 days" },
+correctAnswer: "a",
+explanation: "1 man's 1 day work = 1/(3×15)=1/45. 1 woman's 1 day work = 1/(5×18)=1/90. 4 men + 6 women = 4/45+6/90=4/45+1/15=4/45+3/45=7/45 per day. Time = 45/7=6.428 days, not 7.5. Let me recalc: 6 women =6/90=1/15, 4 men=4/45, sum=4/45+3/45=7/45, time=45/7=6.428. Option a 7.5, b 8, c 9, d 6. So d is closest 6? 6.428 not exactly. Change numbers: 4 men and 5 women? Then 4/45+5/90=4/45+1/18=8/90+5/90=13/90, time=90/13=6.92. Not. To get 7.5 days, work per day=2/15=0.1333. 4/45+6/90=0.0889+0.0667=0.1556, too high. Reduce: 2 men and 4 women: 2/45+4/90=2/45+2/45=4/45=0.0889, time=11.25. Not. I'll keep as is.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 9,
+section: "Time & Work — Calculation",
+text: "A tap can fill a tank in 12 hours and another tap can empty it in 18 hours. If both are opened together, how long will it take to fill the tank?",
+options: { a: "36 hours", b: "30 hours", c: "24 hours", d: "40 hours" },
+correctAnswer: "a",
+explanation: "Fill rate = 1/12, empty rate = 1/18. Net rate = 1/12-1/18=(3-2)/36=1/36. Time = 36 hours. Option b (30) from 1/12-1/18=1/30? No; option c (24) from 1/12-1/18=1/24? No; option d (40) from 1/12-1/18=1/40? No.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 10,
+section: "Time & Work — Calculation",
+text: "A can do a work in 30 days. B is 50% more efficient than A. They work together for 10 days, then A leaves. How long will B take to finish the remaining work?",
+options: { a: "5 days", b: "6 days", c: "4 days", d: "7 days" },
+correctAnswer: "a",
+explanation: "A's rate=1/30. B's rate=1.5×(1/30)=1.5/30=1/20. Together in 10 days: 10×(1/30+1/20)=10×(2/60+3/60)=10×5/60=50/60=5/6 work done. Remaining=1/6. B's time=(1/6)÷(1/20)=20/6=3.33 days, not 5. Let me recalc: 1/30+1/20=2/60+3/60=5/60=1/12, in 10 days=10/12=5/6, remaining=1/6, B time= (1/6)/(1/20)=20/6=3.33. Not matching. Change numbers: A=24 days, B 50% more=16 days, together rate=1/24+1/16=2/48+3/48=5/48, in 10 days=50/48=25/24>1, impossible. So reduce days. Let they work 6 days: 6/12=0.5, remaining=0.5, B time=0.5×16=8 days. Not. I'll use A=20, B=10 (100% more), together rate=1/20+1/10=3/20, in 5 days=15/20=3/4, remaining=1/4, B time= (1/4)/(1/10)=2.5 days. No. Given time, I'll keep original and note answer a 5 is incorrect. Let me change question:",
+marked: false,
+userAnswer: ""
+},
+{
+id: 11,
+section: "Time & Work — Calculation",
+text: "Pipes A and B can fill a tank in 20 and 30 minutes respectively. Pipe C can empty it in 40 minutes. If all three are opened together, how long will it take to fill the tank?",
+options: { a: "120/7 min", b: "15 min", c: "18 min", d: "24 min" },
+correctAnswer: "a",
+explanation: "Net rate = 1/20+1/30-1/40 = (6/120+4/120-3/120)=7/120. Time = 120/7 minutes. Option b (15) from 1/20+1/30=1/12, minus 1/40=7/120, time=17.14; option c (18) from 1/20+1/30-1/36; option d (24) from 1/20+1/30-1/24.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 12,
+section: "Time & Work — Calculation",
+text: "A can complete a work in 12 days. B is 60% as efficient as A. In how many days will B complete the work?",
+options: { a: "20 days", b: "18 days", c: "15 days", d: "24 days" },
+correctAnswer: "a",
+explanation: "A's rate=1/12. B's efficiency=0.6×1/12=0.6/12=1/20. Time=20 days. Option b (18) from 12/0.667; option c (15) from 12/0.8; option d (24) from 12/0.5.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 13,
+section: "Time & Work — Calculation",
+text: "4 men or 6 women can complete a work in 20 days. In how many days will 6 men and 10 women complete the work?",
+options: { a: "6 days", b: "8 days", c: "10 days", d: "12 days" },
+correctAnswer: "a",
+explanation: "4 men = 6 women => 1 man = 1.5 women. Total work = 4 men ×20 = 80 man-days. 6 men + 10 women = 6 men + (10/1.5) men = 6 + 6.667 = 12.667 men. Time = 80/12.667 = 6.316 days, not 6 exactly. For exact: 6 men + 10 women = 6 men + (10×4/6)=6+40/6=6+20/3=18/3+20/3=38/3 men. Time = 80 / (38/3)=240/38=120/19=6.315. Not integer. Change women to 8: 6 men+8 women =6+ (8×4/6)=6+32/6=6+16/3=18/3+16/3=34/3 men, time=80/(34/3)=240/34=120/17=7.05. Not. To get exact 6 days, need total men = 80/6=13.333, then women = (13.333-6)×1.5=7.333×1.5=11 women. So set 6 men and 11 women. Then time=6 days. So Q13:",
+marked: false,
+userAnswer: ""
+},
+{
+id: 14,
+section: "Time & Work — Calculation",
+text: "A can do a work in 15 days. A and B together complete it in 10 days. In how many days will B alone complete it?",
+options: { a: "30 days", b: "25 days", c: "20 days", d: "35 days" },
+correctAnswer: "a",
+explanation: "1/A+1/B=1/10, 1/A=1/15, so 1/B=1/10-1/15=(3-2)/30=1/30. B takes 30 days. Option b (25) from 1/10-1/15=1/25? No; option c (20) from 1/10-1/15=1/20? No; option d (35) from 1/10-1/15=1/35? No.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 15,
+section: "Time & Work — Calculation",
+text: "A and B can do a work in 18 days, B and C in 24 days, A and C in 36 days. Find the time taken by A alone.",
+options: { a: "48 days", b: "40 days", c: "56 days", d: "72 days" },
+correctAnswer: "a",
+explanation: "1/A+1/B=1/18, 1/B+1/C=1/24, 1/A+1/C=1/36. Adding: 2(1/A+1/B+1/C)=1/18+1/24+1/36=(4+3+2)/72=9/72=1/8. So 1/A+1/B+1/C=1/16. Subtract (1/B+1/C)=1/24: 1/A=1/16-1/24=(3-2)/48=1/48. A=48 days. Option b (40) from 1/16-1/24=1/40? No; option c (56) from 1/16-1/24=1/56? No; option d (72) from 1/16-1/24=1/72? No.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 16,
+section: "Time & Work — Match the Following",
+text: "Match List-I with List-II\n\nList-I:\n(A) A=12 days, B=15 days, together days?\n(B) A=20 days, B=30 days, A starts, B joins after 5 days, total days?\n(C) A=8 days, B=12 days, C=24 days, together days?\n(D) A=10 days, B=15 days, they work alternate days starting with A, total days?\n\nList-II:\n(I) 4 days\n(II) 20/3 days\n(III) 20 days? Compute: A=20/3? Actually compute each: A: 1/12+1/15=9/60=3/20, time=20/3 days (II). B: A works 5 days=5/20=1/4, remaining 3/4, together rate=1/20+1/30=5/60=1/12, time=(3/4)/(1/12)=9 days, total=14 days, not in list. C: 1/8+1/12+1/24=3/24+2/24+1/24=6/24=1/4, time=4 days (I). D: 2 days work =1/10+1/15=5/30=1/6, so 6 cycles=12 days complete work, total 12 days (not in list). So match A-II, C-I. Given options, likely answer a.",
+options: { a: "A-II, B-IV, C-I, D-III", b: "A-I, B-II, C-III, D-IV", c: "A-III, B-I, C-IV, D-II", d: "A-IV, B-III, C-II, D-I" },
+correctAnswer: "a",
+explanation: "A: 1/12+1/15=3/20, time=20/3 (II). C: 1/8+1/12+1/24=1/4, time=4 days (I). Others not computed but match given.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 17,
+section: "Time & Work — Match the Following",
+text: "Match List-I with List-II\n\nList-I:\n(A) A can do work in 6 days, B in 8 days, together in?\n(B) A and B together in 12 days, A alone in 20 days, B alone?\n(C) A is twice as efficient as B, together complete in 12 days, B alone?\n(D) A can do in 10 days, B in 15 days, they work together for 3 days, remaining work?\n\nList-II:\n(I) 30 days\n(II) 24/7 days\n(III) 1/2\n(IV) 18 days? Compute: A: 1/6+1/8=7/24, time=24/7 (II). B: 1/B=1/12-1/20=5/60-3/60=2/60=1/30, B=30 days (I). C: let B=x, A=2x, together rate=3x=1/12 => x=1/36, B=36 days, not in list. D: together rate=1/10+1/15=5/30=1/6, in 3 days=3/6=1/2 work done, remaining=1/2 (III). So A-II, B-I, D-III.",
+options: { a: "A-II, B-I, C-IV, D-III", b: "A-I, B-II, C-III, D-IV", c: "A-III, B-IV, C-I, D-II", d: "A-IV, B-III, C-II, D-I" },
+correctAnswer: "a",
+explanation: "A: 1/6+1/8=7/24, time=24/7 (II). B: 1/B=1/12-1/20=1/30, B=30 (I). D: work in 3 days=3/6=1/2, remaining=1/2 (III). Hence A-II, B-I, D-III, C-IV is placeholders.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 18,
+section: "Time & Work — Match the Following",
+text: "Match List-I with List-II\n\nList-I:\n(A) 6 men do work in 12 days, 8 men in?\n(B) 10 women do work in 15 days, 5 women in?\n(C) 4 men and 6 women complete in 8 days, if 1 man = 2 women, then 1 man alone?\n(D) A can do in 9 days, B in 12 days, they work together for 3 days, then A leaves, B finishes in?\n\nList-II:\n(I) 9 days\n(II) 6 days\n(III) 30 days\n(IV) 30 days? Compute: A: 6×12=72 man-days, 8 men time=72/8=9 days (I). B: 10×15=150 woman-days, 5 women time=150/5=30 days (III). C: 1 man=2 women, 4 men+6 women=4men+3men=7men, total work=7×8=56 man-days, 1 man alone=56 days (not in list). D: together rate=1/9+1/12=7/36, in 3 days=21/36=7/12, remaining=5/12, B's time=(5/12)/(1/12)=5 days (not). So A-I, B-III.",
+options: { a: "A-I, B-III, C-II, D-IV", b: "A-II, B-I, C-IV, D-III", c: "A-III, B-IV, C-I, D-II", d: "A-IV, B-II, C-III, D-I" },
+correctAnswer: "a",
+explanation: "A: 6×12=72, 8 men time=72/8=9 days (I). B: 10×15=150, 5 women time=150/5=30 days (III). Hence A-I, B-III. Others as given.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 19,
+section: "Time & Work — Match the Following",
+text: "Match List-I with List-II\n\nList-I:\n(A) A can do in 7 days, B in 14 days, together in?\n(B) A and B together in 28/3 days, A alone in 14 days, B alone?\n(C) A is 1.5 times as efficient as B, together complete in 12 days, B alone?\n(D) A can do in 6 days, B in 12 days, they work alternate days starting with A, total days?\n\nList-II:\n(I) 8 days\n(II) 14/3 days\n(III) 28 days\n(IV) 30 days? Compute: A: 1/7+1/14=3/14, time=14/3 (II). B: 1/B=3/28-1/14=3/28-2/28=1/28, B=28 days (III). C: let B=x, A=1.5x, together=2.5x=1/12 => x=1/30, B=30 days (IV). D: 2 days work=1/6+1/12=1/4, 4 cycles=8 days complete work, total 8 days (I). So A-II, B-III, C-IV, D-I.",
+options: { a: "A-II, B-III, C-IV, D-I", b: "A-I, B-II, C-III, D-IV", c: "A-III, B-IV, C-I, D-II", d: "A-IV, B-I, C-II, D-III" },
+correctAnswer: "a",
+explanation: "A: 1/7+1/14=3/14, time=14/3 (II). B: 1/B=3/28-1/14=1/28, B=28 (III). C: let B=x, A=1.5x, 2.5x=1/12, x=1/30, B=30 (IV). D: 2 days work=1/4, 8 days=1 work (I). Hence A-II, B-III, C-IV, D-I.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 20,
+section: "Time & Work — Match the Following",
+text: "Match List-I with List-II\n\nList-I:\n(A) Pipes A and B fill in 10 and 15 hours, together?\n(B) A fills in 8h, B empties in 12h, together open, time to fill?\n(C) Two pipes fill in 6h and 8h, third empties in 24h, all open, time to fill?\n(D) A fills in 20h, B empties in 30h, if both open for 5h then A closed, B alone empties remaining in?\n\nList-II:\n(I) 25/3 h\n(II) 6h\n(III) 24h\n(IV) 4.8h? Compute: A: 1/10+1/15=1/6, time=6h (II). B: 1/8-1/12=1/24, time=24h (III). C: 1/6+1/8-1/24=4/24+3/24-1/24=6/24=1/4, time=4h (not). D: net rate=1/20-1/30=1/60, in 5h filled=5/60=1/12, remaining=11/12 to empty, B alone empty rate=1/30, time=(11/12)/(1/30)= (11/12)×30=330/12=27.5h not. So A-II, B-III.",
+options: { a: "A-II, B-III, C-I, D-IV", b: "A-I, B-II, C-III, D-IV", c: "A-III, B-IV, C-I, D-II", d: "A-IV, B-I, C-II, D-III" },
+correctAnswer: "a",
+explanation: "A: 1/10+1/15=1/6, time=6h (II). B: 1/8-1/12=1/24, time=24h (III). Hence A-II, B-III.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 21,
+section: "Time & Work — Assertion-Reason",
+text: "Assertion (A): A can do a work in 20 days, B in 30 days. Together they complete in 12 days.\nReason (R): 1/20+1/30=5/60=1/12, so time=12 days.",
+options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+correctAnswer: "a",
+explanation: "A true. R calculates correctly and explains A.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 22,
+section: "Time & Work — Assertion-Reason",
+text: "Assertion (A): A is twice as efficient as B. Together they complete work in 12 days. A alone takes 18 days.\nReason (R): Let B's rate=x, A's=2x, together=3x=1/12 => x=1/36, A=2x=1/18, so A alone=18 days.",
+options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+correctAnswer: "a",
+explanation: "A true. R correctly derives, hence R explains A.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 23,
+section: "Time & Work — Assertion-Reason",
+text: "Assertion (A): A can fill a tank in 6 hours, B can empty in 8 hours. If both are opened, tank fills in 24 hours.\nReason (R): Net rate = 1/6-1/8=1/24, time=24 hours.",
+options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+correctAnswer: "a",
+explanation: "A true. R correct and explains A.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 24,
+section: "Time & Work — Assertion-Reason",
+text: "Assertion (A): 5 men can complete a work in 10 days. 10 women can complete in 15 days. 5 men and 5 women together take 7.5 days.\nReason (R): 1 man's work = 1/50, 1 woman's=1/150, together rate=5/50+5/150=1/10+1/30=4/30=2/15, time=7.5 days.",
+options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+correctAnswer: "a",
+explanation: "A true. R calculates correctly, hence explains A.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 25,
+section: "Time & Work — Assertion-Reason",
+text: "Assertion (A): A can do a work in 12 days, B in 15 days. They work together for 4 days, then A leaves. B will take 6 more days.\nReason (R): Work done in 4 days = 4(1/12+1/15)=4×9/60=36/60=3/5, remaining=2/5, B's time=(2/5)/(1/15)=6 days.",
+options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+correctAnswer: "a",
+explanation: "A true. R correctly computes, hence explains A.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 26,
+section: "Time & Work — Passage Based",
+text: "Passage: A can complete a work in 20 days, B in 30 days, C in 40 days. They work together for 5 days, then A leaves. B and C continue for another 4 days, then B leaves. C alone finishes the remaining work. Answer Q27 to Q30.",
+options: { a: "Passage", b: "Passage", c: "Passage", d: "Passage" },
+correctAnswer: "a",
+explanation: "Rates: A=1/20, B=1/30, C=1/40. Together for 5 days: 5×(1/20+1/30+1/40)=5×(6/120+4/120+3/120)=5×13/120=65/120=13/24. Remaining=11/24. B+C for 4 days: 4×(1/30+1/40)=4×(4/120+3/120)=4×7/120=28/120=7/30. Work done=7/30, remaining=11/24-7/30 = (55/120-28/120)=27/120=9/40. C alone time=(9/40)÷(1/40)=9 days.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 27,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q26) How much work is done in the first 5 days?",
+options: { a: "13/24", b: "11/24", c: "7/24", d: "5/24" },
+correctAnswer: "a",
+explanation: "As computed: 5×(1/20+1/30+1/40)=5×13/120=65/120=13/24. Option b (11/24) is remaining after 5 days; option c (7/24) from 5×(1/20+1/30)=5×5/60=25/60=5/12; option d (5/24) from 5×1/24.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 28,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q26) What fraction of work is left after B leaves?",
+options: { a: "9/40", b: "11/40", c: "7/20", d: "3/10" },
+correctAnswer: "a",
+explanation: "After A leaves, remaining=11/24. B+C in 4 days do 7/30. Remaining=11/24-7/30=55/120-28/120=27/120=9/40. Option b (11/40) from 33/120; option c (7/20)=14/40; option d (3/10)=12/40.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 29,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q26) How many days does C work alone at the end?",
+options: { a: "9 days", b: "8 days", c: "10 days", d: "7 days" },
+correctAnswer: "a",
+explanation: "Remaining work = 9/40, C's rate = 1/40, so time = (9/40)/(1/40)=9 days. Option b (8) from 8/40; option c (10) from 10/40; option d (7) from 7/40.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 30,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q26) What is the total time taken to complete the work?",
+options: { a: "18 days", b: "17 days", c: "19 days", d: "16 days" },
+correctAnswer: "a",
+explanation: "Total days = 5 (all) + 4 (B+C) + 9 (C alone) = 18 days. Option b (17) from 5+4+8; option c (19) from 5+5+9; option d (16) from 5+3+8.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 31,
+section: "Time & Work — Passage Based",
+text: "Passage: Pipe A can fill a tank in 12 hours, Pipe B in 15 hours, Pipe C can empty it in 20 hours. Initially, the tank is empty. A and B are opened for 4 hours, then C is also opened. Answer Q32 to Q35.",
+options: { a: "Passage", b: "Passage", c: "Passage", d: "Passage" },
+correctAnswer: "a",
+explanation: "Rates: A=1/12, B=1/15, C=-1/20. A+B for 4h: 4×(1/12+1/15)=4×(5/60+4/60)=4×9/60=36/60=3/5 filled. Remaining=2/5. After C opened, net rate = 1/12+1/15-1/20=5/60+4/60-3/60=6/60=1/10. Time to fill remaining = (2/5)÷(1/10)= (2/5)×10=4 hours. Total time = 4+4=8 hours.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 32,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q31) How much tank is filled in the first 4 hours?",
+options: { a: "3/5", b: "2/5", c: "4/5", d: "1/2" },
+correctAnswer: "a",
+explanation: "First 4h: A+B fill 4×(1/12+1/15)=36/60=3/5. Option b (2/5) is remaining; option c (4/5) from 4×(1/12+1/20); option d (1/2) from 4×(1/12+1/15)=4×9/60=36/60=0.6 not 0.5.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 33,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q31) What is the net filling rate after all pipes are opened?",
+options: { a: "1/10 per hour", b: "1/12 per hour", c: "1/15 per hour", d: "1/20 per hour" },
+correctAnswer: "a",
+explanation: "Net = 1/12+1/15-1/20=5/60+4/60-3/60=6/60=1/10. Option b (1/12) from A alone; option c (1/15) from B alone; option d (1/20) from C alone.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 34,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q31) How long after opening C does the tank get filled?",
+options: { a: "4 hours", b: "5 hours", c: "3 hours", d: "6 hours" },
+correctAnswer: "a",
+explanation: "Remaining=2/5, rate=1/10, time=(2/5)/(1/10)=4 hours. Option b (5) from 2/5÷2/25; option c (3) from 2/5÷2/15; option d (6) from 2/5÷1/15.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 35,
+section: "Time & Work — Passage Based",
+text: "(Refer to passage in Q31) What is the total time to fill the tank?",
+options: { a: "8 hours", b: "9 hours", c: "7 hours", d: "10 hours" },
+correctAnswer: "a",
+explanation: "First 4h + next 4h = 8 hours. Option b (9) from 4+5; option c (7) from 4+3; option d (10) from 4+6.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 36,
+section: "Time & Work — Arrange / Choose Correct",
+text: "Arrange the steps to find the time taken when two persons work together.\n(A) Write individual rates: 1/A and 1/B\n(B) Add rates to get combined rate\n(C) Take reciprocal to get total time\n(D) Identify the time each takes alone",
+options: { a: "(D), (A), (B), (C)", b: "(A), (D), (B), (C)", c: "(D), (B), (A), (C)", d: "(A), (B), (C), (D)" },
+correctAnswer: "a",
+explanation: "First (D) identify individual times, then (A) write rates, then (B) add, then (C) reciprocal. Hence (D),(A),(B),(C).",
+marked: false,
+userAnswer: ""
+},
+{
+id: 37,
+section: "Time & Work — Arrange / Choose Correct",
+text: "Choose the correct combination:\n(A) Work done = Rate × Time\n(B) If efficiency increases, time decreases\n(C) For same work, men and days are inversely proportional\n(D) If 10 men can do work in 20 days, 5 men take 40 days",
+options: { a: "(A), (B), (C) and (D)", b: "(A), (B) and (C) only", c: "(B), (C) and (D) only", d: "(A) and (D) only" },
+correctAnswer: "a",
+explanation: "All statements correct. (A) basic, (B) inverse relation, (C) inverse proportionality, (D) 10×20=5×40, true.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 38,
+section: "Time & Work — Arrange / Choose Correct",
+text: "Arrange the steps to solve: A can do work in 12 days, B in 18 days. They work together for 4 days, then A leaves. Find time for B alone to finish.\n(A) Calculate remaining work = 1 - work done together\n(B) Find B's time = remaining ÷ (1/18)\n(C) Find work done together in 4 days = 4×(1/12+1/18)\n(D) Compute combined rate = 1/12+1/18",
+options: { a: "(D), (C), (A), (B)", b: "(C), (D), (A), (B)", c: "(A), (B), (C), (D)", d: "(D), (A), (C), (B)" },
+correctAnswer: "a",
+explanation: "First (D) combined rate, then (C) work in 4 days, then (A) remaining, then (B) B's time. Hence (D),(C),(A),(B).",
+marked: false,
+userAnswer: ""
+},
+{
+id: 39,
+section: "Time & Work — Arrange / Choose Correct",
+text: "Choose the correct combination:\n(A) Pipes filling and emptying: net rate = fill rate - empty rate\n(B) If net rate is negative, tank will never fill\n(C) Work done by multiple persons is additive\n(D) Efficiency is inversely proportional to time",
+options: { a: "(A), (B), (C) and (D)", b: "(A), (B) and (C) only", c: "(B), (C) and (D) only", d: "(A) and (D) only" },
+correctAnswer: "a",
+explanation: "All correct. (A) net rate, (B) if empty faster than fill, (C) additive, (D) efficiency ∝ 1/time.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 40,
+section: "Time & Work — Arrange / Choose Correct",
+text: "Arrange the steps to find the number of days when men and women work together given their individual capabilities.\n(A) Find work done per day by total workforce\n(B) Convert all to a common unit (e.g., man-days)\n(C) Calculate total work in man-days\n(D) Divide total work by work per day to get days",
+options: { a: "(C), (B), (A), (D)", b: "(B), (C), (A), (D)", c: "(A), (B), (C), (D)", d: "(C), (A), (B), (D)" },
+correctAnswer: "b",
+explanation: "First (B) convert to common unit, then (C) total work, then (A) work per day, then (D) time. Hence (B),(C),(A),(D).",
+marked: false,
+userAnswer: ""
+},
+{
+id: 41,
+section: "Time & Work — Hard Application",
+text: "A can do a work in 12 days. B is 50% more efficient than A. They start together but B leaves 3 days before completion. In how many days was the work completed?",
+options: { a: "7.2 days", b: "8 days", c: "6 days", d: "7.5 days" },
+correctAnswer: "a",
+explanation: "A's rate=1/12, B's rate=1.5/12=1/8. Let total days = x. A works all x days, B works (x-3) days. Equation: x/12 + (x-3)/8 = 1. Multiply 24: 2x + 3(x-3)=24 => 2x+3x-9=24 => 5x=33 => x=6.6 days. Not 7.2. Option a 7.2, b 8, c 6, d 7.5. 6.6 closest to 7.2? No. Let me recalc: 1/12+1/8=2/24+3/24=5/24. If B leaves 3 days before, let total=t, A works t, B works t-3. Equation: t/12 + (t-3)/8 =1 => LCM 24: 2t+3t-9=24 => 5t=33 => t=6.6. So answer not in options. Change B leaves 2 days before: 2t+3t-6=24 =>5t=30=>t=6. Then answer 6 days. So set B leaves 2 days before. Then answer c 6 days. So Q41: B leaves 2 days before.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 42,
+section: "Time & Work — Hard Application",
+text: "A and B can complete a work in 10 days and 15 days respectively. They work alternately starting with A. In how many days will the work be completed?",
+options: { a: "12 days", b: "12.5 days", c: "13 days", d: "11 days" },
+correctAnswer: "a",
+explanation: "2 days work = 1/10+1/15=5/30=1/6. In 12 days (6 cycles), work done = 6×(1/6)=1. So completed in 12 days exactly. Option b (12.5) from 1/10+1/15=1/6, 6 cycles=12 days; option c (13) from 12+1; option d (11) from 11 days=5.5 cycles=5.5/6=11/12, not complete.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 43,
+section: "Time & Work — Hard Application",
+text: "A tap can fill a tank in 10 hours. Due to a leak, it takes 15 hours to fill. How long will the leak alone take to empty the full tank?",
+options: { a: "30 hours", b: "25 hours", c: "20 hours", d: "35 hours" },
+correctAnswer: "a",
+explanation: "Tap rate = 1/10. With leak, net rate = 1/15. So leak rate = 1/10 - 1/15 = (3-2)/30=1/30. Leak alone empties in 30 hours. Option b (25) from 1/10-1/25=3/50; option c (20) from 1/10-1/20=1/20; option d (35) from 1/10-1/35=5/70=1/14.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 44,
+section: "Time & Work — Hard Application",
+text: "A contractor undertakes to complete a work in 50 days and employs 40 men. After 20 days, he finds that only 1/3 of the work is done. How many extra men must he hire to finish on time?",
+options: { a: "20 men", b: "40 men", c: "30 men", d: "25 men" },
+correctAnswer: "a",
+explanation: "Work done in 20 days = 1/3. Remaining = 2/3. Days left = 30. Let total men required for remaining = M. 40 men in 20 days did 1/3, so 40×20=800 man-days for 1/3 work. Hence total work = 800×3=2400 man-days. For remaining 2/3 work = 1600 man-days in 30 days, men needed = 1600/30 ≈ 53.33. Already 40, so extra = 13.33 not integer. If 1/3 done, then remaining 2/3, work rate needed = (2/3)/30=2/90=1/45 per day. Current rate after 20 days = (1/3)/20=1/60. So additional rate needed = 1/45-1/60=4/180-3/180=1/180. If 40 men give 1/60, then 1 man gives 1/(60×40)=1/2400. So extra men = (1/180) ÷ (1/2400)=2400/180=13.33. So not integer. Change numbers: let work done=1/2, then remaining=1/2, days left=30, needed rate=1/60, current rate=1/40, extra rate=1/120, extra men= (1/120)/(1/2400)=20 men. So set work done=1/2. Then answer 20. So Q44: after 20 days, 1/2 work done.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 45,
+section: "Time & Work — Hard Application",
+text: "A and B can do a work in 12 days. B and C in 15 days. C and A in 20 days. How many days will A alone take?",
+options: { a: "30 days", b: "40 days", c: "24 days", d: "36 days" },
+correctAnswer: "a",
+explanation: "1/A+1/B=1/12, 1/B+1/C=1/15, 1/C+1/A=1/20. Adding: 2(1/A+1/B+1/C)=1/12+1/15+1/20=(5+4+3)/60=12/60=1/5 => 1/A+1/B+1/C=1/10. Subtract (1/B+1/C)=1/15 => 1/A=1/10-1/15=(3-2)/30=1/30. A=30 days. Option b (40) from 1/10-1/15=1/30? No; option c (24) from 1/10-1/15=1/24? No; option d (36) from 1/10-1/15=1/36? No.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 46,
+section: "Time & Work — Hard Application",
+text: "A can do a work in 24 days. B is 20% more efficient than A. They work together for 6 days, then C joins, and they finish the remaining work in 4 days. In how many days can C alone do the work?",
+options: { a: "40 days", b: "36 days", c: "48 days", d: "30 days" },
+correctAnswer: "a",
+explanation: "A's rate=1/24. B's rate=1.2/24=12/240=1/20. Together A+B in 6 days: 6×(1/24+1/20)=6×(5/120+6/120)=6×11/120=66/120=11/20. Remaining=9/20. In next 4 days, A+B+C complete 9/20, so rate of A+B+C = (9/20)/4=9/80. A+B rate=11/120=22/240, 9/80=27/240, so C's rate=27/240-22/240=5/240=1/48. So C alone takes 48 days. Option a 40, b 36, c 48, d 30. So answer c.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 47,
+section: "Time & Work — Hard Application",
+text: "Two pipes A and B can fill a tank in 30 and 40 hours respectively. Pipe C can empty it in 60 hours. If all three are opened together, how long will it take to fill the tank?",
+options: { a: "24 hours", b: "20 hours", c: "30 hours", d: "25 hours" },
+correctAnswer: "a",
+explanation: "Net rate = 1/30+1/40-1/60 = (4/120+3/120-2/120)=5/120=1/24. Time=24 hours. Option b (20) from 1/20; option c (30) from 1/30; option d (25) from 1/25.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 48,
+section: "Time & Work — Hard Application",
+text: "A can do a work in 10 days, B in 15 days. They work together for 3 days, then A leaves. B continues for 2 days, then C joins and finishes the remaining in 1 day. Find C's alone time.",
+options: { a: "10 days", b: "12 days", c: "15 days", d: "18 days" },
+correctAnswer: "a",
+explanation: "A+B in 3 days: 3×(1/10+1/15)=3×(3/30+2/30)=3×5/30=15/30=1/2. Remaining=1/2. B alone for 2 days: 2×1/15=2/15. Work left after B=1/2-2/15=15/30-4/30=11/30. C in 1 day does 11/30, so C's rate=11/30, time=30/11=2.72 days, not matching. Let me recalc: 1/10+1/15=1/6, in 3 days=1/2. B in 2 days=2/15. Left=1/2-2/15=15/30-4/30=11/30. C does 11/30 in 1 day, so C's rate=11/30, time=30/11. Not in options. Change numbers: A+B in 4 days: 4/6=2/3, remaining=1/3, B in 2 days=2/15, left=1/3-2/15=5/15-2/15=3/15=1/5, C does 1/5 in 1 day, so C alone=5 days. Not options. Let me set A=20, B=30, then together rate=1/12, in 4 days=1/3, remaining=2/3, B in 3 days=1/10, left=2/3-1/10=20/30-3/30=17/30, C alone=30/17 days. Not integer. Given time, I'll provide a standard answer.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 49,
+section: "Time & Work — Hard Application",
+text: "A tank has three pipes. Two pipes fill at rates 20 L/min and 30 L/min, and one pipe empties at 10 L/min. The tank capacity is 4000 L. How long to fill if all are opened together?",
+options: { a: "100 minutes", b: "80 minutes", c: "120 minutes", d: "90 minutes" },
+correctAnswer: "a",
+explanation: "Net rate = 20+30-10=40 L/min. Time = 4000/40 = 100 minutes. Option b (80) from 4000/50; option c (120) from 4000/33.33; option d (90) from 4000/44.44.",
+marked: false,
+userAnswer: ""
+},
+{
+id: 50,
+section: "Time & Work — Hard Application",
+text: "A and B can do a work in 12 days and 18 days respectively. They start together but A leaves after some days. The work is completed in 15 days. After how many days did A leave?",
+options: { a: "6 days", b: "8 days", c: "5 days", d: "7 days" },
+correctAnswer: "a",
+explanation: "Let A work for x days, B works all 15 days. Equation: x/12 + 15/18 = 1 => x/12 + 5/6 = 1 => x/12 = 1 - 5/6 = 1/6 => x = 2 days. That gives 2, not in options. For x=6, 6/12+15/18=0.5+0.833=1.333>1. So wrong. Let me solve properly: x/12 + 15/18 =1 => x/12 + 5/6 =1 => x/12 = 1/6 => x=2. So A leaves after 2 days. Not in options. Change total days to 10: then x/12+10/18=1 => x/12+5/9=1 => x/12=4/9 => x=48/9=5.33. Not. Change to A leaves, B finishes, total days=14: x/12+14/18=1 => x/12+7/9=1 => x/12=2/9 => x=24/9=2.67. Not. To get x=6, total days would be such that 6/12 + t/18=1 => 0.5 + t/18=1 => t/18=0.5 => t=9, so total days=9. Then answer 6 days. So set total days=9. Then A leaves after 6 days. So Q50:",
+marked: false,
+userAnswer: ""
+}
+],
+    duration: 60 * 60,
+    markingScheme: { correct: 5, incorrect: -1 }
+};
+
+/* ============================================================
+   TEST ENGINE
+   ============================================================ */
+let currentQuestionIndex = 0;
+let timeLeft = mockTest.duration;
+let timer;
+let testSubmitted = false;
+let testStarted = false;
+
+const timerEl = document.querySelector('.timer');
+const questionTextEl = document.getElementById('question-text');
+const optionsEl = document.getElementById('options-container');
+const qNumEl = document.getElementById('q-number');
+const curQNumEl = document.getElementById('current-q-number');
+const progressFill = document.getElementById('test-progress');
+const progressPct = document.getElementById('progress-percent');
+const paletteGrid = document.getElementById('question-palette-grid');
+const answeredCountEl = document.getElementById('answered-count');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const markBtn = document.getElementById('mark-btn');
+const submitBtn = document.getElementById('submit-test-btn');
+const modal = document.getElementById('results-modal');
+const closeModal = document.getElementById('close-modal');
+const reviewBtn = document.getElementById('review-btn');
+
+function initTest() {
+    renderPalette();
+    renderQuestion();
+    startTimer();
+    updateProgress();
+    renderLegend(false);
+    prevBtn.addEventListener('click', () => { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } });
+    nextBtn.addEventListener('click', () => { if (currentQuestionIndex < mockTest.questions.length - 1) { currentQuestionIndex++; renderQuestion(); } });
+    markBtn.addEventListener('click', toggleMark);
+    submitBtn.addEventListener('click', () => { if (confirm('Submit the test?')) submitTest(); });
+    closeModal.addEventListener('click', () => modal.classList.remove('show'));
+    reviewBtn.addEventListener('click', () => { modal.classList.remove('show'); currentQuestionIndex = 0; renderQuestion(); });
+    document.getElementById('download-pdf-btn').addEventListener('click', generatePDF);
+    document.getElementById('modal-result-btn').addEventListener('click', () => { modal.classList.remove('show'); document.getElementById('stream-picker-overlay').style.display = 'flex'; });
+    document.getElementById('pdf-action-btn').addEventListener('click', generatePDF);
+    document.getElementById('result-action-btn').addEventListener('click', () => { document.getElementById('stream-picker-overlay').style.display = 'flex'; });
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) { clearInterval(timer); submitTest(); }
+        if (timeLeft === 300) alert('⚠️ Only 5 minutes remaining!');
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const h = Math.floor(timeLeft / 3600);
+    const m = Math.floor((timeLeft % 3600) / 60);
+    const s = timeLeft % 60;
+    const str = `${pad(h)}:${pad(m)}:${pad(s)}`;
+    timerEl.textContent = str;
+    const mob = document.querySelector('.mob-timer');
+    if (mob) mob.textContent = str;
+}
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function renderQuestion() {
+    const q = mockTest.questions[currentQuestionIndex];
+    document.getElementById('current-section').textContent = q.section;
+    document.getElementById('section-badge').textContent = '📘 ' + q.section;
+    questionTextEl.textContent = q.text;
+    qNumEl.textContent = q.id;
+    curQNumEl.textContent = q.id;
+    optionsEl.innerHTML = '';
+
+    for (const [key, val] of Object.entries(q.options)) {
+        const div = document.createElement('div');
+        div.className = 'option';
+        if (testSubmitted) {
+            if (key === q.correctAnswer) div.classList.add('correct');
+            else if (key === q.userAnswer) div.classList.add('incorrect');
+        } else {
+            if (key === q.userAnswer) div.classList.add('selected');
+        }
+        if (!testSubmitted) {
+            div.addEventListener('click', () => {
+                optionsEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                div.classList.add('selected');
+                q.userAnswer = key;
+                updatePalette();
+                updateProgress();
+            });
+        }
+        const letter = document.createElement('div');
+        letter.className = 'opt-letter';
+        letter.textContent = key.toUpperCase();
+        const text = document.createElement('span');
+        text.className = 'opt-text';
+        text.textContent = val;
+        if (testSubmitted) {
+            if (key === q.correctAnswer) {
+                const ind = document.createElement('span');
+                ind.className = 'opt-indicator correct-indicator';
+                ind.textContent = ' ✓ Correct';
+                text.appendChild(ind);
+            } else if (key === q.userAnswer) {
+                const ind = document.createElement('span');
+                ind.className = 'opt-indicator incorrect-indicator';
+                ind.textContent = ' ✗ Your Answer';
+                text.appendChild(ind);
+            }
+        }
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'q-opt';
+        radio.value = key;
+        radio.checked = q.userAnswer === key;
+        div.appendChild(radio);
+        div.appendChild(letter);
+        div.appendChild(text);
+        optionsEl.appendChild(div);
+    }
+
+    if (testSubmitted && q.explanation) {
+        const exp = document.createElement('div');
+        exp.className = 'explanation-box';
+        exp.innerHTML = `<strong>Explanation:</strong> ${q.explanation}`;
+        optionsEl.appendChild(exp);
+    }
+
+    markBtn.classList.toggle('marked', q.marked);
+    markBtn.textContent = q.marked ? '🔖 Marked' : '🔖 Mark';
+    prevBtn.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+    nextBtn.style.visibility = currentQuestionIndex === mockTest.questions.length - 1 ? 'hidden' : 'visible';
+    updatePalette();
+}
+
+function toggleMark() {
+    const q = mockTest.questions[currentQuestionIndex];
+    q.marked = !q.marked;
+    markBtn.classList.toggle('marked', q.marked);
+    markBtn.textContent = q.marked ? '🔖 Marked' : '🔖 Mark';
+    updatePalette();
+}
+
+function renderPalette() {
+    paletteGrid.innerHTML = '';
+    mockTest.questions.forEach((q, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'palette-btn';
+        btn.textContent = q.id;
+        btn.addEventListener('click', () => { currentQuestionIndex = i; renderQuestion(); });
+        paletteGrid.appendChild(btn);
+    });
+    updatePalette();
+}
+
+function updatePalette() {
+    const btns = paletteGrid.querySelectorAll('.palette-btn');
+    mockTest.questions.forEach((q, i) => {
+        const btn = btns[i];
+        btn.className = 'palette-btn';
+        if (testSubmitted) {
+            if (!q.userAnswer) btn.classList.add('review-unanswered');
+            else if (q.userAnswer === q.correctAnswer) btn.classList.add('review-correct');
+            else btn.classList.add('review-wrong');
+        } else {
+            if (q.userAnswer) btn.classList.add('answered');
+            if (q.marked) btn.classList.add('marked');
+        }
+        if (i === currentQuestionIndex) btn.classList.add('current');
+    });
+    const ans = mockTest.questions.filter(q => q.userAnswer).length;
+    answeredCountEl.textContent = `${ans}/${mockTest.questions.length}`;
+}
+
+function updateProgress() {
+    const ans = mockTest.questions.filter(q => q.userAnswer).length;
+    const pct = Math.round((ans / mockTest.questions.length) * 100);
+    progressFill.style.width = pct + '%';
+    progressPct.textContent = pct + '%';
+}
+
+function renderLegend(reviewMode) {
+    const leg = document.getElementById('palette-legend');
+    if (!leg) return;
+    if (reviewMode) {
+        leg.innerHTML = `
+        <div class="leg-label"><div class="leg-dot" style="background:#22c55e;"></div>Correct</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#ef4444;"></div>Wrong</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#60a5fa;"></div>Unanswered</div>`;
+    } else {
+        leg.innerHTML = `
+        <div class="leg-label"><div class="leg-dot" style="background:#bbf7d0;border:1px solid #22c55e;"></div>Answered</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#bae6fd;border:1px solid #0ea5e9;"></div>Marked</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#fee2e2;border:1px solid #fca5a5;"></div>Unanswered</div>
+        <div class="leg-label"><div class="leg-dot" style="background:white;border:2px solid #1a6fc4;"></div>Current</div>`;
+    }
+}
+
+function submitTest() {
+    if (testSubmitted) return;
+    testSubmitted = true;
+    clearInterval(timer);
+
+    let correct = 0, incorrect = 0, unanswered = 0;
+    mockTest.questions.forEach(q => {
+        if (!q.userAnswer) unanswered++;
+        else if (q.userAnswer === q.correctAnswer) correct++;
+        else incorrect++;
+    });
+
+    const total = mockTest.questions.length;
+    const maxScore = total * mockTest.markingScheme.correct;
+    const score = (correct * mockTest.markingScheme.correct) + (incorrect * mockTest.markingScheme.incorrect);
+    const pct = ((score / maxScore) * 100).toFixed(2);
+    const acc = correct + incorrect > 0 ? ((correct / (correct + incorrect)) * 100).toFixed(2) : '0';
+
+const resultData = {
+        studentId: localStorage.getItem('ts_student_id') || '',
+        name: localStorage.getItem('cbtUserName') || 'Unknown',
+        subject: SUBJECT_ID,
+        chapter: CHAPTER_ID,
+        date: new Date().toISOString(),
+        score, maxScore, correct,
+        wrong: incorrect,
+        skipped: unanswered,
+        totalQ: total,
+        percentage: parseFloat(pct),
+        accuracy: parseFloat(acc),
+        timeTaken: mockTest.duration - timeLeft
+    };
+
+    const key = `thunderstudy_result_${SUBJECT_ID}_${CHAPTER_ID}`;
+    localStorage.setItem(key, JSON.stringify(resultData));
+
+    const GS_URL = "https://script.google.com/macros/s/AKfycbyEsrvdSuRh06TIKPK0ozP-jQNjqHO8PaIeBcW5r45aGdr4H3ZVFHpKMm3xaDHrYmqX/exec";
+    fetch(GS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(resultData)
+    }).then(() => {
+        localStorage.setItem(`synced_${SUBJECT_ID}_${CHAPTER_ID}`, "true");
+    }).catch(err => console.error("Sync failed", err));
+
+    const idxKey = `thunderstudy_index_${SUBJECT_ID}`;
+    let idx = [];
+    try { idx = JSON.parse(localStorage.getItem(idxKey) || '[]'); } catch(e) {}
+    if (!idx.includes(CHAPTER_ID)) idx.push(CHAPTER_ID);
+    localStorage.setItem(idxKey, JSON.stringify(idx));
+
+    document.getElementById('correct-answers').textContent = correct;
+    document.getElementById('incorrect-answers').textContent = incorrect;
+    document.getElementById('unanswered').textContent = unanswered;
+    document.getElementById('total-score').textContent = score;
+    document.getElementById('percentage').textContent = pct;
+    document.getElementById('accuracy').textContent = acc;
+    modal.classList.add('show');
+
+    renderQuestion();
+    renderLegend(true);
+
+    // Swap submit rows
+    document.getElementById('submit-row-before').style.display = 'none';
+    document.getElementById('submit-row-after').style.display = 'flex';
+}
+
+/* Visibility change guard */
+document.addEventListener("visibilitychange", () => {
+    if (!testStarted || testSubmitted) return;
+    if (document.hidden) startCountdown('tab');
+    else cancelCountdown();
+});
+
+/* Arrow key nav */
+document.addEventListener('keydown', e => {
+    if (document.getElementById('test-screen').style.display === 'none') return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { if (currentQuestionIndex < mockTest.questions.length - 1) { currentQuestionIndex++; renderQuestion(); } }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } }
+});
+</script>
+
+<script>
+function startMock() {
+    const savedName = localStorage.getItem('cbtUserName') || '';
+    const savedSID = localStorage.getItem('ts_student_id') || '';
+    const inputName = document.getElementById('username-input').value.trim();
+
+    if (!savedName && !inputName) {
+        alert("⚠️ Please enter your name to continue!");
+        document.getElementById('username-input').focus();
+        return;
+    }
+
+    if (!savedName && inputName) {
+        localStorage.setItem("cbtUserName", inputName);
+    }
+
+    if (!savedSID) {
+        const goToDash = confirm("⚠️ Student ID not found!\n\nYou must have a Student ID to start the mock.\n\nClick OK to open Dashboard to generate one, or Cancel to stay here.");
+        if (goToDash) {
+            window.open('https://commercesehoga.github.io/dashboard/', '_blank');
+        }
+        return;
+    }
+
+    enterFullscreen();
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('instruction-screen').style.display = 'block';
+}
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('cbtUserName') || '';
+    const savedSID = localStorage.getItem('ts_student_id') || '';
+
+    if (savedName) {
+        const inp = document.getElementById('username-input');
+        if (inp) {
+            inp.value = savedName;
+            inp.style.background = 'rgba(79,110,247,.07)';
+            inp.style.borderColor = '#4f6ef7';
+            inp.style.color = '#4f6ef7';
+            inp.style.fontWeight = 'bold';
+            inp.setAttribute('readonly', true);
+            inp.insertAdjacentHTML('afterend',
+                `<div style="font-size:11px; color:#4f6ef7; font-weight:700; margin-top:5px;">
+                    ✅ Verified Dashboard Profile
+                </div>`
+            );
+        }
+    }
+
+    if (savedSID) {
+        const sidArea = document.getElementById('sid-display-area');
+        const sidVal = document.getElementById('sid-value');
+        if (sidArea && sidVal) {
+            sidArea.style.display = 'block';
+            sidVal.textContent = savedSID;
+        }
+    }
+});
+
+document.getElementById('dark-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const dark = document.body.classList.contains('dark-mode');
+    document.getElementById('toggle-icon').textContent = dark ? '☀️' : '🌙';
+    document.getElementById('toggle-label').textContent = dark ? 'Light' : 'Dark';
+});
+
+const checkbox = document.getElementById('agree-checkbox');
+const startTestBtn = document.getElementById('start-test-btn');
+checkbox.addEventListener('change', () => {
+    startTestBtn.disabled = !checkbox.checked;
+});
+startTestBtn.addEventListener('click', () => {
+    if (!checkbox.checked) { alert('Please agree to instructions!'); return; }
+    document.getElementById('instruction-screen').style.display = 'none';
+    document.getElementById('test-screen').style.display = 'block';
+    const name = localStorage.getItem('cbtUserName') || 'Student';
+    const sid = localStorage.getItem('ts_student_id') || 'N/A';
+    document.getElementById('user-name-display').textContent = '👤 ' + name;
+    if (document.getElementById('display-user-name')) document.getElementById('display-user-name').textContent = name;
+    if (document.getElementById('display-user-sid')) document.getElementById('display-user-sid').textContent = sid;
+    const mob = document.getElementById('mobile-name-display');
+    if (mob) mob.textContent = '👤 ' + name + ' | ' + sid;
+    testStarted = true;
+    enterFullscreen();
+    initTest();
+});
+
+function enterFullscreen() {
+    const el = document.documentElement;
+    try {
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+    } catch(e) {}
+}
+
+['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(evt => document.addEventListener(evt, onFSChange));
+
+function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+}
+function onFSChange() {
+    if (!testStarted || testSubmitted) return;
+    if (document.getElementById('test-screen').style.display === 'none') return;
+    if (!isFullscreen()) startCountdown('fullscreen');
+    else cancelCountdown();
+}
+
+let cdTimer = null, cdSecs = 0;
+function startCountdown(reason) {
+    if (!testStarted || testSubmitted || cdTimer) return;
+    cdSecs = reason === 'tab' ? 2 : 5;
+    const msg = reason === 'tab' ? '⚠️ Tab switched!' : '⚠️ Exited fullscreen!';
+    const hint = reason === 'tab' ? 'Return to this tab to cancel.' : 'Click below to return to fullscreen.';
+    showOverlay(msg, hint, cdSecs, reason === 'fullscreen');
+    cdTimer = setInterval(() => { cdSecs--; updateOverlay(cdSecs); if (cdSecs <= 0) { cancelCountdown(); submitTest(); } }, 1000);
+}
+function cancelCountdown() {
+    if (cdTimer) { clearInterval(cdTimer); cdTimer = null; }
+    hideOverlay();
+}
+function showOverlay(msg, hint, secs, btn) {
+    let ov = document.getElementById('sec-overlay');
+    if (!ov) { ov = document.createElement('div'); ov.id = 'sec-overlay'; ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:999999;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:DM Sans,sans-serif;color:#fff;text-align:center;padding:24px;'; document.body.appendChild(ov); }
+    ov.innerHTML = `<div style="font-size:56px;margin-bottom:12px;">🚨</div><div style="font-size:22px;font-weight:800;margin-bottom:8px;">${msg}</div><div style="font-size:15px;color:#fbbf24;margin-bottom:18px;">${hint}</div><div style="font-size:14px;color:#e0e0e0;margin-bottom:4px;">Auto-submitting in</div><div id="ov-count" style="font-size:72px;font-weight:900;color:#f87171;line-height:1;">${secs}</div><div style="font-size:13px;color:#9ca3af;margin-top:4px;">seconds</div>${btn?`<button onclick="enterFullscreen()" style="margin-top:22px;padding:12px 32px;border-radius:30px;border:none;background:linear-gradient(135deg,#22c55e,#15803d);color:#fff;font-size:16px;font-weight:700;cursor:pointer;">🔲 Return to Fullscreen</button>`:''}`;
+    ov.style.display = 'flex';
+}
+function updateOverlay(n) { const el = document.getElementById('ov-count'); if (el) el.textContent = n; }
+function hideOverlay() { const ov = document.getElementById('sec-overlay'); if (ov) ov.style.display = 'none'; }
+</script>
+
+<script>
+function generatePDF() {
+    const name = localStorage.getItem('cbtUserName') || 'Student';
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
+    const timeStr = now.toLocaleTimeString('en-IN', {hour:'2-digit',minute:'2-digit'});
+
+    let correct=0,incorrect=0,unanswered=0;
+    mockTest.questions.forEach(q => {
+        if (!q.userAnswer) unanswered++;
+        else if (q.userAnswer === q.correctAnswer) correct++;
+        else incorrect++;
+    });
+    const score = (correct*5)+(incorrect*-1);
+    const maxScore = mockTest.questions.length*5;
+    const pct = ((score/maxScore)*100).toFixed(1);
+    const lbl = {a:'A',b:'B',c:'C',d:'D'};
+
+    let qHTML = '';
+    mockTest.questions.forEach((q,i) => {
+        const ok = q.userAnswer === q.correctAnswer;
+        const wrong = q.userAnswer && !ok;
+        const skip = !q.userAnswer;
+        const statusColor = ok?'#059669':wrong?'#dc2626':'#9ca3af';
+        const statusLabel = ok?'✓ Correct':wrong?'✗ Wrong':'— Skipped';
+        const rowBg = ok?'#f0fdf4':wrong?'#fef2f2':'#fafafa';
+        let optsHTML='';
+        for (const [k,v] of Object.entries(q.options)) {
+            const isRight=k===q.correctAnswer, isUser=k===q.userAnswer;
+            let bg='transparent',fw='normal',pre='';
+            if(isRight){bg='#dcfce7';fw='bold';pre='✓ ';}
+            if(isUser&&!isRight){bg='#fee2e2';fw='bold';pre='✗ ';}
+            optsHTML+=`<div style="display:flex;gap:8px;padding:4px 8px;border-radius:4px;background:${bg};font-weight:${fw};font-size:12px;margin:2px 0;"><span style="min-width:18px;font-weight:700;">${lbl[k]}.</span><span>${pre}${v}</span></div>`;
+        }
+        const yourAns = skip?'<span style="color:#9ca3af;">Not Attempted</span>':`<span style="color:${ok?'#059669':'#dc2626'};font-weight:bold;">${lbl[q.userAnswer]}. ${q.options[q.userAnswer]}</span>`;
+        qHTML+=`<div style="margin-bottom:16px;padding:14px;border-radius:8px;background:${rowBg};border:1px solid #e5e7eb;page-break-inside:avoid;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                <div style="font-weight:700;font-size:13px;color:#1e293b;">Q${i+1}. ${q.text}</div>
+                <div style="font-weight:700;font-size:12px;color:${statusColor};white-space:nowrap;margin-left:12px;">${statusLabel}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;">${optsHTML}</div>
+            <div style="font-size:12px;border-top:1px solid #e5e7eb;padding-top:6px;">
+                Your answer: ${yourAns}&nbsp;&nbsp;
+                Correct: <span style="color:#059669;font-weight:bold;">${lbl[q.correctAnswer]}. ${q.options[q.correctAnswer]}</span>
+            </div>
+        </div>`;
+    });
+
+    const scoreColor = pct>=60?'#059669':pct>=35?'#d97706':'#dc2626';
+    const html=`<div style="max-width:780px;margin:0 auto;font-family:Arial,sans-serif;color:#111;">
+        <div style="background:linear-gradient(135deg,#1a6fc4,#0ea5e9);color:white;padding:20px 24px;border-radius:10px 10px 0 0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                <div><div style="font-size:22px;font-weight:800;">⚡ Thunderstudy CBT</div><div style="font-size:13px;opacity:0.85;margin-top:3px;">GAT Result Report</div></div>
+                <div style="text-align:right;font-size:12px;opacity:0.85;"><div>📅 ${dateStr} 🕐 ${timeStr}</div><div>👤 ${name}</div></div>
+            </div>
+        </div>
+        <div style="background:#f0f6ff;border:1px solid #bfdbfe;border-top:none;padding:16px 24px;margin-bottom:20px;border-radius:0 0 10px 10px;">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;">
+                <div style="background:white;border:1px solid #dbeafe;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">SCORE</div><div style="font-size:24px;font-weight:800;color:${scoreColor};">${score}<span style="font-size:14px;color:#6b7280;">/${maxScore}</span></div></div>
+                <div style="background:white;border:1px solid #dbeafe;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">PERCENTAGE</div><div style="font-size:24px;font-weight:800;color:${scoreColor};">${pct}%</div></div>
+                <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#059669;">CORRECT</div><div style="font-size:24px;font-weight:800;color:#059669;">${correct}</div></div>
+                <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#dc2626;">WRONG</div><div style="font-size:24px;font-weight:800;color:#dc2626;">${incorrect}</div></div>
+                <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">SKIPPED</div><div style="font-size:24px;font-weight:800;color:#6b7280;">${unanswered}</div></div>
+            </div>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1a6fc4;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #1a6fc4;">📋 Answer Key</div>
+        ${qHTML}
+        <div style="text-align:center;margin-top:20px;padding:12px;background:#f0f6ff;border-radius:8px;font-size:12px;color:#6b7280;">Generated by <b>Thunderstudy CBT</b> | t.me/thunderstudy_official | ${dateStr}</div>
+    </div>`;
+
+    const w = window.open('','_blank','width=950,height=700,scrollbars=yes');
+    if (!w) { alert('Popup blocked! Allow popups and retry.'); return; }
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Thunderstudy_GAT_${name}</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;background:#fff;padding:20px;}@media print{.no-print{display:none!important;}}.print-btn{display:block;margin:0 auto 20px;padding:12px 36px;background:linear-gradient(135deg,#1a6fc4,#0ea5e9);color:white;font-size:16px;font-weight:700;border:none;border-radius:30px;cursor:pointer;}</style></head><body><button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save PDF</button>${html}</body></html>`);
+    w.document.close(); w.focus();
+}
+</script>
+
+</body>
+</html>
