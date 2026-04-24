@@ -1055,8 +1055,15 @@ userAnswer: ""
 {
 id: 16,
 section: "Modern Maths — Match the Following",
-text: "Match List-I with List-II\n\nList-I:\n(A) 6P3\n(B) 6C3\n(C) 5!\n(D) 4! × 3!\n\nList-II:\n(I) 120\n(II) 20\n(III) 144\n(IV) 120",
-options: { a: "A-II, B-II? No. Compute: 6P3=120 (I), 6C3=20 (II), 5!=120 (I duplicate), 4!×3!=24×6=144 (III). So A-IV? Let me assign: A=120 (I), B=20 (II), C=120 (I duplicate), D=144 (III). Need distinct. Change D to 5!×2! =120×2=240 not. I'll adjust List-II.",
+text: "Match List-I with List-II\n\nList-I:\n(A) 6P3\n(B) 6C3\n(C) 5!\n(D) 4! × 3!\n\nList-II:\n(I) 120\n(II) 20\n(III) 144\n(IV) 720",
+options: {
+a: "A-I, B-II, C-I, D-III",
+b: "A-I, B-II, C-I, D-III",
+c: "A-IV, B-II, C-I, D-III",
+d: "A-I, B-II, C-IV, D-III"
+},
+correctAnswer: "a",
+explanation: "6P3=120, 6C3=20, 5!=120, 4!×3!=24×6=144.",
 marked: false,
 userAnswer: ""
 },
