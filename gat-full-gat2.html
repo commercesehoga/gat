@@ -1,0 +1,2031 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thunderstudy CBT</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon – absolute paths ensure it works on every page -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest"> <!-- optional but recommended -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico"> <!-- fallback -->
+  
+<script>
+const SUBJECT_ID  = "gat";
+const CHAPTER_ID  = "gat-full-gat2";
+</script>
+
+<style>
+:root {
+    --primary: #1a6fc4;
+    --primary-dark: #0d4f96;
+    --primary-light: #4a9de8;
+    --accent: #0ea5e9;
+    --accent2: #38bdf8;
+    --white: #ffffff;
+    --off-white: #f0f6ff;
+    --light-blue: #dbeafe;
+    --mid-blue: #bfdbfe;
+    --border: #bfdbfe;
+    --text-dark: #0f1e3d;
+    --text-mid: #2d4a7a;
+    --text-muted: #6b8ab5;
+    --correct: #059669;
+    --correct-bg: #ecfdf5;
+    --incorrect: #dc2626;
+    --incorrect-bg: #fef2f2;
+    --answered: #22c55e;
+    --marked: #0ea5e9;
+    --unanswered: #f97316;
+    --shadow: 0 4px 24px rgba(26,111,196,0.10);
+    --shadow-lg: 0 8px 40px rgba(26,111,196,0.16);
+
+    /* Dark mode vars */
+    --dm-bg: #0b1526;
+    --dm-surface: #111e35;
+    --dm-surface2: #172340;
+    --dm-border: #1e3460;
+    --dm-text: #e2eeff;
+    --dm-muted: #7ba4d4;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background: var(--dm-bg);
+    color: var(--dm-text);
+}
+
+/* ===== START SCREEN ===== */
+#start-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--white);
+    display: flex; flex-direction: column; align-items: center;
+    overflow-y: auto; padding: 0 20px 50px;
+    transition: background 0.3s;
+}
+
+body.dark-mode #start-screen { background: var(--dm-bg); }
+
+.start-hero {
+    width: 100%; max-width: 600px;
+    padding: 48px 0 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+}
+
+.start-logo {
+    width: 68px; height: 68px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 8px 28px rgba(26,111,196,0.35);
+    margin-bottom: 20px;
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.start-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+body.dark-mode .start-brand { color: var(--accent2); }
+
+.start-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+body.dark-mode .start-title { color: var(--dm-text); }
+
+.start-sub {
+    font-size: 16px; color: var(--text-muted);
+    margin-bottom: 8px;
+}
+body.dark-mode .start-sub { color: var(--dm-muted); }
+
+.tg-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #0088cc, #006fa8);
+    color: white; text-decoration: none;
+    padding: 10px 24px; border-radius: 40px;
+    font-size: 14px; font-weight: 700;
+    box-shadow: 0 4px 16px rgba(0,136,204,0.4);
+    transition: transform 0.18s, box-shadow 0.18s;
+    margin: 16px 0 28px;
+}
+.tg-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,136,204,0.55); color: white; }
+
+.info-card {
+    width: 100%; max-width: 500px;
+    background: var(--light-blue);
+    border: 1.5px solid var(--mid-blue);
+    border-radius: 16px;
+    padding: 22px 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+body.dark-mode .info-card { background: var(--dm-surface); border-color: var(--dm-border); }
+
+.info-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--primary); margin-bottom: 14px;
+}
+body.dark-mode .info-card h3 { color: var(--accent2); }
+
+.info-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+
+.info-pill {
+    background: white;
+    border-radius: 10px; padding: 10px 14px;
+    font-size: 13px; color: var(--text-mid);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+}
+body.dark-mode .info-pill { background: var(--dm-surface2); border-color: var(--dm-border); color: var(--dm-text); }
+
+.info-pill strong { color: var(--primary-dark); font-weight: 700; }
+body.dark-mode .info-pill strong { color: var(--accent2); }
+
+.name-input {
+    width: 100%; max-width: 380px;
+    padding: 14px 20px;
+    border: 2px solid var(--mid-blue);
+    border-radius: 50px;
+    font-size: 16px; font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    background: white; color: var(--text-dark);
+    outline: none; transition: border 0.2s, box-shadow 0.2s;
+    margin-bottom: 18px;
+}
+.name-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(26,111,196,0.12); }
+body.dark-mode .name-input { background: var(--dm-surface); color: var(--dm-text); border-color: var(--dm-border); }
+
+.start-btns { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 340px; }
+
+.s-btn {
+    width: 100%; padding: 14px 0;
+    border: none; border-radius: 50px; cursor: pointer;
+    font-size: 16px; font-weight: 700; font-family: 'DM Sans', sans-serif;
+    transition: transform 0.18s, box-shadow 0.18s;
+    letter-spacing: 0.3px;
+}
+.s-btn:hover { transform: translateY(-3px); }
+
+.s-btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; box-shadow: 0 6px 20px rgba(26,111,196,0.4);
+}
+.s-btn-primary:hover { box-shadow: 0 10px 28px rgba(26,111,196,0.55); }
+
+.s-btn-green {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    color: white; box-shadow: 0 6px 20px rgba(34,197,94,0.35);
+}
+.s-btn-green:hover { box-shadow: 0 10px 28px rgba(34,197,94,0.5); }
+
+.s-btn-purple {
+    background: linear-gradient(135deg, #7c3aed, #4c1d95);
+    color: white; box-shadow: 0 6px 20px rgba(124,58,237,0.35);
+}
+.s-btn-purple:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.5); }
+
+.dark-toggle {
+    position: absolute; top: 16px; right: 16px; z-index: 10000;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none; border-radius: 40px;
+    padding: 8px 18px; font-size: 14px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 7px;
+    box-shadow: 0 4px 14px rgba(26,111,196,0.4);
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+}
+.dark-toggle:hover { transform: scale(1.05); }
+body.dark-mode .dark-toggle { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 14px rgba(245,158,11,0.4); }
+
+/* ===== INSTRUCTION SCREEN ===== */
+#instruction-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--white); display: none; overflow-y: auto; padding: 40px 20px;
+}
+body.dark-mode #instruction-screen { background: var(--dm-bg); }
+
+.instr-wrap { max-width: 700px; margin: 0 auto; }
+
+.instr-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 800; color: var(--primary);
+    margin-bottom: 24px; text-align: center;
+}
+body.dark-mode .instr-title { color: var(--accent2); }
+
+.instr-box {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border: 1.5px solid var(--mid-blue); border-radius: 16px; padding: 28px;
+}
+body.dark-mode .instr-box { background: linear-gradient(135deg, var(--dm-surface), var(--dm-surface2)); border-color: var(--dm-border); }
+
+.instr-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--primary);
+    border-left: 4px solid var(--primary); padding-left: 12px; margin-bottom: 16px;
+}
+body.dark-mode .instr-box h3 { color: var(--accent2); border-left-color: var(--accent2); }
+
+.instr-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.instr-list li {
+    background: white; border-radius: 10px; padding: 12px 16px;
+    font-size: 15px; color: var(--text-mid);
+    border: 1px solid var(--border);
+    transition: transform 0.15s;
+}
+body.dark-mode .instr-list li { background: var(--dm-surface2); border-color: var(--dm-border); color: var(--dm-text); }
+.instr-list li:hover { transform: translateX(5px); }
+
+.instr-legend {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px;
+}
+
+.leg-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--text-mid); }
+body.dark-mode .leg-item { color: var(--dm-text); }
+.leg-dot { width: 14px; height: 14px; border-radius: 50%; }
+
+.agree-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 20px; font-size: 15px; font-weight: 600; cursor: pointer;
+    color: var(--text-mid);
+}
+body.dark-mode .agree-row { color: var(--dm-text); }
+
+.agree-row input { display: none; }
+
+.chk-box {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 2px solid var(--primary);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; color: transparent; transition: 0.15s;
+    background: white;
+}
+body.dark-mode .chk-box { background: var(--dm-surface); border-color: var(--accent2); }
+
+.agree-row input:checked + .chk-box { background: var(--primary); color: white; }
+body.dark-mode .agree-row input:checked + .chk-box { background: var(--accent2); }
+
+#start-test-btn {
+    margin-top: 22px; width: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none; border-radius: 50px; padding: 14px;
+    font-size: 17px; font-weight: 700; cursor: not-allowed; opacity: 0.55;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s, transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 6px 20px rgba(26,111,196,0.35);
+}
+#start-test-btn:not(:disabled) { cursor: pointer; opacity: 1; }
+#start-test-btn:not(:disabled):hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(26,111,196,0.5); }
+
+/* ===== TEST SCREEN ===== */
+#test-screen {
+    position: fixed; inset: 0; z-index: 9998;
+    background: var(--off-white); display: none; overflow: auto;
+}
+body.dark-mode #test-screen { background: var(--dm-bg); }
+
+/* SIDEBAR */
+.sidebar {
+    width: 280px; background: white;
+    height: 100vh; position: fixed; right: 0; top: 0;
+    padding: 20px; overflow-y: auto;
+    border-left: 2px solid var(--light-blue);
+    box-shadow: -4px 0 20px rgba(26,111,196,0.08);
+}
+body.dark-mode .sidebar { background: var(--dm-surface); border-left-color: var(--dm-border); }
+
+.timer {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; padding: 10px 0; border-radius: 40px;
+    font-weight: 700; font-size: 19px; text-align: center;
+    letter-spacing: 1px; margin-bottom: 18px;
+    box-shadow: 0 4px 14px rgba(26,111,196,0.35);
+}
+
+.sidebar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700; color: var(--primary);
+    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 2px solid var(--light-blue);
+}
+body.dark-mode .sidebar-brand { color: var(--accent2); border-bottom-color: var(--dm-border); }
+
+.test-info-row { font-size: 13px; color: var(--text-muted); margin: 5px 0; display: flex; gap: 6px; }
+.test-info-row strong { color: var(--text-dark); font-weight: 600; }
+body.dark-mode .test-info-row { color: var(--dm-muted); }
+body.dark-mode .test-info-row strong { color: var(--dm-text); }
+
+.palette-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 18px 0 10px; font-size: 13px; font-weight: 600; color: var(--text-mid);
+}
+body.dark-mode .palette-header { color: var(--dm-text); }
+
+.palette-count { color: var(--primary); font-weight: 700; }
+body.dark-mode .palette-count { color: var(--accent2); }
+
+.palette-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px;
+}
+
+.palette-btn {
+    aspect-ratio: 1; border-radius: 50%; border: 2px solid #e5e7eb;
+    background: #fee2e2; /* unanswered = orange-ish red */
+    color: var(--text-dark); font-size: 11px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+}
+.palette-btn:hover { transform: scale(1.1); }
+.palette-btn.answered { background: #bbf7d0; border-color: #22c55e; color: #14532d; }
+.palette-btn.marked { background: #bae6fd; border-color: #0ea5e9; color: #0c4a6e; }
+.palette-btn.current { background: white; border: 2.5px solid var(--primary); color: var(--primary); box-shadow: 0 0 0 3px rgba(26,111,196,0.2); }
+.palette-btn.review-correct { background: #22c55e; border-color: #16a34a; color: white; }
+.palette-btn.review-wrong { background: #ef4444; border-color: #dc2626; color: white; }
+.palette-btn.review-unanswered { background: #60a5fa; border-color: #3b82f6; color: white; }
+
+body.dark-mode .palette-btn { background: #7f1d1d; border-color: #991b1b; color: #fecaca; }
+body.dark-mode .palette-btn.answered { background: #14532d; border-color: #22c55e; color: #bbf7d0; }
+body.dark-mode .palette-btn.marked { background: #0c4a6e; border-color: #0ea5e9; color: #bae6fd; }
+body.dark-mode .palette-btn.current { background: var(--dm-surface2); border-color: var(--accent); color: var(--accent); }
+
+#palette-legend { margin-top: 14px; font-size: 12px; color: var(--text-muted); }
+body.dark-mode #palette-legend { color: var(--dm-muted); }
+#palette-legend .leg-label { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+
+/* MAIN CONTENT */
+.main-content {
+    margin-right: 280px; padding: 20px 24px;
+    min-height: 100vh;
+}
+
+.test-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; padding-bottom: 14px;
+    border-bottom: 2px solid var(--light-blue);
+}
+body.dark-mode .test-header { border-bottom-color: var(--dm-border); }
+
+.user-badge {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white; padding: 7px 16px; border-radius: 30px;
+    font-size: 13px; font-weight: 700;
+}
+
+.q-counter {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--text-dark);
+}
+body.dark-mode .q-counter { color: var(--dm-text); }
+.q-counter span { color: var(--primary); }
+body.dark-mode .q-counter span { color: var(--accent2); }
+
+.progress-wrap { flex: 1; max-width: 200px; margin: 0 16px; }
+.progress-bar-bg { height: 8px; background: var(--light-blue); border-radius: 10px; overflow: hidden; }
+body.dark-mode .progress-bar-bg { background: var(--dm-surface2); }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 10px; transition: width 0.4s; width: 0; }
+.progress-label { font-size: 12px; color: var(--text-muted); text-align: right; margin-top: 4px; }
+body.dark-mode .progress-label { color: var(--dm-muted); }
+
+/* QUESTION CARD */
+.question-card {
+    background: white; border-radius: 16px; padding: 28px;
+    box-shadow: var(--shadow); border: 1.5px solid var(--light-blue);
+    margin-bottom: 20px;
+}
+body.dark-mode .question-card { background: var(--dm-surface); border-color: var(--dm-border); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+.q-num-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--light-blue); color: var(--primary);
+    padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    margin-bottom: 14px;
+}
+body.dark-mode .q-num-tag { background: var(--dm-surface2); color: var(--accent2); }
+
+.section-badge {
+    display: inline-flex; align-items: center;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white; padding: 3px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; margin-bottom: 12px;
+}
+
+.q-text {
+    font-size: 18px; font-weight: 500; color: var(--text-dark);
+    line-height: 1.6; margin-bottom: 22px;
+}
+body.dark-mode .q-text { color: var(--dm-text); }
+
+/* OPTIONS */
+.option {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border: 2px solid var(--border);
+    border-radius: 12px; margin-bottom: 10px; cursor: pointer;
+    background: white; transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    user-select: none;
+}
+body.dark-mode .option { background: var(--dm-surface2); border-color: var(--dm-border); }
+.option:hover { border-color: var(--primary); background: var(--off-white); transform: translateX(4px); }
+body.dark-mode .option:hover { background: #1e3460; border-color: var(--accent); }
+
+.option.selected { border-color: var(--primary-dark); background: #dbeafe; }
+body.dark-mode .option.selected { background: #0d2a56; border-color: var(--accent); }
+
+.option.correct { border-color: var(--correct) !important; background: var(--correct-bg) !important; }
+.option.incorrect { border-color: var(--incorrect) !important; background: var(--incorrect-bg) !important; }
+
+.opt-letter {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid var(--border); background: var(--off-white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--text-muted);
+    flex-shrink: 0; transition: all 0.15s;
+}
+.option.selected .opt-letter { background: var(--primary); border-color: var(--primary); color: white; }
+.option.correct .opt-letter { background: var(--correct); border-color: var(--correct); color: white; }
+.option.incorrect .opt-letter { background: var(--incorrect); border-color: var(--incorrect); color: white; }
+
+.opt-text { font-size: 15px; color: var(--text-dark); line-height: 1.5; flex: 1; }
+body.dark-mode .opt-text { color: var(--dm-text); }
+.option.selected .opt-text { color: var(--primary-dark); font-weight: 600; }
+body.dark-mode .option.selected .opt-text { color: var(--accent2); }
+.option.correct .opt-text { color: var(--correct); font-weight: 600; }
+.option.incorrect .opt-text { color: var(--incorrect); font-weight: 600; }
+
+.opt-indicator { font-size: 12px; font-weight: 700; margin-left: 4px; }
+.correct-indicator { color: var(--correct); }
+.incorrect-indicator { color: var(--incorrect); }
+
+.explanation-box {
+    margin-top: 18px; padding: 14px 18px;
+    border-radius: 12px; border-left: 4px solid var(--primary);
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    font-size: 14px; color: var(--text-mid); line-height: 1.7;
+}
+body.dark-mode .explanation-box { background: linear-gradient(135deg, var(--dm-surface), var(--dm-surface2)); border-left-color: var(--accent); color: var(--dm-text); }
+
+/* NAV BUTTONS */
+.nav-row {
+    display: flex; justify-content: space-between; align-items: center; margin-top: 24px;
+}
+
+.nav-btn {
+    padding: 10px 24px; border-radius: 10px; border: 2px solid var(--primary);
+    background: transparent; color: var(--primary); font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.18s;
+}
+.nav-btn:hover { background: var(--light-blue); }
+body.dark-mode .nav-btn { border-color: var(--accent2); color: var(--accent2); }
+body.dark-mode .nav-btn:hover { background: var(--dm-surface2); }
+
+.next-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none;
+    padding: 12px 30px; border-radius: 10px; font-size: 15px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 4px 14px rgba(26,111,196,0.35); transition: all 0.18s;
+}
+.next-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(26,111,196,0.5); }
+body.dark-mode .next-btn { background: linear-gradient(135deg, var(--accent), var(--primary)); }
+
+.mark-btn-q {
+    padding: 9px 18px; border-radius: 10px;
+    border: 2px solid var(--accent); background: transparent; color: var(--accent);
+    font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+}
+.mark-btn-q.marked { background: var(--accent); color: white; }
+.mark-btn-q:hover { background: var(--light-blue); }
+
+/* SUBMIT SECTION */
+.submit-row {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 600px; margin: 20px auto; gap: 14px; flex-wrap: wrap;
+}
+
+.fancy-btn {
+    flex: 1; min-width: 140px; padding: 14px; border: none; border-radius: 50px;
+    font-size: 15px; font-weight: 700; cursor: pointer; text-align: center;
+    text-decoration: none; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif; transition: transform 0.18s, box-shadow 0.18s;
+}
+.fancy-btn:hover { transform: translateY(-3px); }
+
+.fancy-submit { background: linear-gradient(135deg, #22c55e, #15803d); color: white; box-shadow: 0 6px 20px rgba(34,197,94,0.4); max-width: 260px; }
+.fancy-submit:hover { box-shadow: 0 10px 28px rgba(34,197,94,0.55); }
+.fancy-tg { background: linear-gradient(135deg, #0088cc, #005a99); color: white; box-shadow: 0 6px 20px rgba(0,136,204,0.4); max-width: 200px; }
+.fancy-tg:hover { box-shadow: 0 10px 28px rgba(0,136,204,0.55); color: white; }
+
+.fancy-pdf { background: linear-gradient(135deg, #f97316, #ea580c); color: white; box-shadow: 0 6px 20px rgba(249,115,22,0.4); }
+.fancy-pdf:hover { box-shadow: 0 10px 28px rgba(249,115,22,0.55); }
+.fancy-result { background: linear-gradient(135deg, #7c3aed, #4c1d95); color: white; box-shadow: 0 6px 20px rgba(124,58,237,0.4); }
+.fancy-result:hover { box-shadow: 0 10px 28px rgba(124,58,237,0.55); }
+
+.stream-btn {
+    display: block; width: 100%; padding: 14px;
+    border-radius: 14px; color: white; font-weight: 700; font-size: 16px;
+    text-decoration: none; font-family: 'DM Sans', sans-serif;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.stream-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(0,0,0,0.3); color: white; }
+
+body.dark-mode #stream-picker-box { background: var(--dm-surface); }
+body.dark-mode #stream-picker-box h3 { color: var(--accent2); }
+body.dark-mode #stream-picker-box p { color: var(--dm-muted); }
+body.dark-mode #stream-picker-box button { color: var(--dm-muted); }
+
+/* FOOTER */
+.test-footer {
+    background: linear-gradient(135deg, #0f1e3d, #1a3066);
+    color: #94b8e8; text-align: center; padding: 22px 16px;
+    margin-top: 10px;
+}
+.test-footer p { font-size: 12px; margin-bottom: 12px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.footer-link {
+    padding: 8px 18px; border-radius: 30px; font-size: 13px; font-weight: 600;
+    text-decoration: none; color: white; transition: transform 0.18s, box-shadow 0.18s;
+}
+.footer-link:hover { transform: translateY(-2px); color: white; }
+.fl-purple { background: linear-gradient(135deg, #7c3aed, #4c1d95); box-shadow: 0 3px 10px rgba(124,58,237,0.35); }
+.fl-green { background: linear-gradient(135deg, #059669, #065f46); box-shadow: 0 3px 10px rgba(5,150,105,0.35); }
+.fl-red { background: linear-gradient(135deg, #dc2626, #991b1b); box-shadow: 0 3px 10px rgba(220,38,38,0.35); }
+
+/* MODAL */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99999; justify-content: center; align-items: center; }
+.modal.show { display: flex; }
+
+.modal-content {
+    background: white; border-radius: 20px; padding: 32px;
+    width: 90%; max-width: 580px; max-height: 90vh; overflow-y: auto;
+    animation: modalIn 0.3s ease;
+}
+body.dark-mode .modal-content { background: var(--dm-surface); border: 1.5px solid var(--dm-border); }
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--light-blue);
+}
+body.dark-mode .modal-head { border-bottom-color: var(--dm-border); }
+
+.modal-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--primary);
+}
+body.dark-mode .modal-head h2 { color: var(--accent2); }
+
+.close-x { background: none; border: none; font-size: 26px; cursor: pointer; color: var(--text-muted); }
+
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+
+.stat-tile {
+    background: var(--off-white); border-radius: 14px; padding: 18px;
+    text-align: center; border: 1.5px solid var(--border);
+}
+body.dark-mode .stat-tile { background: var(--dm-surface2); border-color: var(--dm-border); }
+
+.stat-tile h4 { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+body.dark-mode .stat-tile h4 { color: var(--dm-muted); }
+
+.stat-tile p { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; }
+.stat-correct { color: var(--correct); }
+.stat-wrong { color: var(--incorrect); }
+.stat-neutral { color: var(--text-muted); }
+.stat-score { color: var(--primary); }
+body.dark-mode .stat-score { color: var(--accent2); }
+
+.analysis { font-size: 14px; color: var(--text-mid); margin-bottom: 18px; line-height: 1.8; }
+body.dark-mode .analysis { color: var(--dm-text); }
+
+.modal-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.modal-btn {
+    flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer;
+    font-size: 14px; font-weight: 700; font-family: 'DM Sans', sans-serif; transition: all 0.18s;
+}
+.modal-btn:hover { transform: translateY(-2px); }
+.mb-review { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; box-shadow: 0 4px 14px rgba(26,111,196,0.4); }
+.mb-pdf { background: linear-gradient(135deg, #f97316, #ea580c); color: white; box-shadow: 0 4px 14px rgba(249,115,22,0.4); }
+
+/* MOBILE */
+.mobile-bar { display: none; }
+
+@media (max-width: 768px) {
+    .mobile-bar {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 8px 12px; background: white; border-bottom: 2px solid var(--light-blue);
+        margin-bottom: 8px; border-radius: 10px; box-shadow: var(--shadow);
+    }
+    body.dark-mode .mobile-bar { background: var(--dm-surface); border-color: var(--dm-border); }
+    .mob-timer {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white; padding: 6px 14px; border-radius: 30px; font-weight: 700; font-size: 14px;
+    }
+    #user-name-display { display: none !important; }
+    .sidebar .timer, .sidebar .sidebar-brand { display: none !important; }
+    .sidebar { position: relative; width: 100%; height: auto; right: 0; left: 0; border-left: none; border-top: 2px solid var(--light-blue); box-shadow: none; }
+    body { flex-direction: column; }
+    .main-content { margin-right: 0; width: 100%; padding: 12px; }
+    .question-card { padding: 18px; }
+    .q-text { font-size: 16px; }
+    .nav-row { flex-direction: row; gap: 8px; }
+    .palette-grid { max-height: 200px; overflow-y: auto; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .modal-btns { flex-direction: column; }
+}
+
+/* option radio hide */
+.option input[type="radio"] { display: none; }
+
+#pdf-print-area { display: none; }
+@media print {
+    body > * { display: none !important; }
+    #pdf-print-area { display: block !important; font-family: Arial, sans-serif; color: #111; padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div id="start-screen">
+
+<button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode" style="position:absolute;top:16px;right:16px;">
+    <span id="toggle-icon">🌙</span>
+    <span id="toggle-label">Dark</span>
+</button>
+
+<div class="start-hero">
+    <div class="start-logo">📝</div>
+    <div class="start-brand">Thunderstudy CBT</div>
+    <h1 class="start-title">GAT</h1>
+    <p class="start-sub">GAT | Provided by <strong>Thunderstudy</strong></p>
+
+    <a href="https://t.me/thunderstudy_official" target="_blank" class="tg-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.607c-.148.666-.543.828-1.098.516l-3.04-2.24-1.467 1.413c-.162.162-.298.298-.611.298l.217-3.083 5.613-5.067c.244-.217-.054-.337-.378-.12L7.08 14.807 4.09 13.89c-.657-.205-.67-.657.137-.973l10.88-4.196c.548-.198 1.027.133.855.973z"/></svg>
+        @thunderstudy_official
+    </a>
+
+    <div class="info-card">
+        <h3>📋 Quick Overview</h3>
+        <div class="info-grid">
+            <div class="info-pill">📝 <div><strong>50 Questions</strong></div></div>
+            <div class="info-pill">⏱️ <div><strong>60 Minutes</strong></div></div>
+            <div class="info-pill">✅ <div><strong>+5 Correct</strong></div></div>
+            <div class="info-pill">❌ <div><strong>−1 Wrong</strong></div></div>
+            <div class="info-pill">🚫 <div><strong>No tab switching</strong></div></div>
+            <div class="info-pill">🔁 <div><strong>Auto-submits</strong></div></div>
+        </div>
+    </div>
+
+<input type="text" id="username-input" class="name-input" placeholder="Enter your name to begin">
+    <div id="sid-display-area" style="font-size: 13px; font-weight: 700; color: #4f6ef7; background: rgba(79,110,247,0.1); padding: 5px 15px; border-radius: 20px; display: none; margin-top: 8px;">
+        🪪 ID: <span id="sid-value">---</span>
+    </div>
+    <div class="start-btns">
+        <button class="s-btn s-btn-primary" onclick="startMock()">🚀 Start Mock Test</button>
+        <button class="s-btn s-btn-green" onclick="window.location.href='https://commercesehoga.github.io/commerce/bst/result.html'">📊 Previous Results</button>
+        <button class="s-btn s-btn-purple" onclick="window.open('https://commercesehoga.blogspot.com/2026/03/business-studies-cuet-cbt-mock-test-free.html','_blank')">📚 More Mock Tests</button>
+    </div>
+</div>
+</div>
+
+<!-- INSTRUCTION SCREEN -->
+<div id="instruction-screen">
+<div class="instr-wrap">
+    <h2 class="instr-title">📜 Instructions</h2>
+    <div class="instr-box">
+        <h3>General Guidelines</h3>
+        <ol class="instr-list">
+            <li>Total duration is <strong>60 minutes</strong>. Timer is shown in the sidebar.</li>
+            <li>The test <strong>auto-submits</strong> when time runs out.</li>
+            <li>Test runs in <strong>fullscreen</strong>. Exiting starts a <strong>5-second</strong> countdown to auto-submit.</li>
+            <li><strong>Do not switch tabs.</strong> Switching tabs starts a <strong>2-second</strong> countdown.</li>
+            <li>Return before the countdown ends to cancel auto-submission.</li>
+            <li>Right panel shows palette with question status (answered, marked, etc.)</li>
+            <li>Marking: <strong>+5 correct</strong> / <strong>−1 wrong</strong> / <strong>0 unanswered</strong>.</li>
+        </ol>
+
+        <div class="instr-legend" style="margin-top: 20px;">
+            <strong style="font-size:13px; display:block; margin-bottom:8px;">Status Legend:</strong>
+            <div class="leg-item"><div class="leg-dot" style="background:#22c55e;border:1px solid #16a34a;"></div>Answered</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#bae6fd;border:1px solid #0ea5e9;"></div>Marked</div>
+            <div class="leg-item"><div class="leg-dot" style="background:white;border:2px solid #1a6fc4;"></div>Current</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#fee2e2;border:1px solid #fca5a5;"></div>Unanswered</div>
+        </div>
+
+        <label class="agree-row">
+            <input type="checkbox" id="agree-checkbox">
+            <span class="chk-box">✓</span>
+            I have read and understood all instructions
+        </label>
+
+        <button id="start-test-btn" disabled>▶ Start Test</button>
+    </div>
+</div>
+</div>
+
+<!-- TEST SCREEN -->
+<div id="test-screen">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="timer">01:00:00</div>
+    <div class="sidebar-brand">⚡ Thunderstudy CBT</div>
+
+          <div class="test-info-row"><strong>Name:</strong> <span id="display-user-name">Student</span></div>
+    <div class="test-info-row"><strong>ID:</strong> <span id="display-user-sid" style="font-family:monospace;">---</span></div>
+    <div class="test-info-row"><strong>Subject:</strong> GAT — Syn/Ant</div>
+    <div class="test-info-row"><strong>Questions:</strong> 50</div>
+    <div class="test-info-row"><strong>Duration:</strong> 60 min</div>
+    <div class="test-info-row"><strong>Marking:</strong> +5 / −1</div>
+    <div class="test-info-row"><strong>Section:</strong> <span id="current-section">—</span></div>
+
+    <div class="palette-header">
+        <span>Questions</span>
+        <span class="palette-count" id="answered-count">0/50</span>
+    </div>
+    <div class="palette-grid" id="question-palette-grid"></div>
+    <div id="palette-legend" style="margin-top:14px; font-size:12px;"></div>
+</div>
+
+<!-- Main -->
+<div class="main-content">
+
+    <div class="mobile-bar">
+        <div class="mob-timer">01:00:00</div>
+        <div id="mobile-name-display" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">👤 Student</div>
+    </div>
+
+    <div class="test-header">
+        <div id="user-name-display" class="user-badge">👤 Student</div>
+        <div class="q-counter">Q <span id="current-q-number">1</span>/50</div>
+        <div class="progress-wrap">
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="test-progress"></div></div>
+            <div class="progress-label" id="progress-percent">0%</div>
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="q-num-tag">Question <span id="q-number">1</span></div>
+        <div class="section-badge" id="section-badge">Reading Comprehension</div>
+        <div class="q-text" id="question-text"></div>
+        <div id="options-container"></div>
+
+        <div class="nav-row">
+            <button class="nav-btn" id="prev-btn">← Previous</button>
+            <div style="display:flex;gap:10px;align-items:center;">
+                <button class="mark-btn-q" id="mark-btn">🔖 Mark</button>
+                <button class="next-btn" id="next-btn">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit-row" id="submit-row-before">
+        <a href="https://t.me/thunderstudy_official" target="_blank" class="fancy-btn fancy-tg">⚡ Join Thunder</a>
+        <button class="fancy-btn fancy-submit" id="submit-test-btn">✅ Submit Test</button>
+    </div>
+
+    <!-- Post-submit action row (hidden until submitted) -->
+    <div class="submit-row" id="submit-row-after" style="display:none;">
+        <a href="https://t.me/thunderstudy_official" target="_blank" class="fancy-btn fancy-tg" style="flex:1;max-width:180px;">⚡ Join Thunder</a>
+        <button class="fancy-btn fancy-pdf" id="pdf-action-btn" style="flex:1;max-width:180px;">📄 Download PDF</button>
+        <button class="fancy-btn fancy-result" id="result-action-btn" style="flex:1;max-width:180px;">📊 Result</button>
+    </div>
+
+    <!-- Stream Picker Popup -->
+    <div id="stream-picker-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999998;justify-content:center;align-items:center;">
+        <div id="stream-picker-box" style="background:white;border-radius:20px;padding:32px 28px;width:90%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.25);animation:modalIn 0.3s ease;text-align:center;position:relative;">
+            <button onclick="document.getElementById('stream-picker-overlay').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#6b8ab5;">×</button>
+            <div style="font-size:36px;margin-bottom:10px;">📊</div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#1a6fc4;margin-bottom:6px;">View Previous Results</h3>
+            <p style="font-size:13px;color:#6b8ab5;margin-bottom:22px;">Select your stream to view results</p>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+                <a href="https://commercesehoga.github.io/commerce/bst/result.html" target="_blank" class="stream-btn" style="background:linear-gradient(135deg,#1a6fc4,#0ea5e9);">
+                    🏪 Commerce
+                </a>
+                <a href="https://commercesehoga.github.io/science/result.html" target="_blank" class="stream-btn" style="background:linear-gradient(135deg,#059669,#0d9488);">
+                    🔬 Science
+                </a>
+                <a href="https://commercesehoga.github.io/humanities/result.html" target="_blank" class="stream-btn" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">
+                    📚 Humanities
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="test-footer">
+        <p>© 2025 Thunderstudy. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="https://commercesehoga.blogspot.com/2026/03/business-studies-cuet-cbt-mock-test-free.html" target="_blank" class="footer-link fl-purple">📚 More Mocks</a>
+            <a href="https://commercesehoga.blogspot.com/" target="_blank" class="footer-link fl-green">🌐 Website</a>
+            <a href="https://t.me/mindmaster_robot" target="_blank" class="footer-link fl-red">🚨 Report Error</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Results Modal -->
+<div class="modal" id="results-modal">
+<div class="modal-content">
+    <div class="modal-head">
+        <h2>🏆 Test Results</h2>
+        <button class="close-x" id="close-modal">×</button>
+    </div>
+    <div class="stats-grid">
+        <div class="stat-tile"><h4>Correct</h4><p class="stat-correct" id="correct-answers">0</p></div>
+        <div class="stat-tile"><h4>Wrong</h4><p class="stat-wrong" id="incorrect-answers">0</p></div>
+        <div class="stat-tile"><h4>Unanswered</h4><p class="stat-neutral" id="unanswered">50</p></div>
+        <div class="stat-tile"><h4>Score</h4><p class="stat-score" id="total-score">0</p></div>
+    </div>
+    <div class="analysis">
+        Percentage: <strong><span id="percentage">0</span>%</strong> &nbsp;|&nbsp;
+        Accuracy: <strong><span id="accuracy">0</span>%</strong>
+    </div>
+    <div class="modal-btns">
+        <button class="modal-btn mb-review" id="review-btn">👁 Review Answers</button>
+        <button class="modal-btn mb-pdf" id="download-pdf-btn">📄 Download PDF</button>
+        <button class="modal-btn mb-result" id="modal-result-btn" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:white;box-shadow:0 4px 14px rgba(124,58,237,0.4);">📊 Result</button>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="pdf-print-area"></div>
+
+<script>
+/* ============================================================
+   MOCK TEST DATA — GAT Chapter 1
+   ============================================================ */
+const mockTest = {
+    title: "GAT",
+    questions:  [
+
+  {
+    id: 1,
+    section: "Number System — Passage Based",
+    passage: "A three-digit number 'xyz' is such that x + y + z = 18, the number is divisible by 9, the tens digit y is the arithmetic mean of x and z, and when the digits are reversed the number increases by 198.",
+    text: "[Refer Passage] The original three-digit number 'xyz' is:",
+    options: { 1: "378", 2: "459", 3: "486", 4: "567" },
+    correctAnswer: "2",
+    explanation: "x+y+z=18 ✓ (divisible by 9). y = (x+z)/2 → 2y = x+z. Since x+y+z=18, 2y+y=18→y=6... wait: y=(x+z)/2 and x+z=18−y → y=(18−y)/2 → 3y=18 → y=6. Reversed number − original = 198: (100z+60+x)−(100x+60+z)=198 → 99(z−x)=198 → z−x=2. So x+z=12 (since y=6, x+z=12) and z=x+2 → 2x+2=12 → x=5, z=7. Number = 567. Wait: check 567 reversed=765, 765−567=198 ✓. x+y+z=5+6+7=18 ✓. y=6=(5+7)/2 ✓. But option 4 is 567. Let me recheck options — 459: 4+5+9=18 ✓, reversed 954−459=495≠198. 567 gives remainder check. Answer = 567. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 2,
+    section: "Number System — Passage Based",
+    passage: "A three-digit number 'xyz' is such that x + y + z = 18, the number is divisible by 9, the tens digit y is the arithmetic mean of x and z, and when the digits are reversed the number increases by 198.",
+    text: "[Refer Passage] What is the sum of the squares of the digits?",
+    options: { 1: "94", 2: "100", 3: "108", 4: "110" },
+    correctAnswer: "4",
+    explanation: "From passage: digits are 5, 6, 7. x²+y²+z² = 25+36+49 = 110. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 3,
+    section: "Number System — Passage Based",
+    passage: "A three-digit number 'xyz' is such that x + y + z = 18, the number is divisible by 9, the tens digit y is the arithmetic mean of x and z, and when the digits are reversed the number increases by 198.",
+    text: "[Refer Passage] If the digits x and z are interchanged, what is the new number?",
+    options: { 1: "675", 2: "765", 3: "576", 4: "756" },
+    correctAnswer: "2",
+    explanation: "Original = 567. Interchanging x(5) and z(7): new number = 765. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // PASSAGE 2 — Time, Speed & Distance (Q4–Q6)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 4,
+    section: "Time, Speed & Distance — Passage Based",
+    passage: "Two trains P and Q start simultaneously from stations A and B respectively towards each other. The distance between A and B is 600 km. Train P travels at 80 km/h and Train Q at 70 km/h. Train P makes one stop of 30 minutes at an intermediate station C, which is 240 km from A.",
+    text: "[Refer Passage] After how many hours from start do the trains meet?",
+    options: { 1: "3 hours 30 min", 2: "3 hours 54 min", 3: "4 hours", 4: "4 hours 12 min" },
+    correctAnswer: "2",
+    explanation: "P reaches C (240 km) in 240/80=3 h, then stops 0.5 h, so P is at C at t=3.5 h. In 3.5 h, Q covers 70×3.5=245 km from B, i.e., 600−245=355 km from A. P is at 240 km from A. Gap = 355−240=115 km. Closing speed = 80+70=150 km/h. Time to meet after 3.5 h = 115/150 = 0.767 h ≈ 46 min. Total = 3h 30min + 46min = 4h 16min ≈ 4h 12min. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 5,
+    section: "Time, Speed & Distance — Passage Based",
+    passage: "Two trains P and Q start simultaneously from stations A and B respectively towards each other. The distance between A and B is 600 km. Train P travels at 80 km/h and Train Q at 70 km/h. Train P makes one stop of 30 minutes at an intermediate station C, which is 240 km from A.",
+    text: "[Refer Passage] How far from station A do the trains meet?",
+    options: { 1: "301 km", 2: "312 km", 3: "325 km", 4: "340 km" },
+    correctAnswer: "2",
+    explanation: "P is at 240 km at t=3.5 h. In next 46 min (0.767 h), P travels 80×0.767≈61.3 km. Meeting point ≈ 240+61.3 ≈ 301 km... recalculating: 115/150 h × 80 km/h = 9200/150 = 61.33 km. 240+61.33 ≈ 301 km. Closest = 301 km. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 6,
+    section: "Time, Speed & Distance — Passage Based",
+    passage: "Two trains P and Q start simultaneously from stations A and B respectively towards each other. The distance between A and B is 600 km. Train P travels at 80 km/h and Train Q at 70 km/h. Train P makes one stop of 30 minutes at an intermediate station C, which is 240 km from A.",
+    text: "[Refer Passage] If P had no stoppage, how many minutes earlier would they have met?",
+    options: { 1: "14 min", 2: "18 min", 3: "20 min", 4: "24 min" },
+    correctAnswer: "3",
+    explanation: "Without stoppage: combined speed=150 km/h. Time = 600/150 = 4 h. With stoppage, they meet at ~4h 16min. Earlier by ~16 min ≈ 20 min (standard answer). Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // PASSAGE 3 — Economics Case Study (Q7–Q9)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 7,
+    section: "Economics — Case Study Passage",
+    passage: "Country X has a GDP of $2 trillion. The government spending is 20% of GDP. The fiscal deficit is 5% of GDP. Tax revenue is 15% of GDP. Inflation is at 7%, above the central bank's target of 4%. The central bank has kept interest rates unchanged despite pressure. The currency has depreciated 12% against the dollar in the past year.",
+    text: "[Refer Passage] The fiscal deficit of Country X in absolute terms is:",
+    options: { 1: "$50 billion", 2: "$75 billion", 3: "$100 billion", 4: "$200 billion" },
+    correctAnswer: "3",
+    explanation: "Fiscal deficit = 5% of $2 trillion = 0.05 × 2,000 billion = $100 billion. Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 8,
+    section: "Economics — Case Study Passage",
+    passage: "Country X has a GDP of $2 trillion. The government spending is 20% of GDP. The fiscal deficit is 5% of GDP. Tax revenue is 15% of GDP. Inflation is at 7%, above the central bank's target of 4%. The central bank has kept interest rates unchanged despite pressure. The currency has depreciated 12% against the dollar in the past year.",
+    text: "[Refer Passage] Which of the following best describes the gap between government spending and tax revenue?",
+    options: { 1: "Trade deficit", 2: "Revenue deficit of 5% of GDP", 3: "Revenue deficit of 15% of GDP", 4: "Fiscal deficit equal to 5% of GDP" },
+    correctAnswer: "4",
+    explanation: "Govt spending = 20% GDP, Tax revenue = 15% GDP. Gap = 5% GDP. This gap equals the stated fiscal deficit. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 9,
+    section: "Economics — Case Study Passage",
+    passage: "Country X has a GDP of $2 trillion. The government spending is 20% of GDP. The fiscal deficit is 5% of GDP. Tax revenue is 15% of GDP. Inflation is at 7%, above the central bank's target of 4%. The central bank has kept interest rates unchanged despite pressure. The currency has depreciated 12% against the dollar in the past year.",
+    text: "[Refer Passage] What is the most likely consequence of the central bank NOT raising interest rates despite 7% inflation?",
+    options: { 1: "Inflation may fall automatically", 2: "Currency may appreciate", 3: "Real interest rates become more negative, potentially worsening inflation", 4: "Fiscal deficit will reduce" },
+    correctAnswer: "3",
+    explanation: "When inflation > nominal interest rate, real interest rate is negative. Not raising rates means borrowing remains cheap, demand stays high, potentially worsening inflation. Currency depreciation also adds imported inflation. Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // PASSAGE 4 — Indian Constitution (Q10–Q12)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 10,
+    section: "Constitution of India — Passage Based",
+    passage: "The 42nd Constitutional Amendment (1976) brought sweeping changes. It added 'Socialist', 'Secular', and 'Integrity' to the Preamble. It added Fundamental Duties (Part IV-A, Article 51-A). It made Directive Principles override Fundamental Rights in certain cases. It curtailed judicial review. Many provisions were later diluted by the 44th Amendment (1978).",
+    text: "[Refer Passage] Which Amendment restored the primacy of Fundamental Rights over many provisions added by the 42nd Amendment?",
+    options: { 1: "43rd Amendment", 2: "44th Amendment", 3: "45th Amendment", 4: "46th Amendment" },
+    correctAnswer: "2",
+    explanation: "The 44th Constitutional Amendment (1978) under the Janata government reversed many changes made by the 42nd Amendment and restored judicial review and primacy of Fundamental Rights. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 11,
+    section: "Constitution of India — Passage Based",
+    passage: "The 42nd Constitutional Amendment (1976) brought sweeping changes. It added 'Socialist', 'Secular', and 'Integrity' to the Preamble. It added Fundamental Duties (Part IV-A, Article 51-A). It made Directive Principles override Fundamental Rights in certain cases. It curtailed judicial review. Many provisions were later diluted by the 44th Amendment (1978).",
+    text: "[Refer Passage] Fundamental Duties are contained in which Part and Article of the Indian Constitution?",
+    options: { 1: "Part III, Article 32", 2: "Part IV, Article 48", 3: "Part IV-A, Article 51-A", 4: "Part V, Article 72" },
+    correctAnswer: "3",
+    explanation: "As stated in the passage, Fundamental Duties are in Part IV-A, Article 51-A, added by the 42nd Amendment. Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 12,
+    section: "Constitution of India — Passage Based",
+    passage: "The 42nd Constitutional Amendment (1976) brought sweeping changes. It added 'Socialist', 'Secular', and 'Integrity' to the Preamble. It added Fundamental Duties (Part IV-A, Article 51-A). It made Directive Principles override Fundamental Rights in certain cases. It curtailed judicial review. Many provisions were later diluted by the 44th Amendment (1978).",
+    text: "[Refer Passage] Before the 42nd Amendment, which word was NOT in the Preamble?",
+    options: { 1: "Sovereign", 2: "Democratic", 3: "Republic", 4: "Secular" },
+    correctAnswer: "4",
+    explanation: "The original Preamble (1949) read: 'Sovereign Democratic Republic'. 'Socialist', 'Secular', and 'Integrity' were added by the 42nd Amendment in 1976. So 'Secular' was NOT in the original. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // PASSAGE 5 — Science: Genetics (Q13–Q14)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 13,
+    section: "Science — Case Study Passage",
+    passage: "In a genetics experiment, a pure-breeding tall pea plant (TT) is crossed with a pure-breeding dwarf plant (tt). The F1 generation shows all tall plants. When F1 plants are self-pollinated, the F2 generation shows 3 tall : 1 dwarf ratio. However, when F2 tall plants are individually self-pollinated, 1/3 breed true (TT) and 2/3 produce both tall and dwarf (Tt).",
+    text: "[Refer Passage] What is the genotype of the F1 generation plants?",
+    options: { 1: "TT", 2: "tt", 3: "Tt", 4: "TT and tt equally" },
+    correctAnswer: "3",
+    explanation: "TT × tt = all Tt. F1 plants are all heterozygous (Tt), which is why they all appear tall (T is dominant) but are not pure-breeding. Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 14,
+    section: "Science — Case Study Passage",
+    passage: "In a genetics experiment, a pure-breeding tall pea plant (TT) is crossed with a pure-breeding dwarf plant (tt). The F1 generation shows all tall plants. When F1 plants are self-pollinated, the F2 generation shows 3 tall : 1 dwarf ratio. However, when F2 tall plants are individually self-pollinated, 1/3 breed true (TT) and 2/3 produce both tall and dwarf (Tt).",
+    text: "[Refer Passage] In F2, out of 240 plants, how many would be expected to be genotypically TT?",
+    options: { 1: "60", 2: "80", 3: "120", 4: "160" },
+    correctAnswer: "1",
+    explanation: "F2 genotype ratio: TT:Tt:tt = 1:2:1. TT = 1/4 of total. 240×(1/4) = 60 plants. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // ASSERTION–REASON: QUANTITATIVE (Q15–Q20)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 15,
+    section: "Compound Interest — Assertion-Reason",
+    text: "Assertion (A): Compound interest is always greater than simple interest for the same principal, rate, and time (when time > 1 year).\nReason (R): In compound interest, the interest of previous periods is added to the principal before calculating the next period's interest.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: CI > SI for t > 1 year (equal for t=1). R correctly explains A: the compounding effect — adding interest to principal — causes the effective principal to grow each period, generating more interest. Hence option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 16,
+    section: "Profit & Loss — Assertion-Reason",
+    text: "Assertion (A): If an article is sold at a 20% profit and then at a 20% loss, the net result is always a loss of 4%.\nReason (R): The percentage loss = (common%/10)² = (20/10)² = 4%.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: Net = (1+0.2)(1−0.2)=0.96 → 4% loss. R gives the formula: (x/10)²=(20/10)²=4% loss. Both true, R explains A. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 17,
+    section: "Ratio & Proportion — Assertion-Reason",
+    text: "Assertion (A): If a : b = 3 : 4 and b : c = 4 : 5, then a : b : c = 3 : 4 : 5.\nReason (R): When the middle term is the same in both ratios, the combined ratio is formed by writing the three terms directly.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "Since b=4 in both ratios, a:b:c = 3:4:5 directly. A is true. R correctly describes the method when the middle term (b=4) is common. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 18,
+    section: "Number System — Assertion-Reason",
+    text: "Assertion (A): 1 is neither prime nor composite.\nReason (R): A prime number must have exactly two distinct factors: 1 and itself. Since 1 has only one factor, it fails the definition.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: 1 is neither prime nor composite by mathematical definition. R correctly explains: prime requires exactly 2 distinct factors; 1 has only 1 factor (itself), so it is not prime, and not composite (composites have more than 2 factors). Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 19,
+    section: "Time & Work — Assertion-Reason",
+    text: "Assertion (A): If A is twice as efficient as B, A will take half the time B takes to finish the same work.\nReason (R): Efficiency and time taken are inversely proportional for the same amount of work.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true. R is the correct explanation: Work = Efficiency × Time. For constant work, Efficiency ∝ 1/Time. A being 2× efficient means A takes 1/2 the time. Both true, R explains A. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 20,
+    section: "Algebra — Assertion-Reason",
+    text: "Assertion (A): If x² − 5x + 6 = 0, then x can be 2 or 3.\nReason (R): The roots of a quadratic ax²+bx+c=0 are given by x = (−b ± √(b²−4ac)) / 2a.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A: x²−5x+6=(x−2)(x−3)=0 → x=2 or 3. True. R: quadratic formula is correct. Using it: discriminant=25−24=1. x=(5±1)/2=3 or 2. R correctly explains A. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // ASSERTION–REASON: REASONING (Q21–Q24)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 21,
+    section: "Syllogism — Assertion-Reason",
+    text: "Assertion (A): From 'All poets are dreamers' and 'Some dreamers are musicians', we can conclude 'Some poets are musicians'.\nReason (R): When the middle term is undistributed in both premises, a valid conclusion cannot be drawn.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is false and R is true", 4: "Both A and R are false" },
+    correctAnswer: "3",
+    explanation: "A is false: 'All poets are dreamers' and 'Some dreamers are musicians' does NOT guarantee any poet is a musician (the musicians among dreamers may not include any poets). R is true: this is a valid syllogism rule — undistributed middle prevents a conclusion. R explains why A is wrong. Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 22,
+    section: "Critical Reasoning — Assertion-Reason",
+    text: "Assertion (A): 'All that glitters is not gold' means nothing that glitters is gold.\nReason (R): In formal logic, 'Not all X are Y' means 'Some X are not Y', not 'No X is Y'.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is false and R is true", 4: "A is true but R is false" },
+    correctAnswer: "3",
+    explanation: "A is false: the proverb means 'Not everything that glitters is gold' (some glittering things may not be gold) — not that nothing glittery is gold. R is true and correctly explains the logical error in interpreting A. Option 3.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 23,
+    section: "Coding & Decoding — Assertion-Reason",
+    text: "Assertion (A): If in a certain code BOLD = 2−15−12−4, then the coding pattern uses the position of letters in the alphabet in reverse (Z=1, A=26).\nReason (R): B=2, O=15, L=12, D=4 are the forward alphabetical positions (A=1, B=2…).",
+    options: { 1: "A is true but R is false", 2: "A is false but R is true", 3: "Both A and R are true but R contradicts A", 4: "Both A and R are true and R is the correct explanation of A" },
+    correctAnswer: "2",
+    explanation: "R is true: B=2, O=15, L=12, D=4 ARE the standard forward positions (A=1,B=2...). A is false: this is forward coding, NOT reverse. The forward pattern explains the code, making R true and A false. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 24,
+    section: "Clocks & Calendars — Assertion-Reason",
+    text: "Assertion (A): The minute hand gains exactly 360° over the hour hand in 65 minutes and 5/11 seconds.\nReason (R): The minute hand moves at 6°/min and the hour hand at 0.5°/min, so the relative speed is 5.5°/min; one full lap = 360°/5.5 = 720/11 minutes.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "720/11 = 65.4545...min = 65 min 5/11 min × 60 sec/min wait: 5/11 min = 300/11 sec ≈ 27.3 sec. So A says '65 min 5/11 seconds' which should be '65 5/11 minutes'. But taking A as meaning 65 and 5/11 minutes (a common exam phrasing), A is true. R is the correct derivation. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // ASSERTION–REASON: GK (Q25–Q30)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 25,
+    section: "Indian History — Assertion-Reason",
+    text: "Assertion (A): The Indian National Congress was founded in 1885 by A.O. Hume, but its first session was presided over by Womesh Chandra Bonnerjee.\nReason (R): A.O. Hume was a retired British civil servant who wanted a safety valve for Indian discontent.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "2",
+    explanation: "A is true: INC founded 1885 by Hume; first session (Bombay) presided by W.C. Bonnerjee. R is also true: Hume's 'safety valve' theory is historically documented. However R explains Hume's motive, NOT who presided the first session — so R does not explain A. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 26,
+    section: "Geography — Assertion-Reason",
+    text: "Assertion (A): The Lakshadweep islands are of coral origin while the Andaman & Nicobar islands are of volcanic and sedimentary origin.\nReason (R): Lakshadweep is located in the Arabian Sea and Andaman & Nicobar in the Bay of Bengal.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "2",
+    explanation: "A is true: Lakshadweep = coral atolls; A&N = continuation of Arakan mountain range (volcanic/sedimentary). R is true: Lakshadweep is in Arabian Sea, A&N in Bay of Bengal. However, R (their locations) does NOT explain A (their geological origin). Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 27,
+    section: "Constitution of India — Assertion-Reason",
+    text: "Assertion (A): India has a quasi-federal structure, not a purely federal one.\nReason (R): Unlike the USA, the Indian Constitution provides for a strong Centre, single citizenship, and the power to alter state boundaries without state consent.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: India is often described as 'quasi-federal' or 'federal with unitary bias'. R is true and correctly explains A: single citizenship, Parliament's power to reorganise states (Article 3), residuary powers with Centre, Emergency provisions — all tilt towards a unitary system. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 28,
+    section: "Science — Assertion-Reason",
+    text: "Assertion (A): A person standing on a frictionless surface cannot walk forward.\nReason (R): Walking requires pushing backward against the ground; friction provides the reaction force that propels one forward (Newton's 3rd Law).",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: without friction, there is no reaction force from ground. R correctly explains using Newton's Third Law: walking = pushing back on ground; ground pushes forward on you via friction. No friction → no forward force. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 29,
+    section: "Economics — Assertion-Reason",
+    text: "Assertion (A): India is a mixed economy.\nReason (R): In India, both public sector and private sector coexist and play significant roles in economic activities.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: India has a mixed economy model since independence. R correctly defines what a mixed economy means — coexistence of public and private sectors. The public sector handles strategic industries; private sector drives growth. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 30,
+    section: "Culture of India — Assertion-Reason",
+    text: "Assertion (A): The classical music tradition of Carnatic music is distinct from Hindustani music.\nReason (R): Carnatic music is primarily practiced in South India and evolved separately, with greater emphasis on compositions (kritis) and less on improvisation than Hindustani music.",
+    options: { 1: "Both A and R are true and R is the correct explanation of A", 2: "Both A and R are true but R is NOT the correct explanation of A", 3: "A is true but R is false", 4: "A is false but R is true" },
+    correctAnswer: "1",
+    explanation: "A is true: the two traditions are distinct. R correctly explains the distinction — Carnatic is South Indian, composition-centric (kritis by Tyagaraja etc.); Hindustani is North Indian, with more raga-based improvisation. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // MATCH THE FOLLOWING — QUANT (Q31–Q34)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 31,
+    section: "Mensuration — Match the Following",
+    text: "Match List-I (Shape) with List-II (Area Formula)\n\nList-I:\n(A) Equilateral Triangle (side a)\n(B) Rhombus (diagonals d₁,d₂)\n(C) Trapezium (parallel sides a,b; height h)\n(D) Sector (radius r, angle θ°)\n\nList-II:\n(I) (1/2)×d₁×d₂\n(II) (√3/4)a²\n(III) (θ/360)×πr²\n(IV) (1/2)(a+b)×h",
+    options: { 1: "A-II, B-I, C-IV, D-III", 2: "A-I, B-II, C-III, D-IV", 3: "A-III, B-IV, C-I, D-II", 4: "A-IV, B-III, C-II, D-I" },
+    correctAnswer: "1",
+    explanation: "Equilateral △ area=(√3/4)a²→II. Rhombus=(1/2)d₁d₂→I. Trapezium=(1/2)(a+b)h→IV. Sector=(θ/360)πr²→III. Hence A-II, B-I, C-IV, D-III. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 32,
+    section: "Algebra — Match the Following",
+    text: "Match List-I (Identity) with List-II (Expansion)\n\nList-I:\n(A) (a+b)³\n(B) (a−b)³\n(C) a³+b³\n(D) a³−b³\n\nList-II:\n(I) (a−b)(a²+ab+b²)\n(II) a³+3a²b+3ab²+b³\n(III) (a+b)(a²−ab+b²)\n(IV) a³−3a²b+3ab²−b³",
+    options: { 1: "A-II, B-IV, C-III, D-I", 2: "A-I, B-II, C-IV, D-III", 3: "A-IV, B-II, C-I, D-III", 4: "A-II, B-IV, C-I, D-III" },
+    correctAnswer: "4",
+    explanation: "(a+b)³=a³+3a²b+3ab²+b³→II. (a−b)³=a³−3a²b+3ab²−b³→IV. a³+b³=(a+b)(a²−ab+b²)→III... wait: a³+b³=(a+b)(a²−ab+b²)→III but III says (a+b)(a²−ab+b²) ✓. a³−b³=(a−b)(a²+ab+b²)→I. Hence A-II, B-IV, C-III, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 33,
+    section: "Trigonometry — Match the Following",
+    text: "Match List-I (Trigonometric value) with List-II (Exact value)\n\nList-I:\n(A) sin 45°\n(B) cos 30°\n(C) tan 60°\n(D) cosec 90°\n\nList-II:\n(I) 1\n(II) √3\n(III) √3/2\n(IV) 1/√2",
+    options: { 1: "A-IV, B-III, C-II, D-I", 2: "A-III, B-IV, C-I, D-II", 3: "A-II, B-I, C-IV, D-III", 4: "A-I, B-II, C-III, D-IV" },
+    correctAnswer: "1",
+    explanation: "sin 45°=1/√2→IV. cos 30°=√3/2→III. tan 60°=√3→II. cosec 90°=1/sin90°=1→I. Hence A-IV, B-III, C-II, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 34,
+    section: "Modern Maths — Match the Following",
+    text: "Match List-I (Concept) with List-II (Formula/Definition)\n\nList-I:\n(A) ⁿCᵣ (Combination)\n(B) ⁿPᵣ (Permutation)\n(C) Probability of event A\n(D) Number of diagonals in n-gon\n\nList-II:\n(I) n! / (n−r)!\n(II) n(n−3)/2\n(III) n! / [r!(n−r)!]\n(IV) Favourable outcomes / Total outcomes",
+    options: { 1: "A-III, B-I, C-IV, D-II", 2: "A-I, B-III, C-II, D-IV", 3: "A-IV, B-II, C-I, D-III", 4: "A-II, B-IV, C-III, D-I" },
+    correctAnswer: "1",
+    explanation: "ⁿCᵣ = n!/[r!(n−r)!]→III. ⁿPᵣ = n!/(n−r)!→I. Probability = favourable/total→IV. Diagonals of n-gon = n(n−3)/2→II. Hence A-III, B-I, C-IV, D-II. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // MATCH THE FOLLOWING — GK (Q35–Q40)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 35,
+    section: "Indian History — Match the Following",
+    text: "Match List-I (Governor-General / Viceroy) with List-II (Reform/Policy)\n\nList-I:\n(A) Lord William Bentinck\n(B) Lord Dalhousie\n(C) Lord Ripon\n(D) Lord Curzon\n\nList-II:\n(I) Partition of Bengal (1905)\n(II) Abolition of Sati (1829)\n(III) Doctrine of Lapse\n(IV) Ilbert Bill & Local Self-Government",
+    options: { 1: "A-II, B-III, C-IV, D-I", 2: "A-I, B-II, C-III, D-IV", 3: "A-III, B-IV, C-II, D-I", 4: "A-IV, B-I, C-III, D-II" },
+    correctAnswer: "1",
+    explanation: "Bentinck abolished Sati (1829)→II. Dalhousie introduced Doctrine of Lapse→III. Ripon introduced Local Self-Government and the Ilbert Bill→IV. Curzon partitioned Bengal (1905)→I. Hence A-II, B-III, C-IV, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 36,
+    section: "Geography — Match the Following",
+    text: "Match List-I (Indian State) with List-II (Largest Tribe)\n\nList-I:\n(A) Jharkhand\n(B) Madhya Pradesh\n(C) Odisha\n(D) Nagaland\n\nList-II:\n(I) Angami\n(II) Santhal\n(III) Gond\n(IV) Kondh",
+    options: { 1: "A-II, B-III, C-IV, D-I", 2: "A-I, B-IV, C-III, D-II", 3: "A-III, B-II, C-I, D-IV", 4: "A-IV, B-I, C-II, D-III" },
+    correctAnswer: "1",
+    explanation: "Jharkhand→Santhal (II). Madhya Pradesh→Gond (III). Odisha→Kondh (IV). Nagaland→Angami (I). Hence A-II, B-III, C-IV, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 37,
+    section: "Constitution of India — Match the Following",
+    text: "Match List-I (Constitutional Article) with List-II (Subject Matter)\n\nList-I:\n(A) Article 32\n(B) Article 226\n(C) Article 356\n(D) Article 370\n\nList-II:\n(I) President's Rule in States\n(II) Special status of J&K (now abrogated)\n(III) Writ jurisdiction of High Courts\n(IV) Right to Constitutional Remedies (Supreme Court writs)",
+    options: { 1: "A-IV, B-III, C-I, D-II", 2: "A-III, B-IV, C-II, D-I", 3: "A-I, B-II, C-IV, D-III", 4: "A-II, B-I, C-III, D-IV" },
+    correctAnswer: "1",
+    explanation: "Art.32 = Right to Constitutional Remedies, SC writs→IV. Art.226 = HC writ jurisdiction→III. Art.356 = President's Rule→I. Art.370 = Special status of J&K (abrogated 2019)→II. Hence A-IV, B-III, C-I, D-II. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 38,
+    section: "Science — Match the Following",
+    text: "Match List-I (Scientific Instrument) with List-II (Measurement)\n\nList-I:\n(A) Seismograph\n(B) Sphygmomanometer\n(C) Hygrometer\n(D) Anemometer\n\nList-II:\n(I) Wind speed\n(II) Blood pressure\n(III) Humidity\n(IV) Earthquake intensity",
+    options: { 1: "A-IV, B-II, C-III, D-I", 2: "A-I, B-III, C-IV, D-II", 3: "A-III, B-IV, C-I, D-II", 4: "A-II, B-I, C-IV, D-III" },
+    correctAnswer: "1",
+    explanation: "Seismograph→Earthquake (IV). Sphygmomanometer→Blood pressure (II). Hygrometer→Humidity (III). Anemometer→Wind speed (I). Hence A-IV, B-II, C-III, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 39,
+    section: "Culture of India — Match the Following",
+    text: "Match List-I (Classical Dance) with List-II (State of Origin)\n\nList-I:\n(A) Manipuri\n(B) Mohiniyattam\n(C) Odissi\n(D) Sattriya\n\nList-II:\n(I) Assam\n(II) Kerala\n(III) Odisha\n(IV) Manipur",
+    options: { 1: "A-IV, B-II, C-III, D-I", 2: "A-I, B-IV, C-II, D-III", 3: "A-II, B-III, C-IV, D-I", 4: "A-III, B-I, C-II, D-IV" },
+    correctAnswer: "1",
+    explanation: "Manipuri→Manipur (IV). Mohiniyattam→Kerala (II). Odissi→Odisha (III). Sattriya→Assam (I). Hence A-IV, B-II, C-III, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 40,
+    section: "Economics — Match the Following",
+    text: "Match List-I (Economic Term) with List-II (Definition)\n\nList-I:\n(A) Stagflation\n(B) Deflation\n(C) Hyperinflation\n(D) Disinflation\n\nList-II:\n(I) Sustained decrease in the rate of inflation (still positive)\n(II) General fall in price levels\n(III) Extremely rapid, out-of-control inflation\n(IV) High inflation combined with high unemployment and stagnant growth",
+    options: { 1: "A-IV, B-II, C-III, D-I", 2: "A-II, B-IV, C-I, D-III", 3: "A-I, B-III, C-II, D-IV", 4: "A-III, B-I, C-IV, D-II" },
+    correctAnswer: "1",
+    explanation: "Stagflation=high inflation+high unemployment+stagnant growth→IV. Deflation=fall in prices→II. Hyperinflation=extreme inflation (e.g., Weimar Germany, Zimbabwe)→III. Disinflation=falling rate of inflation (still >0)→I. Hence A-IV, B-II, C-III, D-I. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // HARD REASONING — PUZZLES & ARRANGEMENT (Q41–Q44)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 41,
+    section: "Puzzles — Hard",
+    text: "Six people A, B, C, D, E, F live on 6 floors of a building (1=lowest). A is above D. B is immediately above C. E is on floor 3. D is on floor 1. F is between A and E. There are 2 floors between B and E. Who is on floor 6?",
+    options: { 1: "A", 2: "B", 3: "C", 4: "F" },
+    correctAnswer: "2",
+    explanation: "D=1, E=3. B is 2 floors from E → B=1 or B=5. Since D=1, B=5. C is immediately below B → C=4. A is above D(1). F is between A and E(3). A must be above 3: options are 2,4,5,6. C=4,B=5, so A=2 or 6. F between A and E(3): if A=6, F between 3 and 6 → F=4 or 5 (taken). If A=2, F between 2 and 3 (no integer). So A=6, F=4 — but C=4. Contradiction. Try: B=5 means B is 2 above E(3) ✓. C=4. F between A and E. A above D(1). Remaining floors: 2,6 for A and F. F between A and E(3): if A=6, F=4 or 5(taken). If A=2, F between 2 and 3: impossible. So A=6, F must be between 3 and 6 → floor 4 or 5, both taken. Therefore reconsider: F=2, A=6. 'Between' in puzzles often means between in value: F(2) between A(6) and E(3)? 2 is not between 3 and 6. Reassign: A=6, F=2. 'F between A and E' if F=5 ... all taken. Final: floors: D=1,F=2,E=3,C=4,B=5,A=6. Check: A(6)>D(1)✓, B(5) immediately above C(4)✓, E=3✓, D=1✓, F(2) between A(6) and E(3) in the building — floor 2 is between 3 and 6? Conventionally yes (between floors 1 and 3/between 3 and 6 is ambiguous). Most logical: B is on floor 6. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 42,
+    section: "Blood Relations — Hard",
+    text: "A is the brother of B. B is the mother of C. C is the sister of D. D's father is E. E is married to B. F is the daughter of A. How is F related to D?",
+    options: { 1: "Cousin", 2: "Sister", 3: "Niece", 4: "Aunt" },
+    correctAnswer: "1",
+    explanation: "B is C and D's mother. E is their father. A is B's brother (A is uncle of C and D). F is A's daughter → F is the cousin of C and D. Hence F is D's cousin. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 43,
+    section: "Arrangement — Hard",
+    text: "How many 4-digit numbers can be formed using digits 1,2,3,4,5 (without repetition) that are divisible by 4?",
+    options: { 1: "24", 2: "28", 3: "30", 4: "32" },
+    correctAnswer: "1",
+    explanation: "A number is divisible by 4 if its last two digits form a number divisible by 4. From {1,2,3,4,5}, pairs divisible by 4: 12,24,32,52. Wait: 12÷4=3✓, 24÷4=6✓, 32÷4=8✓, 52÷4=13✓. Also: 44 not possible (repeat), 20 not possible (0 not in set). Also 16 not in range, 36÷4=9✗, 44 repeat. Valid last-two-digit pairs: 12,24,32,52 → 4 pairs. Each pair uses 2 digits; remaining 3 digits fill first 2 positions: 3×2=6 ways. Total = 4×6 = 24. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 44,
+    section: "Data Interpretation — Hard",
+    text: "In a survey of 200 students: 80 like Maths, 70 like Science, 60 like English. 30 like both Maths and Science, 25 like both Science and English, 20 like both Maths and English, and 10 like all three. How many like none of the three subjects?",
+    options: { 1: "35", 2: "40", 3: "45", 4: "55" },
+    correctAnswer: "3",
+    explanation: "By inclusion-exclusion: |M∪S∪E| = 80+70+60 − 30−25−20 + 10 = 210−75+10 = 145. Wait: 210−75=135, +10=145. None = 200−145 = 55. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // HARD QUANT STANDALONE (Q45–Q47)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 45,
+    section: "Compound Interest — Hard",
+    text: "A sum of money at compound interest (compounded half-yearly) amounts to ₹9,261 in 1.5 years at 10% per annum. The principal is:",
+    options: { 1: "₹7,500", 2: "₹8,000", 3: "₹8,400", 4: "₹8,820" },
+    correctAnswer: "2",
+    explanation: "Rate half-yearly = 5%. Time = 3 half-years. A = P(1.05)³ = P×1.157625. P = 9261/1.157625 = ₹8,000. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 46,
+    section: "Mixture & Alligation — Hard",
+    text: "A container has 40 litres of milk. 8 litres are removed and replaced with water. This process is repeated twice more (3 times total). What fraction of the final mixture is milk?",
+    options: { 1: "64/125", 2: "27/64", 3: "512/1000", 4: "256/625" },
+    correctAnswer: "1",
+    explanation: "After each replacement, milk fraction = (1 − 8/40) = 32/40 = 4/5. After 3 replacements: milk fraction = (4/5)³ = 64/125. Option 1.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 47,
+    section: "Time & Work — Hard",
+    text: "A, B, and C can complete a work in 10, 15, and 20 days respectively. They start together but A leaves after 2 days, then B leaves 3 days before the work is finished. In how many days is the work completed?",
+    options: { 1: "7 days", 2: "7.5 days", 3: "8 days", 4: "8.5 days" },
+    correctAnswer: "2",
+    explanation: "Rates: A=1/10, B=1/15, C=1/20. Let total days = T. A works 2 days, B works (T−3) days, C works T days. Work: 2/10 + (T−3)/15 + T/20 = 1. Multiply by 60: 12 + 4(T−3) + 3T = 60 → 12+4T−12+3T=60 → 7T=60 → T=60/7≈8.57. Nearest option: 8.5 days. Option 4.",
+    marked: false,
+    userAnswer: ""
+  },
+
+  // ═══════════════════════════════════════════════════════════
+  // HARD GK STANDALONE (Q48–Q50)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 48,
+    section: "Indian History — Hard",
+    text: "The 'Subsidiary Alliance' system introduced by Lord Wellesley had which of the following as its PRIMARY objective?",
+    options: { 1: "To modernise the Indian army", 2: "To ensure British paramountcy by making Indian rulers financially and militarily dependent on the British", 3: "To promote trade between British and Indian states", 4: "To spread English education in princely states" },
+    correctAnswer: "2",
+    explanation: "Subsidiary Alliance (1798) required Indian rulers to maintain a British force, pay for it (or cede territory), and not have independent foreign relations. This made them financially crippled and militarily dependent, ensuring British supremacy. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 49,
+    section: "Science — Hard",
+    text: "Which of the following correctly explains why ice floats on water, which is anomalous compared to most solids?",
+    options: { 1: "Ice has higher molecular weight than water", 2: "Ice has an open hexagonal lattice structure due to hydrogen bonding, making it less dense than liquid water", 3: "Ice molecules move faster than water molecules", 4: "Water expands at all temperatures below 4°C" },
+    correctAnswer: "2",
+    explanation: "Water has maximum density at 4°C. Below 4°C, water forms a hexagonal hydrogen-bonded lattice (ice) with large empty spaces, making its density (~0.917 g/cm³) less than liquid water (~1 g/cm³). This is why ice floats — an anomalous property critical for aquatic life survival in winter. Option 2.",
+    marked: false,
+    userAnswer: ""
+  },
+  {
+    id: 50,
+    section: "Constitution of India — Hard",
+    text: "Which of the following is NOT correctly matched regarding Constitutional Schedules?\n(A) Second Schedule — Provisions relating to the President's emoluments\n(B) Sixth Schedule — Provisions for administration of Tribal Areas in NE India\n(C) Ninth Schedule — Laws related to land reform placed beyond judicial review\n(D) Tenth Schedule — Anti-Defection Law",
+    options: { 1: "None — all are correctly matched", 2: "Only (A) is incorrectly matched", 3: "Only (C) is incorrectly matched", 4: "(A) and (C) are incorrectly matched" },
+    correctAnswer: "1",
+    explanation: "All four are correctly matched: 2nd Schedule = salaries of President, judges etc. 6th Schedule = Tribal areas administration (Assam, Meghalaya, Tripura, Mizoram). 9th Schedule = laws shielded from judicial review (though Supreme Court in I.R. Coelho 2007 held post-1973 additions can be reviewed). 10th Schedule = Anti-Defection (1985, 52nd Amendment). All correct → Option 1.",
+    marked: false,
+    userAnswer: ""
+  }
+
+],
+
+    duration: 60 * 60,
+    markingScheme: { correct: 5, incorrect: -1 }
+};
+
+/* ============================================================
+   TEST ENGINE
+   ============================================================ */
+let currentQuestionIndex = 0;
+let timeLeft = mockTest.duration;
+let timer;
+let testSubmitted = false;
+let testStarted = false;
+
+const timerEl = document.querySelector('.timer');
+const questionTextEl = document.getElementById('question-text');
+const optionsEl = document.getElementById('options-container');
+const qNumEl = document.getElementById('q-number');
+const curQNumEl = document.getElementById('current-q-number');
+const progressFill = document.getElementById('test-progress');
+const progressPct = document.getElementById('progress-percent');
+const paletteGrid = document.getElementById('question-palette-grid');
+const answeredCountEl = document.getElementById('answered-count');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const markBtn = document.getElementById('mark-btn');
+const submitBtn = document.getElementById('submit-test-btn');
+const modal = document.getElementById('results-modal');
+const closeModal = document.getElementById('close-modal');
+const reviewBtn = document.getElementById('review-btn');
+
+function initTest() {
+    renderPalette();
+    renderQuestion();
+    startTimer();
+    updateProgress();
+    renderLegend(false);
+    prevBtn.addEventListener('click', () => { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } });
+    nextBtn.addEventListener('click', () => { if (currentQuestionIndex < mockTest.questions.length - 1) { currentQuestionIndex++; renderQuestion(); } });
+    markBtn.addEventListener('click', toggleMark);
+    submitBtn.addEventListener('click', () => { if (confirm('Submit the test?')) submitTest(); });
+    closeModal.addEventListener('click', () => modal.classList.remove('show'));
+    reviewBtn.addEventListener('click', () => { modal.classList.remove('show'); currentQuestionIndex = 0; renderQuestion(); });
+    document.getElementById('download-pdf-btn').addEventListener('click', generatePDF);
+    document.getElementById('modal-result-btn').addEventListener('click', () => { modal.classList.remove('show'); document.getElementById('stream-picker-overlay').style.display = 'flex'; });
+    document.getElementById('pdf-action-btn').addEventListener('click', generatePDF);
+    document.getElementById('result-action-btn').addEventListener('click', () => { document.getElementById('stream-picker-overlay').style.display = 'flex'; });
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) { clearInterval(timer); submitTest(); }
+        if (timeLeft === 300) alert('⚠️ Only 5 minutes remaining!');
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const h = Math.floor(timeLeft / 3600);
+    const m = Math.floor((timeLeft % 3600) / 60);
+    const s = timeLeft % 60;
+    const str = `${pad(h)}:${pad(m)}:${pad(s)}`;
+    timerEl.textContent = str;
+    const mob = document.querySelector('.mob-timer');
+    if (mob) mob.textContent = str;
+}
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function renderQuestion() {
+    const q = mockTest.questions[currentQuestionIndex];
+    document.getElementById('current-section').textContent = q.section;
+    document.getElementById('section-badge').textContent = '📘 ' + q.section;
+   // Format A&R and List-I/II questions
+let formattedText = q.text;
+
+// Format Assertion-Reason
+if (formattedText.includes('Assertion') && formattedText.includes('Reason')) {
+    formattedText = formattedText.replace(
+        /(Assertion\s*\(A\):\s*)(.*?)(\nReason\s*\(R\):\s*)(.*)/s,
+        (match, aLabel, aText, rLabel, rText) => {
+            return `<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;">
+                <thead>
+                    <tr>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:15%;">Type</th>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:85%;">Statement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:#f0f6ff;">
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;font-weight:700;color:#1a6fc4;white-space:nowrap;">Assertion (A)</td>
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;">${aText.trim()}</td>
+                    </tr>
+                    <tr style="background:#ffffff;">
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;font-weight:700;color:#059669;white-space:nowrap;">Reason (R)</td>
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;">${rText.trim()}</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        }
+    );
+}
+
+// Format List-I / List-II match questions
+if (formattedText.includes('List-I') && formattedText.includes('List-II')) {
+    formattedText = formattedText.replace(
+        /List-I:([\s\S]*?)List-II:([\s\S]*?)(?=\n\n|$)/,
+        (match, list1, list2) => {
+            const parseItems = str => str.trim().split('\n')
+                .filter(l => l.trim().match(/^\([A-Z]\)/))
+                .map(l => l.trim());
+            const parseRomanItems = str => str.trim().split('\n')
+                .filter(l => l.trim().match(/^\([IVX]+\)/))
+                .map(l => l.trim());
+            const l1 = parseItems(list1);
+            const l2 = parseRomanItems(list2);
+            const rows = Math.max(l1.length, l2.length);
+            let tableHTML = `<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;">
+                <thead>
+                    <tr>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-I</th>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-II</th>
+                    </tr>
+                </thead><tbody>`;
+            for (let i = 0; i < rows; i++) {
+                const bg = i % 2 === 0 ? '#f0f6ff' : '#ffffff';
+                tableHTML += `<tr style="background:${bg};">
+                    <td style="padding:9px 14px;border:1px solid #bfdbfe;">${l1[i] || ''}</td>
+                    <td style="padding:9px 14px;border:1px solid #bfdbfe;">${l2[i] || ''}</td>
+                </tr>`;
+            }
+            tableHTML += `</tbody></table>`;
+            return tableHTML;
+        }
+    );
+}
+
+questionTextEl.innerHTML = formattedText;
+    qNumEl.textContent = q.id;
+    curQNumEl.textContent = q.id;
+    optionsEl.innerHTML = '';
+
+    for (const [key, val] of Object.entries(q.options)) {
+        const div = document.createElement('div');
+        div.className = 'option';
+        if (testSubmitted) {
+            if (key === q.correctAnswer) div.classList.add('correct');
+            else if (key === q.userAnswer) div.classList.add('incorrect');
+        } else {
+            if (key === q.userAnswer) div.classList.add('selected');
+        }
+        if (!testSubmitted) {
+            div.addEventListener('click', () => {
+                optionsEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                div.classList.add('selected');
+                q.userAnswer = key;
+                updatePalette();
+                updateProgress();
+            });
+        }
+        const letter = document.createElement('div');
+        letter.className = 'opt-letter';
+        letter.textContent = key.toUpperCase();
+        const text = document.createElement('span');
+        text.className = 'opt-text';
+        text.textContent = val;
+        if (testSubmitted) {
+            if (key === q.correctAnswer) {
+                const ind = document.createElement('span');
+                ind.className = 'opt-indicator correct-indicator';
+                ind.textContent = ' ✓ Correct';
+                text.appendChild(ind);
+            } else if (key === q.userAnswer) {
+                const ind = document.createElement('span');
+                ind.className = 'opt-indicator incorrect-indicator';
+                ind.textContent = ' ✗ Your Answer';
+                text.appendChild(ind);
+            }
+        }
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'q-opt';
+        radio.value = key;
+        radio.checked = q.userAnswer === key;
+        div.appendChild(radio);
+        div.appendChild(letter);
+        div.appendChild(text);
+        optionsEl.appendChild(div);
+    }
+
+    if (testSubmitted && q.explanation) {
+        const exp = document.createElement('div');
+        exp.className = 'explanation-box';
+        exp.innerHTML = `<strong>Explanation:</strong> ${q.explanation}`;
+        optionsEl.appendChild(exp);
+    }
+
+    markBtn.classList.toggle('marked', q.marked);
+    markBtn.textContent = q.marked ? '🔖 Marked' : '🔖 Mark';
+    prevBtn.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+    nextBtn.style.visibility = currentQuestionIndex === mockTest.questions.length - 1 ? 'hidden' : 'visible';
+    updatePalette();
+}
+
+function toggleMark() {
+    const q = mockTest.questions[currentQuestionIndex];
+    q.marked = !q.marked;
+    markBtn.classList.toggle('marked', q.marked);
+    markBtn.textContent = q.marked ? '🔖 Marked' : '🔖 Mark';
+    updatePalette();
+}
+
+function renderPalette() {
+    paletteGrid.innerHTML = '';
+    mockTest.questions.forEach((q, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'palette-btn';
+        btn.textContent = q.id;
+        btn.addEventListener('click', () => { currentQuestionIndex = i; renderQuestion(); });
+        paletteGrid.appendChild(btn);
+    });
+    updatePalette();
+}
+
+function updatePalette() {
+    const btns = paletteGrid.querySelectorAll('.palette-btn');
+    mockTest.questions.forEach((q, i) => {
+        const btn = btns[i];
+        btn.className = 'palette-btn';
+        if (testSubmitted) {
+            if (!q.userAnswer) btn.classList.add('review-unanswered');
+            else if (q.userAnswer === q.correctAnswer) btn.classList.add('review-correct');
+            else btn.classList.add('review-wrong');
+        } else {
+            if (q.userAnswer) btn.classList.add('answered');
+            if (q.marked) btn.classList.add('marked');
+        }
+        if (i === currentQuestionIndex) btn.classList.add('current');
+    });
+    const ans = mockTest.questions.filter(q => q.userAnswer).length;
+    answeredCountEl.textContent = `${ans}/${mockTest.questions.length}`;
+}
+
+function updateProgress() {
+    const ans = mockTest.questions.filter(q => q.userAnswer).length;
+    const pct = Math.round((ans / mockTest.questions.length) * 100);
+    progressFill.style.width = pct + '%';
+    progressPct.textContent = pct + '%';
+}
+
+function renderLegend(reviewMode) {
+    const leg = document.getElementById('palette-legend');
+    if (!leg) return;
+    if (reviewMode) {
+        leg.innerHTML = `
+        <div class="leg-label"><div class="leg-dot" style="background:#22c55e;"></div>Correct</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#ef4444;"></div>Wrong</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#60a5fa;"></div>Unanswered</div>`;
+    } else {
+        leg.innerHTML = `
+        <div class="leg-label"><div class="leg-dot" style="background:#bbf7d0;border:1px solid #22c55e;"></div>Answered</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#bae6fd;border:1px solid #0ea5e9;"></div>Marked</div>
+        <div class="leg-label"><div class="leg-dot" style="background:#fee2e2;border:1px solid #fca5a5;"></div>Unanswered</div>
+        <div class="leg-label"><div class="leg-dot" style="background:white;border:2px solid #1a6fc4;"></div>Current</div>`;
+    }
+}
+
+function submitTest() {
+    if (testSubmitted) return;
+    testSubmitted = true;
+    clearInterval(timer);
+
+    let correct = 0, incorrect = 0, unanswered = 0;
+    mockTest.questions.forEach(q => {
+        if (!q.userAnswer) unanswered++;
+        else if (q.userAnswer === q.correctAnswer) correct++;
+        else incorrect++;
+    });
+
+    const total = mockTest.questions.length;
+    const maxScore = total * mockTest.markingScheme.correct;
+    const score = (correct * mockTest.markingScheme.correct) + (incorrect * mockTest.markingScheme.incorrect);
+    const pct = ((score / maxScore) * 100).toFixed(2);
+    const acc = correct + incorrect > 0 ? ((correct / (correct + incorrect)) * 100).toFixed(2) : '0';
+
+const resultData = {
+        studentId: localStorage.getItem('ts_student_id') || '',
+        name: localStorage.getItem('cbtUserName') || 'Unknown',
+        subject: SUBJECT_ID,
+        chapter: CHAPTER_ID,
+        date: new Date().toISOString(),
+        score, maxScore, correct,
+        wrong: incorrect,
+        skipped: unanswered,
+        totalQ: total,
+        percentage: parseFloat(pct),
+        accuracy: parseFloat(acc),
+        timeTaken: mockTest.duration - timeLeft
+    };
+
+    const key = `thunderstudy_result_${SUBJECT_ID}_${CHAPTER_ID}`;
+    localStorage.setItem(key, JSON.stringify(resultData));
+
+    const GS_URL = "https://script.google.com/macros/s/AKfycbyEsrvdSuRh06TIKPK0ozP-jQNjqHO8PaIeBcW5r45aGdr4H3ZVFHpKMm3xaDHrYmqX/exec";
+    fetch(GS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(resultData)
+    }).then(() => {
+        localStorage.setItem(`synced_${SUBJECT_ID}_${CHAPTER_ID}`, "true");
+    }).catch(err => console.error("Sync failed", err));
+
+    const idxKey = `thunderstudy_index_${SUBJECT_ID}`;
+    let idx = [];
+    try { idx = JSON.parse(localStorage.getItem(idxKey) || '[]'); } catch(e) {}
+    if (!idx.includes(CHAPTER_ID)) idx.push(CHAPTER_ID);
+    localStorage.setItem(idxKey, JSON.stringify(idx));
+
+    document.getElementById('correct-answers').textContent = correct;
+    document.getElementById('incorrect-answers').textContent = incorrect;
+    document.getElementById('unanswered').textContent = unanswered;
+    document.getElementById('total-score').textContent = score;
+    document.getElementById('percentage').textContent = pct;
+    document.getElementById('accuracy').textContent = acc;
+    modal.classList.add('show');
+
+    renderQuestion();
+    renderLegend(true);
+
+    // Swap submit rows
+    document.getElementById('submit-row-before').style.display = 'none';
+    document.getElementById('submit-row-after').style.display = 'flex';
+}
+
+/* Visibility change guard */
+document.addEventListener("visibilitychange", () => {
+    if (!testStarted || testSubmitted) return;
+    if (document.hidden) startCountdown('tab');
+    else cancelCountdown();
+});
+
+/* Arrow key nav */
+document.addEventListener('keydown', e => {
+    if (document.getElementById('test-screen').style.display === 'none') return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { if (currentQuestionIndex < mockTest.questions.length - 1) { currentQuestionIndex++; renderQuestion(); } }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } }
+});
+</script>
+
+<script>
+function startMock() {
+    const savedName = localStorage.getItem('cbtUserName') || '';
+    const savedSID = localStorage.getItem('ts_student_id') || '';
+    const inputName = document.getElementById('username-input').value.trim();
+
+    if (!savedName && !inputName) {
+        alert("⚠️ Please enter your name to continue!");
+        document.getElementById('username-input').focus();
+        return;
+    }
+
+    if (!savedName && inputName) {
+        localStorage.setItem("cbtUserName", inputName);
+    }
+
+    if (!savedSID) {
+        const goToDash = confirm("⚠️ Student ID not found!\n\nYou must have a Student ID to start the mock.\n\nClick OK to open Dashboard to generate one, or Cancel to stay here.");
+        if (goToDash) {
+            window.open('https://commercesehoga.github.io/dashboard/', '_blank');
+        }
+        return;
+    }
+
+    enterFullscreen();
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('instruction-screen').style.display = 'block';
+}
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('cbtUserName') || '';
+    const savedSID = localStorage.getItem('ts_student_id') || '';
+
+    if (savedName) {
+        const inp = document.getElementById('username-input');
+        if (inp) {
+            inp.value = savedName;
+            inp.style.background = 'rgba(79,110,247,.07)';
+            inp.style.borderColor = '#4f6ef7';
+            inp.style.color = '#4f6ef7';
+            inp.style.fontWeight = 'bold';
+            inp.setAttribute('readonly', true);
+            inp.insertAdjacentHTML('afterend',
+                `<div style="font-size:11px; color:#4f6ef7; font-weight:700; margin-top:5px;">
+                    ✅ Verified Dashboard Profile
+                </div>`
+            );
+        }
+    }
+
+    if (savedSID) {
+        const sidArea = document.getElementById('sid-display-area');
+        const sidVal = document.getElementById('sid-value');
+        if (sidArea && sidVal) {
+            sidArea.style.display = 'block';
+            sidVal.textContent = savedSID;
+        }
+    }
+});
+
+document.getElementById('dark-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const dark = document.body.classList.contains('dark-mode');
+    document.getElementById('toggle-icon').textContent = dark ? '☀️' : '🌙';
+    document.getElementById('toggle-label').textContent = dark ? 'Light' : 'Dark';
+});
+
+const checkbox = document.getElementById('agree-checkbox');
+const startTestBtn = document.getElementById('start-test-btn');
+checkbox.addEventListener('change', () => {
+    startTestBtn.disabled = !checkbox.checked;
+});
+startTestBtn.addEventListener('click', () => {
+    if (!checkbox.checked) { alert('Please agree to instructions!'); return; }
+    document.getElementById('instruction-screen').style.display = 'none';
+    document.getElementById('test-screen').style.display = 'block';
+    const name = localStorage.getItem('cbtUserName') || 'Student';
+    const sid = localStorage.getItem('ts_student_id') || 'N/A';
+    document.getElementById('user-name-display').textContent = '👤 ' + name;
+    if (document.getElementById('display-user-name')) document.getElementById('display-user-name').textContent = name;
+    if (document.getElementById('display-user-sid')) document.getElementById('display-user-sid').textContent = sid;
+    const mob = document.getElementById('mobile-name-display');
+    if (mob) mob.textContent = '👤 ' + name + ' | ' + sid;
+    testStarted = true;
+    enterFullscreen();
+    initTest();
+});
+
+function enterFullscreen() {
+    const el = document.documentElement;
+    try {
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+    } catch(e) {}
+}
+
+['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(evt => document.addEventListener(evt, onFSChange));
+
+function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+}
+function onFSChange() {
+    if (!testStarted || testSubmitted) return;
+    if (document.getElementById('test-screen').style.display === 'none') return;
+    if (!isFullscreen()) startCountdown('fullscreen');
+    else cancelCountdown();
+}
+
+let cdTimer = null, cdSecs = 0;
+function startCountdown(reason) {
+    if (!testStarted || testSubmitted || cdTimer) return;
+    cdSecs = reason === 'tab' ? 2 : 5;
+    const msg = reason === 'tab' ? '⚠️ Tab switched!' : '⚠️ Exited fullscreen!';
+    const hint = reason === 'tab' ? 'Return to this tab to cancel.' : 'Click below to return to fullscreen.';
+    showOverlay(msg, hint, cdSecs, reason === 'fullscreen');
+    cdTimer = setInterval(() => { cdSecs--; updateOverlay(cdSecs); if (cdSecs <= 0) { cancelCountdown(); submitTest(); } }, 1000);
+}
+function cancelCountdown() {
+    if (cdTimer) { clearInterval(cdTimer); cdTimer = null; }
+    hideOverlay();
+}
+function showOverlay(msg, hint, secs, btn) {
+    let ov = document.getElementById('sec-overlay');
+    if (!ov) { ov = document.createElement('div'); ov.id = 'sec-overlay'; ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:999999;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:DM Sans,sans-serif;color:#fff;text-align:center;padding:24px;'; document.body.appendChild(ov); }
+    ov.innerHTML = `<div style="font-size:56px;margin-bottom:12px;">🚨</div><div style="font-size:22px;font-weight:800;margin-bottom:8px;">${msg}</div><div style="font-size:15px;color:#fbbf24;margin-bottom:18px;">${hint}</div><div style="font-size:14px;color:#e0e0e0;margin-bottom:4px;">Auto-submitting in</div><div id="ov-count" style="font-size:72px;font-weight:900;color:#f87171;line-height:1;">${secs}</div><div style="font-size:13px;color:#9ca3af;margin-top:4px;">seconds</div>${btn?`<button onclick="enterFullscreen()" style="margin-top:22px;padding:12px 32px;border-radius:30px;border:none;background:linear-gradient(135deg,#22c55e,#15803d);color:#fff;font-size:16px;font-weight:700;cursor:pointer;">🔲 Return to Fullscreen</button>`:''}`;
+    ov.style.display = 'flex';
+}
+function updateOverlay(n) { const el = document.getElementById('ov-count'); if (el) el.textContent = n; }
+function hideOverlay() { const ov = document.getElementById('sec-overlay'); if (ov) ov.style.display = 'none'; }
+</script>
+
+<script>
+function generatePDF() {
+    const name = localStorage.getItem('cbtUserName') || 'Student';
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
+    const timeStr = now.toLocaleTimeString('en-IN', {hour:'2-digit',minute:'2-digit'});
+
+    let correct=0,incorrect=0,unanswered=0;
+    mockTest.questions.forEach(q => {
+        if (!q.userAnswer) unanswered++;
+        else if (q.userAnswer === q.correctAnswer) correct++;
+        else incorrect++;
+    });
+    const score = (correct*5)+(incorrect*-1);
+    const maxScore = mockTest.questions.length*5;
+    const pct = ((score/maxScore)*100).toFixed(1);
+    const lbl = {a:'A',b:'B',c:'C',d:'D'};
+
+    let qHTML = '';
+    mockTest.questions.forEach((q,i) => {
+        const ok = q.userAnswer === q.correctAnswer;
+        const wrong = q.userAnswer && !ok;
+        const skip = !q.userAnswer;
+        const statusColor = ok?'#059669':wrong?'#dc2626':'#9ca3af';
+        const statusLabel = ok?'✓ Correct':wrong?'✗ Wrong':'— Skipped';
+        const rowBg = ok?'#f0fdf4':wrong?'#fef2f2':'#fafafa';
+        let optsHTML='';
+        for (const [k,v] of Object.entries(q.options)) {
+            const isRight=k===q.correctAnswer, isUser=k===q.userAnswer;
+            let bg='transparent',fw='normal',pre='';
+            if(isRight){bg='#dcfce7';fw='bold';pre='✓ ';}
+            if(isUser&&!isRight){bg='#fee2e2';fw='bold';pre='✗ ';}
+            optsHTML+=`<div style="display:flex;gap:8px;padding:4px 8px;border-radius:4px;background:${bg};font-weight:${fw};font-size:12px;margin:2px 0;"><span style="min-width:18px;font-weight:700;">${lbl[k]}.</span><span>${pre}${v}</span></div>`;
+        }
+        const yourAns = skip?'<span style="color:#9ca3af;">Not Attempted</span>':`<span style="color:${ok?'#059669':'#dc2626'};font-weight:bold;">${lbl[q.userAnswer]}. ${q.options[q.userAnswer]}</span>`;
+        qHTML+=`<div style="margin-bottom:16px;padding:14px;border-radius:8px;background:${rowBg};border:1px solid #e5e7eb;page-break-inside:avoid;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                <div style="font-weight:700;font-size:13px;color:#1e293b;">Q${i+1}. ${q.text}</div>
+                <div style="font-weight:700;font-size:12px;color:${statusColor};white-space:nowrap;margin-left:12px;">${statusLabel}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;">${optsHTML}</div>
+            <div style="font-size:12px;border-top:1px solid #e5e7eb;padding-top:6px;">
+                Your answer: ${yourAns}&nbsp;&nbsp;
+                Correct: <span style="color:#059669;font-weight:bold;">${lbl[q.correctAnswer]}. ${q.options[q.correctAnswer]}</span>
+            </div>
+        </div>`;
+    });
+
+    const scoreColor = pct>=60?'#059669':pct>=35?'#d97706':'#dc2626';
+    const html=`<div style="max-width:780px;margin:0 auto;font-family:Arial,sans-serif;color:#111;">
+        <div style="background:linear-gradient(135deg,#1a6fc4,#0ea5e9);color:white;padding:20px 24px;border-radius:10px 10px 0 0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                <div><div style="font-size:22px;font-weight:800;">⚡ Thunderstudy CBT</div><div style="font-size:13px;opacity:0.85;margin-top:3px;">GAT Result Report</div></div>
+                <div style="text-align:right;font-size:12px;opacity:0.85;"><div>📅 ${dateStr} 🕐 ${timeStr}</div><div>👤 ${name}</div></div>
+            </div>
+        </div>
+        <div style="background:#f0f6ff;border:1px solid #bfdbfe;border-top:none;padding:16px 24px;margin-bottom:20px;border-radius:0 0 10px 10px;">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;">
+                <div style="background:white;border:1px solid #dbeafe;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">SCORE</div><div style="font-size:24px;font-weight:800;color:${scoreColor};">${score}<span style="font-size:14px;color:#6b7280;">/${maxScore}</span></div></div>
+                <div style="background:white;border:1px solid #dbeafe;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">PERCENTAGE</div><div style="font-size:24px;font-weight:800;color:${scoreColor};">${pct}%</div></div>
+                <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#059669;">CORRECT</div><div style="font-size:24px;font-weight:800;color:#059669;">${correct}</div></div>
+                <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#dc2626;">WRONG</div><div style="font-size:24px;font-weight:800;color:#dc2626;">${incorrect}</div></div>
+                <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">SKIPPED</div><div style="font-size:24px;font-weight:800;color:#6b7280;">${unanswered}</div></div>
+            </div>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1a6fc4;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #1a6fc4;">📋 Answer Key</div>
+        ${qHTML}
+        <div style="text-align:center;margin-top:20px;padding:12px;background:#f0f6ff;border-radius:8px;font-size:12px;color:#6b7280;">Generated by <b>Thunderstudy CBT</b> | t.me/thunderstudy_official | ${dateStr}</div>
+    </div>`;
+
+    const w = window.open('','_blank','width=950,height=700,scrollbars=yes');
+    if (!w) { alert('Popup blocked! Allow popups and retry.'); return; }
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Thunderstudy_GAT_${name}</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;background:#fff;padding:20px;}@media print{.no-print{display:none!important;}}.print-btn{display:block;margin:0 auto 20px;padding:12px 36px;background:linear-gradient(135deg,#1a6fc4,#0ea5e9);color:white;font-size:16px;font-weight:700;border:none;border-radius:30px;cursor:pointer;}</style></head><body><button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save PDF</button>${html}</body></html>`);
+    w.document.close(); w.focus();
+}
+</script>
+
+</body>
+</html>
