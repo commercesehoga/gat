@@ -1481,7 +1481,71 @@ function renderQuestion() {
     const q = mockTest.questions[currentQuestionIndex];
     document.getElementById('current-section').textContent = q.section;
     document.getElementById('section-badge').textContent = '📘 ' + q.section;
-    questionTextEl.textContent = q.text;
+   // Format A&R and List-I/II questions
+let formattedText = q.text;
+
+// Format Assertion-Reason
+if (formattedText.includes('Assertion') && formattedText.includes('Reason')) {
+    formattedText = formattedText.replace(
+        /(Assertion\s*\(A\):\s*)(.*?)(\nReason\s*\(R\):\s*)(.*)/s,
+        (match, aLabel, aText, rLabel, rText) => {
+            return `<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;">
+                <thead>
+                    <tr>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:15%;">Type</th>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:85%;">Statement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:#f0f6ff;">
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;font-weight:700;color:#1a6fc4;white-space:nowrap;">Assertion (A)</td>
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;">${aText.trim()}</td>
+                    </tr>
+                    <tr style="background:#ffffff;">
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;font-weight:700;color:#059669;white-space:nowrap;">Reason (R)</td>
+                        <td style="padding:9px 14px;border:1px solid #bfdbfe;">${rText.trim()}</td>
+                    </tr>
+                </tbody>
+            </table>`;
+        }
+    );
+}
+
+// Format List-I / List-II match questions
+if (formattedText.includes('List-I') && formattedText.includes('List-II')) {
+    formattedText = formattedText.replace(
+        /List-I:([\s\S]*?)List-II:([\s\S]*?)(?=\n\n|$)/,
+        (match, list1, list2) => {
+            const parseItems = str => str.trim().split('\n')
+                .filter(l => l.trim().match(/^\([A-Z]\)/))
+                .map(l => l.trim());
+            const parseRomanItems = str => str.trim().split('\n')
+                .filter(l => l.trim().match(/^\([IVX]+\)/))
+                .map(l => l.trim());
+            const l1 = parseItems(list1);
+            const l2 = parseRomanItems(list2);
+            const rows = Math.max(l1.length, l2.length);
+            let tableHTML = `<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;">
+                <thead>
+                    <tr>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-I</th>
+                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-II</th>
+                    </tr>
+                </thead><tbody>`;
+            for (let i = 0; i < rows; i++) {
+                const bg = i % 2 === 0 ? '#f0f6ff' : '#ffffff';
+                tableHTML += `<tr style="background:${bg};">
+                    <td style="padding:9px 14px;border:1px solid #bfdbfe;">${l1[i] || ''}</td>
+                    <td style="padding:9px 14px;border:1px solid #bfdbfe;">${l2[i] || ''}</td>
+                </tr>`;
+            }
+            tableHTML += `</tbody></table>`;
+            return tableHTML;
+        }
+    );
+}
+
+questionTextEl.innerHTML = formattedText;
     qNumEl.textContent = q.id;
     curQNumEl.textContent = q.id;
     optionsEl.innerHTML = '';
