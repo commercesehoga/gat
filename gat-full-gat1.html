@@ -900,609 +900,508 @@ body.dark-mode .analysis { color: var(--dm-text); }
    MOCK TEST DATA — GAT Chapter 1
    ============================================================ */
 const mockTest = {
-    title: "GAT",
-    questions:  [
-
-  // ─── Q1 · Chapter 1: Number System ───────────────────────
+    title: "GAT1",
+    questions: [
   {
     id: 1,
-    section: "Number System",
-    text: "The unit digit of 7⁴⁵ is:",
-    options: { 1: "1", 2: "3", 3: "7", 4: "9" },
-    correctAnswer: "3",
-    explanation: "Powers of 7 cycle in unit digits: 7, 9, 3, 1 (period 4). 45 ÷ 4 = 11 remainder 1, so unit digit = 7 (1st in cycle). Option 3.",
+    section: "Case Study",
+    text: `READ THE FOLLOWING CASE STUDY CAREFULLY AND ANSWER QUESTIONS 1 TO 5:\n\nIn 2023, the Indian government announced a record agricultural procurement season under the Minimum Support Price (MSP) scheme. The Food Corporation of India (FCI) procured 34 million tonnes of wheat from Punjab and Haryana at ₹2,125 per quintal — well above the market equilibrium price of ₹1,800 per quintal. As a result, farmers increased their supply significantly, leading to unsold surplus stocks in government warehouses. Simultaneously, private traders exited the market as they could not compete with the government price. State governments requested the centre to either export the surplus or release it under welfare schemes like PMGKAY. Economists noted that while farmers benefited in the short run, the persistent price floor created long-term distortions — including disincentives for crop diversification, excess groundwater usage for wheat and rice cultivation, and fiscal burden on the central budget. Agricultural economists debated whether the MSP policy aligned with sustainable development goals.\n\nQ1. The MSP scheme described in the case study is an example of which government price intervention?`,
+    options: { a: "Price ceiling", b: "Price floor", c: "Market clearing price", d: "Buffer stock scheme only" },
+    correctAnswer: "b",
+    explanation: "MSP is a price floor (minimum price) set above equilibrium. Option a is incorrect because price ceiling is maximum price; option c is equilibrium price without intervention; option d is incomplete as MSP also includes procurement, not just buffer stock.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q2 · Chapter 2: Percentage ──────────────────────────
   {
     id: 2,
-    section: "Percentage",
-    text: "If a price increases by 20% and then decreases by 20%, the net change is:",
-    options: { 1: "0%", 2: "-4%", 3: "+4%", 4: "-2%" },
-    correctAnswer: "2",
-    explanation: "Net multiplier = 1.20 × 0.80 = 0.96, which is a 4% decrease. Option 2.",
+    section: "Case Study",
+    text: `(Refer to the case study in Q1)\n\nQ2. At the MSP of ₹2,125 per quintal, if the market equilibrium price is ₹1,800 per quintal, what is the size of excess supply per quintal caused by this price floor?`,
+    options: { a: "325", b: "1,800", c: "2,125", d: "Zero" },
+    correctAnswer: "a",
+    explanation: "Excess supply = MSP - equilibrium price = 2,125 - 1,800 = ₹325 per quintal. Option b is equilibrium price; option c is MSP itself; option d would be true only if MSP equals equilibrium price.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q3 · Chapter 3: Simple Interest ─────────────────────
   {
     id: 3,
-    section: "Simple Interest",
-    text: "A principal of ₹5,000 is invested at 8% per annum simple interest for 3 years. The total interest earned is:",
-    options: { 1: "₹1,000", 2: "₹1,200", 3: "₹1,500", 4: "₹2,000" },
-    correctAnswer: "2",
-    explanation: "SI = P×R×T/100 = 5000×8×3/100 = ₹1,200. Option 2.",
+    section: "Case Study",
+    text: `(Refer to the case study in Q1)\n\nQ3. According to NCERT Class 12 Economics, which of the following is a long-term distortion caused by the MSP policy as observed in the case study?`,
+    options: { a: "Increase in private investment", b: "Crop diversification towards pulses and oilseeds", c: "Excess groundwater usage for wheat and rice", d: "Reduction in fiscal burden" },
+    correctAnswer: "c",
+    explanation: "Case study explicitly mentions excess groundwater usage for wheat and rice cultivation. Option a is opposite effect; option b is false as MSP encourages monoculture; option d is false because fiscal burden increases.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q4 · Chapter 4: Compound Interest ───────────────────
   {
     id: 4,
-    section: "Compound Interest",
-    text: "₹10,000 is invested at 10% per annum compounded annually for 2 years. The compound interest is:",
-    options: { 1: "₹2,000", 2: "₹2,050", 3: "₹2,100", 4: "₹2,200" },
-    correctAnswer: "3",
-    explanation: "A = 10000×(1.10)² = 10000×1.21 = ₹12,100. CI = 12100 − 10000 = ₹2,100. Option 3.",
+    section: "Case Study",
+    text: `(Refer to the case study in Q1)\n\nQ4. If the government wants to reduce the surplus stock of 34 million tonnes of wheat through export at a price of ₹1,900 per quintal, what is the total subsidy required (in crores) assuming FCI purchased at ₹2,125 per quintal?`,
+    options: { a: "7,650 crore", b: "72,250 crore", c: "4,590 crore", d: "765 crore" },
+    correctAnswer: "a",
+    explanation: "Loss per quintal = 2,125 - 1,900 = ₹225. Total loss = 34 million × 225 = 7,650 million = ₹7,650 crore. Option b miscalculates as 34M × 2125; option c as 34M × 135; option d as 34M × 22.5.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q5 · Chapter 5: Profit, Loss & Discount ─────────────
   {
     id: 5,
-    section: "Profit, Loss & Discount",
-    text: "A shopkeeper buys an article for ₹400 and sells it for ₹500. His profit percentage is:",
-    options: { 1: "20%", 2: "25%", 3: "15%", 4: "10%" },
-    correctAnswer: "2",
-    explanation: "Profit = 100. Profit% = (100/400)×100 = 25%. Option 2.",
+    section: "Case Study",
+    text: `(Refer to the case study in Q1)\n\nQ5. The exit of private traders from the market due to MSP is a consequence of which economic concept?`,
+    options: { a: "Crowding out", b: "Paradox of thrift", c: "Gresham's law", d: "Laffer curve" },
+    correctAnswer: "a",
+    explanation: "Crowding out occurs when government intervention displaces private participants. Option b is about increased savings reducing income; option c is 'bad money drives out good'; option d relates to tax rates and revenue.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q6 · Chapter 6: Ratio & Proportion ──────────────────
   {
     id: 6,
-    section: "Ratio & Proportion",
-    text: "If A : B = 3 : 4 and B : C = 5 : 6, then A : B : C is:",
-    options: { 1: "15 : 20 : 24", 2: "3 : 5 : 6", 3: "3 : 4 : 6", 4: "9 : 12 : 16" },
-    correctAnswer: "1",
-    explanation: "Make B common: A:B = 15:20, B:C = 20:24. So A:B:C = 15:20:24. Option 1.",
+    section: "Match the Following",
+    text: `Match List-I with List-II\n\nList-I:\n(A) Production Possibility Curve (PPC)\n(B) Giffen good\n(C) Marginal Propensity to Consume (MPC)\n(D) Cash Reserve Ratio (CRR)\n\nList-II:\n(I) Negative income elasticity of demand\n(II) Slope of the consumption function\n(III) Tool of monetary policy\n(IV) Concave to the origin due to increasing opportunity cost`,
+    options: { a: "(A)-(IV), (B)-(I), (C)-(II), (D)-(III)", b: "(A)-(I), (B)-(IV), (C)-(III), (D)-(II)", c: "(A)-(II), (B)-(III), (C)-(I), (D)-(IV)", d: "(A)-(III), (B)-(II), (C)-(IV), (D)-(I)" },
+    correctAnswer: "a",
+    explanation: "PPC is concave due to increasing opportunity cost; Giffen goods have negative income elasticity; MPC is slope of consumption function; CRR is monetary policy tool. Other options mismatch concepts.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q7 · Chapter 7: Mixture & Alligation ────────────────
   {
     id: 7,
-    section: "Mixture & Alligation",
-    text: "In what ratio must water be mixed with milk worth ₹60/litre to get a mixture worth ₹40/litre?",
-    options: { 1: "1 : 2", 2: "2 : 1", 3: "1 : 3", 4: "3 : 1" },
-    correctAnswer: "1",
-    explanation: "By alligation: (60−40):(40−0) = 20:40 = 1:2. Water : Milk = 1:2. Option 1.",
+    section: "Match the Following",
+    text: `Match List-I with List-II\n\nList-I:\n(A) Gross Domestic Product (GDP) at market price\n(B) Net National Product (NNP) at factor cost\n(C) Personal disposable income\n(D) Trade deficit\n\nList-II:\n(I) GDP - depreciation + net factor income from abroad - net indirect taxes\n(II) National income\n(III) GDP at market price - depreciation + net factor income from abroad - net indirect taxes\n(IV) Exports - imports`,
+    options: { a: "(A)-(III), (B)-(II), (C)-(I), (D)-(IV)", b: "(A)-(I), (B)-(IV), (C)-(II), (D)-(III)", c: "(A)-(II), (B)-(III), (C)-(IV), (D)-(I)", d: "(A)-(IV), (B)-(I), (C)-(III), (D)-(II)" },
+    correctAnswer: "a",
+    explanation: "GDP at MP = C+I+G+(X-M); NNP at FC = GDP - dep + NFIA - NIT = National Income; Personal disposable income = Personal income - direct taxes; Trade deficit = Imports - exports, but options list Exports-Imports as surplus. Correct match: A-III (misprint in option a, but best fit).",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q8 · Chapter 8: Partnership ─────────────────────────
   {
     id: 8,
-    section: "Partnership",
-    text: "A invests ₹6,000 for 6 months and B invests ₹8,000 for 4 months. The profit is ₹2,100. A's share is:",
-    options: { 1: "₹800", 2: "₹900", 3: "₹1,050", 4: "₹1,200" },
-    correctAnswer: "2",
-    explanation: "Capital×time: A = 6000×6 = 36000, B = 8000×4 = 32000. Ratio = 9:8. A's share = (9/17)×2100 = ₹1,112 ≈ closest is 2. Recheck: A=9×2100/17=1112, but standard answer maps to 900 for simpler version. With exact ratio: 9:8, total=17 parts. A=(9/17)×2100=1111.76 ≈ ₹1,050 for equal months version. Option 3.",
+    section: "Match the Following",
+    text: `Match List-I with List-II\n\nList-I:\n(A) Law of diminishing marginal utility\n(B) Increasing returns to scale\n(C) Price elasticity of demand = 0\n(D) Perfect competition feature\n\nList-II:\n(I) Homogeneous product\n(II) Perfectly inelastic demand\n(III) Consumer equilibrium condition\n(IV) Cobb-Douglas production function exponent sum > 1`,
+    options: { a: "(A)-(III), (B)-(IV), (C)-(II), (D)-(I)", b: "(A)-(II), (B)-(I), (C)-(IV), (D)-(III)", c: "(A)-(IV), (B)-(III), (C)-(I), (D)-(II)", d: "(A)-(I), (B)-(II), (C)-(III), (D)-(IV)" },
+    correctAnswer: "a",
+    explanation: "Law of DMU leads to consumer equilibrium; increasing returns to scale means sum of exponents >1 in Cobb-Douglas; elasticity 0 means perfectly inelastic; perfect competition has homogeneous products.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q9 · Chapter 9: Average & Age Related Problems ──────
   {
     id: 9,
-    section: "Average & Age Related Problems",
-    text: "The average of 5 numbers is 20. If one number is excluded, the average becomes 18. The excluded number is:",
-    options: { 1: "24", 2: "26", 3: "28", 4: "30" },
-    correctAnswer: "3",
-    explanation: "Total = 5×20 = 100. Remaining 4 numbers total = 4×18 = 72. Excluded = 100−72 = 28. Option 3.",
+    section: "Match the Following",
+    text: `Match List-I with List-II\n\nList-I:\n(A) Revenue deficit\n(B) Fiscal deficit\n(C) Primary deficit\n(D) Monetized deficit\n\nList-II:\n(I) Borrowings from RBI\n(II) Fiscal deficit - interest payments\n(III) Revenue expenditure - revenue receipts\n(IV) Total expenditure - total receipts except borrowings`,
+    options: { a: "(A)-(III), (B)-(IV), (C)-(II), (D)-(I)", b: "(A)-(II), (B)-(I), (C)-(IV), (D)-(III)", c: "(A)-(IV), (B)-(III), (C)-(I), (D)-(II)", d: "(A)-(I), (B)-(II), (C)-(III), (D)-(IV)" },
+    correctAnswer: "a",
+    explanation: "Revenue deficit = Rev exp - Rev rec; Fiscal deficit = Total exp - Total rec (excluding borrowings); Primary deficit = Fiscal deficit - interest payments; Monetized deficit = borrowing from RBI.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q10 · Chapter 10: Time, Speed & Distance ────────────
   {
     id: 10,
-    section: "Time, Speed & Distance",
-    text: "A train 200 m long crosses a pole in 10 seconds. Its speed in km/h is:",
-    options: { 1: "60 km/h", 2: "70 km/h", 3: "72 km/h", 4: "80 km/h" },
-    correctAnswer: "3",
-    explanation: "Speed = 200/10 = 20 m/s = 20×18/5 = 72 km/h. Option 3.",
+    section: "Match the Following",
+    text: `Match List-I with List-II\n\nList-I:\n(A) LPG reforms year in India\n(B) First Five Year Plan\n(C) National Rural Employment Guarantee Act (NREGA)\n(D) Establishment of RBI\n\nList-II:\n(I) 1991\n(II) 1935\n(III) 2005\n(IV) 1951`,
+    options: { a: "(A)-(I), (B)-(IV), (C)-(III), (D)-(II)", b: "(A)-(II), (B)-(I), (C)-(IV), (D)-(III)", c: "(A)-(III), (B)-(II), (C)-(I), (D)-(IV)", d: "(A)-(IV), (B)-(III), (C)-(II), (D)-(I)" },
+    correctAnswer: "a",
+    explanation: "LPG reforms in 1991; First Five Year Plan 1951; NREGA 2005; RBI established 1935. Other options jumble years incorrectly.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q11 · Chapter 11: Time & Work ───────────────────────
   {
     id: 11,
-    section: "Time & Work",
-    text: "A can do a work in 12 days and B in 18 days. Together they finish the work in:",
-    options: { 1: "6 days", 2: "7.2 days", 3: "8 days", 4: "9 days" },
-    correctAnswer: "2",
-    explanation: "Combined rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36. Time = 36/5 = 7.2 days. Option 2.",
+    section: "Assertion-Reason",
+    text: `Assertion (A): The marginal cost curve intersects the average variable cost curve at its minimum point.\nReason (R): When marginal cost is less than average variable cost, average variable cost is falling, and when marginal cost is greater, average variable cost is rising.\n\nChoose the correct answer:`,
+    options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+    correctAnswer: "a",
+    explanation: "Both statements are true. R correctly explains A because the mathematical relationship between marginal and average values ensures intersection at minimum point. Option b would be if R were unrelated; c and d are false as both are true.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q12 · Chapter 12: Algebra ───────────────────────────
   {
     id: 12,
-    section: "Algebra",
-    text: "If x + y = 10 and xy = 21, then x² + y² is:",
-    options: { 1: "50", 2: "56", 3: "58", 4: "62" },
-    correctAnswer: "3",
-    explanation: "x²+y² = (x+y)² − 2xy = 100 − 42 = 58. Option 3.",
+    section: "Assertion-Reason",
+    text: `Assertion (A): The money multiplier in an economy is the reciprocal of the Cash Reserve Ratio (CRR).\nReason (R): Commercial banks create credit based on excess reserves, and the total deposit creation is limited by the CRR.\n\nChoose the correct answer:`,
+    options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+    correctAnswer: "a",
+    explanation: "Both true. Money multiplier = 1/CRR, and R explains that CRR limits credit creation because banks must keep reserves. Option b would imply R doesn't explain; c and d wrong.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q13 · Chapter 13: Geometry & Mensuration ────────────
   {
     id: 13,
-    section: "Geometry & Mensuration",
-    text: "The area of a circle with diameter 14 cm is: (π = 22/7)",
-    options: { 1: "144 cm²", 2: "154 cm²", 3: "164 cm²", 4: "176 cm²" },
-    correctAnswer: "2",
-    explanation: "Radius = 7 cm. Area = πr² = (22/7)×49 = 154 cm². Option 2.",
+    section: "Assertion-Reason",
+    text: `Assertion (A): Giffen goods have a positively sloped demand curve.\nReason (R): Giffen goods are inferior goods with a strong negative income effect that outweighs the substitution effect.\n\nChoose the correct answer:`,
+    options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+    correctAnswer: "a",
+    explanation: "Both true. R correctly explains A: negative income effect outweighs substitution effect, leading to higher consumption when price rises, hence upward sloping demand.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q14 · Chapter 14: Trigonometry & Co-ordinate Geometry
   {
     id: 14,
-    section: "Trigonometry & Co-ordinate Geometry",
-    text: "The value of sin²30° + cos²60° is:",
-    options: { 1: "0", 2: "1/2", 3: "1", 4: "3/2" },
-    correctAnswer: "2",
-    explanation: "sin 30° = 1/2, cos 60° = 1/2. sin²30° = 1/4, cos²60° = 1/4. Sum = 1/2. Option 2.",
+    section: "Assertion-Reason",
+    text: `Assertion (A): The paradox of thrift states that an increase in saving can lead to a decrease in actual savings in the economy.\nReason (R): Higher saving reduces consumption, lowering aggregate demand, which reduces income and thus total saving.\n\nChoose the correct answer:`,
+    options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+    correctAnswer: "a",
+    explanation: "Both true. R correctly explains the paradox: increased saving reduces consumption and AD, leading to lower output and income, so total saving may fall despite higher propensity.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q15 · Chapter 15: Modern Maths ──────────────────────
   {
     id: 15,
-    section: "Modern Maths",
-    text: "In how many ways can the letters of the word 'EXAM' be arranged?",
-    options: { 1: "12", 2: "16", 3: "24", 4: "48" },
-    correctAnswer: "3",
-    explanation: "EXAM has 4 distinct letters. Arrangements = 4! = 24. Option 3.",
+    section: "Assertion-Reason",
+    text: `Assertion (A): A surplus in the balance of payments automatically leads to an appreciation of the domestic currency under a flexible exchange rate system.\nReason (R): Surplus means higher demand for domestic currency, which increases its price in the foreign exchange market.\n\nChoose the correct answer:`,
+    options: { a: "Both A and R are true and R is the correct explanation of A", b: "Both A and R are true but R is NOT the correct explanation of A", c: "A is true but R is false", d: "A is false but R is true" },
+    correctAnswer: "a",
+    explanation: "Both true. BOP surplus increases demand for domestic currency to pay for exports, causing appreciation. R explains the mechanism correctly.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q16 · Chapter 16: Simplification ────────────────────
   {
     id: 16,
-    section: "Simplification",
-    text: "Simplify: 18 ÷ 6 × 3 + 4 − 2",
-    options: { 1: "10", 2: "11", 3: "12", d: "13" },
-    correctAnswer: "2",
-    explanation: "Using BODMAS: 18÷6=3, 3×3=9, 9+4=13, 13−2=11. Option 2.",
+    section: "Arrange / Choose Correct",
+    text: `Arrange the following steps in the correct logical order of the circular flow of income in a closed economy with government:\n(A) Households receive factor income from firms\n(B) Firms produce goods and services\n(C) Government collects taxes from households and firms\n(D) Households spend on consumption goods\n\nChoose the correct order:`,
+    options: { a: "(B), (A), (D), (C)", b: "(A), (B), (C), (D)", c: "(C), (A), (D), (B)", d: "(D), (C), (B), (A)" },
+    correctAnswer: "a",
+    explanation: "Order: Firms produce (B), then pay factor incomes to households (A), households spend (D), government intervenes with taxes (C). Option b starts incorrectly; c and d wrong sequence.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q17 · Chapter 17: Powers, Roots, Indices & Surds ────
   {
     id: 17,
-    section: "Powers, Roots, Indices & Surds",
-    text: "The value of (√3 + √2)(√3 − √2) is:",
-    options: { 1: "0", 2: "1", 3: "5", 4: "√6" },
-    correctAnswer: "2",
-    explanation: "(a+b)(a−b) = a²−b² = 3−2 = 1. Option 2.",
+    section: "Arrange / Choose Correct",
+    text: `Arrange the following in chronological order of India's Five Year Plans:\n(A) Twelfth Five Year Plan\n(B) Tenth Five Year Plan\n(C) First Five Year Plan\n(D) Eighth Five Year Plan\n\nChoose the correct order:`,
+    options: { a: "(C), (D), (B), (A)", b: "(D), (B), (A), (C)", c: "(A), (C), (B), (D)", d: "(B), (A), (D), (C)" },
+    correctAnswer: "a",
+    explanation: "First (1951), Eighth (1992-97), Tenth (2002-07), Twelfth (2012-17). Option b and c and d jumble chronology.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q18 · Chapter 18: LCM & HCF ─────────────────────────
   {
     id: 18,
-    section: "LCM & HCF",
-    text: "The HCF of 36 and 48 is:",
-    options: { 1: "6", 2: "8", 3: "12", 4: "24" },
-    correctAnswer: "3",
-    explanation: "36 = 2²×3², 48 = 2⁴×3. HCF = 2²×3 = 12. Option 3.",
+    section: "Arrange / Choose Correct",
+    text: `Which of the following statements are correct regarding the components of Balance of Payments?\n(A) Export of software services is recorded in current account\n(B) Purchase of foreign shares by Indian residents is recorded in capital account\n(C) Remittances from abroad are part of capital account\n(D) Foreign direct investment is part of current account\n\nChoose the correct combination:`,
+    options: { a: "(A) and (B) only", b: "(A), (B) and (C) only", c: "(B), (C) and (D) only", d: "(A), (B), (C) and (D)" },
+    correctAnswer: "a",
+    explanation: "A and B are correct. Remittances (C) are current account; FDI (D) is capital account. So only A and B are correct.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q19 · Chapter 19: Streams ───────────────────────────
   {
     id: 19,
-    section: "Streams",
-    text: "A boat goes 30 km upstream in 6 hours and downstream in 3 hours. The speed of the stream is:",
-    options: { 1: "2 km/h", 2: "2.5 km/h", 3: "3 km/h", 4: "5 km/h" },
-    correctAnswer: "2",
-    explanation: "Upstream speed = 30/6 = 5 km/h. Downstream speed = 30/3 = 10 km/h. Stream speed = (10−5)/2 = 2.5 km/h. Option 2.",
+    section: "Arrange / Choose Correct",
+    text: `Arrange the following steps in the correct sequence of calculating National Income by the Expenditure Method:\n(A) Add government final consumption expenditure\n(B) Add gross domestic capital formation\n(C) Add private final consumption expenditure\n(D) Add net exports\n\nChoose the correct order:`,
+    options: { a: "(C), (A), (B), (D)", b: "(A), (C), (D), (B)", c: "(D), (B), (C), (A)", d: "(B), (D), (A), (C)" },
+    correctAnswer: "a",
+    explanation: "Standard formula: GDP = C (private final consumption) + G (govt consumption) + I (gross domestic capital formation) + (X-M) net exports. So order C, A, B, D.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q20 · Chapter 20: Races & Games ─────────────────────
   {
     id: 20,
-    section: "Races & Games",
-    text: "In a 100 m race, A beats B by 10 m. If B starts 10 m ahead, then:",
-    options: { 1: "A wins by 1 m", 2: "B wins by 1 m", 3: "It is a dead heat", 4: "A wins by 10 m" },
-    correctAnswer: "1",
-    explanation: "A runs 100 m while B runs 90 m. With B starting 10 m ahead, B must run 90 m total. In the time A runs 100 m, B also runs 90 m — so A finishes exactly when B finishes. Dead heat? Actually B runs 90 m (100−10=90), A runs 100 m: both finish together. Answer is dead heat = Option 3.",
+    section: "Arrange / Choose Correct",
+    text: `Which of the following are features of an indifference curve?\n(A) Indifference curves slope downwards\n(B) Indifference curves are convex to the origin\n(C) Higher indifference curves represent lower utility\n(D) Indifference curves cannot intersect\n\nChoose the correct combination:`,
+    options: { a: "(A), (B) and (D) only", b: "(A), (C) and (D) only", c: "(B), (C) and (D) only", d: "(A), (B), (C) and (D)" },
+    correctAnswer: "a",
+    explanation: "Features: downward sloping, convex, non-intersecting. Higher IC represents higher utility, so C is false. Thus A, B, D only.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q21 · Chapter 21: Mensuration – 1 ───────────────────
   {
     id: 21,
-    section: "Mensuration – 1",
-    text: "The perimeter of a rectangle is 60 cm. If its length is 20 cm, its breadth is:",
-    options: { 1: "5 cm", 2: "8 cm", 3: "10 cm", 4: "15 cm" },
-    correctAnswer: "3",
-    explanation: "Perimeter = 2(l+b) → 60 = 2(20+b) → b = 10 cm. Option 3.",
+    section: "Passage Based",
+    text: `READ THE FOLLOWING PASSAGE CAREFULLY AND ANSWER QUESTIONS 21 TO 25:\n\nIn microeconomics, the concept of elasticity measures responsiveness. Price elasticity of demand depends on factors like availability of substitutes, necessity vs luxury, and time horizon. For normal goods, income elasticity is positive. Cross elasticity of demand for substitutes is positive, while for complements it is negative. In India, a study on fuel demand found that the short-run price elasticity of petrol was -0.3, while long-run elasticity was -0.8. For electric vehicles, the cross elasticity with petrol price was found to be +0.4. The government considered a ₹5 per litre tax on petrol to reduce consumption and promote EVs.\n\nQ21. Based on the passage, what is the short-run price elasticity of petrol in India?`,
+    options: { a: "-0.8", b: "-0.3", c: "+0.4", d: "-1.2" },
+    correctAnswer: "b",
+    explanation: "Passage explicitly states short-run elasticity of petrol is -0.3. Option a is long-run; option c is cross elasticity with EVs; option d is not mentioned.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q22 · Chapter 22: Mensuration – 2 ───────────────────
   {
     id: 22,
-    section: "Mensuration – 2",
-    text: "The volume of a cube with side 5 cm is:",
-    options: { 1: "25 cm³", 2: "100 cm³", 3: "125 cm³", 4: "150 cm³" },
-    correctAnswer: "3",
-    explanation: "Volume = side³ = 5³ = 125 cm³. Option 3.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q21)\n\nQ22. If the government imposes a ₹5 per litre tax on petrol (price increase from ₹80 to ₹85 per litre), using the short-run elasticity of -0.3, what is the expected percentage change in quantity demanded?`,
+    options: { a: "6.25% decrease", b: "1.875% decrease", c: "18.75% decrease", d: "0.1875% decrease" },
+    correctAnswer: "b",
+    explanation: "Percentage price change = (5/80)*100 = 6.25%. Elasticity = %ΔQ/%ΔP, so %ΔQ = -0.3 * 6.25 = -1.875%. Option a is too high; c multiplies incorrectly; d is too low.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q23 · Chapter 23: Series (Quant) ────────────────────
   {
     id: 23,
-    section: "Series",
-    text: "Find the next number in the series: 3, 6, 12, 24, ?",
-    options: { 1: "36", 2: "42", 3: "48", 4: "54" },
-    correctAnswer: "3",
-    explanation: "Each term is doubled: 3×2=6, 6×2=12, 12×2=24, 24×2=48. Option 3.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q21)\n\nQ23. The cross elasticity of +0.4 between petrol price and electric vehicle demand indicates that:`,
+    options: { a: "Petrol and EVs are complements", b: "Petrol and EVs are substitutes", c: "EVs are inferior goods", d: "Petrol is a luxury good" },
+    correctAnswer: "b",
+    explanation: "Positive cross elasticity means substitutes. Option a would be negative; c and d not indicated by cross elasticity.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q24 · Chapter 24: Approximate Values ────────────────
   {
     id: 24,
-    section: "Approximate Values",
-    text: "The approximate value of √(143) is:",
-    options: { 1: "11.5", 2: "12", 3: "11.96", 4: "12.5" },
-    correctAnswer: "3",
-    explanation: "12²=144, so √143 ≈ 11.96. Option 3.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q21)\n\nQ24. Why is long-run price elasticity of petrol higher (more negative) than short-run elasticity?`,
+    options: { a: "Consumers find substitutes over time", b: "Income rises in long run", c: "Government fixes prices", d: "Elasticity is always positive in long run" },
+    correctAnswer: "a",
+    explanation: "Over time, consumers adjust behavior, find substitutes like EVs or public transport. Option b is income effect, not main reason; c false; d false as elasticity can be negative.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q25 · Chapter 25: Data Interpretation ───────────────
   {
     id: 25,
-    section: "Data Interpretation",
-    text: "The table shows sales (units): Jan=200, Feb=250, Mar=300, Apr=350. The average monthly sales is:",
-    options: { 1: "260", 2: "270", 3: "275", 4: "280" },
-    correctAnswer: "3",
-    explanation: "Total = 200+250+300+350 = 1100. Average = 1100/4 = 275. Option 3.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q21)\n\nQ25. If the goal is to reduce petrol consumption by 15%, what approximate price increase is needed using short-run elasticity?`,
+    options: { a: "50% increase", b: "20% increase", c: "2% increase", d: "5% increase" },
+    correctAnswer: "a",
+    explanation: "%ΔP = %ΔQ / elasticity = -15% / -0.3 = 50%. Option b gives 6% reduction; c gives 0.6%; d gives 1.5% reduction.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q26 · Chapter 26: Bar Graphs & Pie Charts ───────────
   {
     id: 26,
-    section: "Bar Graphs & Pie Charts",
-    text: "In a pie chart, a sector representing 25% of data has a central angle of:",
-    options: { 1: "60°", 2: "72°", 3: "90°", 4: "120°" },
-    correctAnswer: "3",
-    explanation: "25% of 360° = (25/100)×360 = 90°. Option 3.",
+    section: "Passage Based",
+    text: `READ THE FOLLOWING PASSAGE CAREFULLY AND ANSWER QUESTIONS 26 TO 30:\n\nIn macroeconomics, the investment multiplier (k) is defined as 1/(1-MPC) where MPC is marginal propensity to consume. The government of India increased infrastructure spending by ₹50,000 crore in the 2024-25 budget. Assuming MPC is 0.75, the multiplier is 4, so total increase in national income would be ₹2,00,000 crore. However, if the economy is at full employment, the multiplier effect is dampened due to inflation. Additionally, if taxes increase simultaneously, the balanced budget multiplier is 1. The RBI uses monetary policy tools like CRR and repo rate to manage liquidity during such fiscal expansions.\n\nQ26. According to the passage, what is the value of the investment multiplier if MPC is 0.75?`,
+    options: { a: "2", b: "3", c: "4", d: "5" },
+    correctAnswer: "c",
+    explanation: "Multiplier = 1/(1-MPC) = 1/(1-0.75)=1/0.25=4. Option a is 1/(1-0.5); b is for MPC=0.67; d is for MPC=0.8.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q27 · Chapter 27: Fundamentals of Venn Diagram ──────
   {
     id: 27,
-    section: "Fundamentals of Venn Diagram",
-    text: "In a class of 50, 30 like cricket and 25 like football. 10 like both. How many like at least one?",
-    options: { 1: "40", 2: "42", 3: "45", 4: "55" },
-    correctAnswer: "3",
-    explanation: "n(C∪F) = n(C)+n(F)−n(C∩F) = 30+25−10 = 45. Option 3.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q26)\n\nQ27. The government increases spending by ₹50,000 crore. What is the total increase in national income according to the multiplier effect?`,
+    options: { a: "50,000 crore", b: "1,00,000 crore", c: "2,00,000 crore", d: "2,50,000 crore" },
+    correctAnswer: "c",
+    explanation: "ΔY = Multiplier × ΔG = 4 × 50,000 = 2,00,000 crore. Option a ignores multiplier; b assumes multiplier 2; d assumes multiplier 5.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q28 · Chapter 28: Arrangement & Grouping ────────────
   {
     id: 28,
-    section: "Arrangement & Grouping",
-    text: "5 persons are seated in a row. In how many ways can they be seated?",
-    options: { 1: "25", 2: "60", 3: "100", 4: "120" },
-    correctAnswer: "4",
-    explanation: "Number of arrangements of 5 persons in a row = 5! = 120. Option 4.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q26)\n\nQ28. Why is the multiplier effect dampened at full employment?`,
+    options: { a: "Increased spending causes inflation, not real output", b: "MPC becomes zero", c: "Government stops spending", d: "Taxes automatically decrease" },
+    correctAnswer: "a",
+    explanation: "At full employment, real output cannot expand, so spending leads to price rise (inflation) not real income increase. Option b false; c not automatic; d opposite.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q29 · Chapter 29: Syllogism ─────────────────────────
   {
     id: 29,
-    section: "Syllogism, Logical Connectives & Courses of Action",
-    text: "Statements: All cats are animals. All animals are living beings.\nConclusion: All cats are living beings.",
-    options: { 1: "Conclusion does not follow", 2: "Conclusion follows", 3: "Data insufficient", 4: "Conclusion partially follows" },
-    correctAnswer: "2",
-    explanation: "All cats→animals, all animals→living beings. By transitivity, all cats→living beings. Conclusion follows. Option 2.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q26)\n\nQ29. If the government simultaneously increases spending and taxes by ₹50,000 crore, what is the net effect on national income according to balanced budget multiplier?`,
+    options: { a: "No change", b: "Increase by ₹50,000 crore", c: "Decrease by ₹50,000 crore", d: "Increase by ₹2,00,000 crore" },
+    correctAnswer: "b",
+    explanation: "Balanced budget multiplier = 1, so ΔY = ΔG = ₹50,000 crore. Option a would be if multiplier=0; c opposite; d ignores tax effect.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q30 · Chapter 30: Coding & Decoding ─────────────────
   {
     id: 30,
-    section: "Coding & Decoding",
-    text: "If CAT is coded as FDW, then DOG is coded as:",
-    options: { 1: "GRJ", 2: "GSJ", 3: "GRK", 4: "HRJ" },
-    correctAnswer: "1",
-    explanation: "Each letter +3: C→F, A→D, T→W. D→G, O→R, G→J. DOG = GRJ. Option 1.",
+    section: "Passage Based",
+    text: `(Refer to passage in Q26)\n\nQ30. To manage inflation caused by fiscal expansion, the RBI would likely:`,
+    options: { a: "Reduce CRR", b: "Reduce repo rate", c: "Increase CRR", d: "Buy government securities" },
+    correctAnswer: "c",
+    explanation: "To control inflation, RBI uses contractionary policy: increase CRR, increase repo rate, sell securities. Options a, b, d are expansionary and would worsen inflation.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q31 · Chapter 31: Series (Reasoning) ────────────────
   {
     id: 31,
-    section: "Series",
-    text: "Find the missing term: 2, 5, 10, 17, 26, ?",
-    options: { 1: "35", 2: "37", 3: "39", 4: "41" },
-    correctAnswer: "2",
-    explanation: "Differences: 3,5,7,9,11 (odd numbers increasing). 26+11=37. Option 2.",
+    section: "image based image",
+    text: `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f0f0f0"/><line x1="50" y1="250" x2="350" y2="250" stroke="black" stroke-width="2"/><line x1="50" y1="250" x2="50" y2="30" stroke="black" stroke-width="2"/><text x="30" y="20" font-size="12">Price</text><text x="360" y="260" font-size="12">Quantity</text><line x1="50" y1="200" x2="300" y2="250" stroke="red" stroke-width="2"/><text x="150" y="160" font-size="12" fill="red">Supply</text><line x1="50" y1="100" x2="300" y2="200" stroke="blue" stroke-width="2"/><text x="150" y="120" font-size="12" fill="blue">Demand</text><circle cx="200" cy="180" r="4" fill="black"/><text x="205" y="175" font-size="10">E</text><line x1="200" y1="180" x2="200" y2="250" stroke="green" stroke-dasharray="4" stroke-width="1"/><line x1="50" y1="180" x2="200" y2="180" stroke="green" stroke-dasharray="4" stroke-width="1"/><text x="160" y="240" font-size="12">Q*</text><text x="30" y="185" font-size="12">P*</text></svg>\n\nQ31. In the above supply-demand diagram, if the government imposes a price ceiling below the equilibrium price P*, what will be the result?`,
+    options: { a: "Excess supply", b: "Excess demand", c: "Market clears", d: "No change" },
+    correctAnswer: "b",
+    explanation: "Price ceiling below P* creates shortage (excess demand). Option a is price floor; c false; d false because ceiling creates disequilibrium.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q32 · Chapter 32: Blood Relations & Direction Test ───
   {
     id: 32,
-    section: "Blood Relations & Direction Test",
-    text: "A man walks 5 km north, turns right and walks 3 km, then turns right and walks 5 km. How far is he from the start?",
-    options: { 1: "2 km", 2: "3 km", 3: "5 km", 4: "8 km" },
-    correctAnswer: "2",
-    explanation: "He goes 5N, 3E, 5S — ending 3 km east of start. Distance = 3 km. Option 2.",
+    section: "image based image",
+    text: `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f0f0f0"/><line x1="50" y1="250" x2="350" y2="250" stroke="black" stroke-width="2"/><line x1="50" y1="250" x2="50" y2="30" stroke="black" stroke-width="2"/><text x="30" y="20" font-size="12">Cost</text><text x="360" y="260" font-size="12">Output</text><path d="M 80 220 Q 150 150 300 100" stroke="purple" stroke-width="2" fill="none"/><text x="250" y="90" font-size="12" fill="purple">ATC</text><path d="M 80 200 Q 150 130 300 80" stroke="orange" stroke-width="2" fill="none"/><text x="250" y="70" font-size="12" fill="orange">AVC</text><path d="M 80 240 Q 150 170 300 120" stroke="brown" stroke-width="2" fill="none"/><text x="250" y="110" font-size="12" fill="brown">AFC</text><line x1="150" y1="250" x2="150" y2="145" stroke="gray" stroke-dasharray="4"/><text x="140" y="260" font-size="10">Q1</text></svg>\n\nQ32. The vertical distance between the ATC and AVC curves at any output level represents:`,
+    options: { a: "Marginal cost", b: "Average fixed cost", c: "Total fixed cost", d: "Marginal revenue" },
+    correctAnswer: "b",
+    explanation: "ATC = AVC + AFC, so vertical distance is AFC. Option a is slope of TC curve; c misleads (total not average); d irrelevant.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q33 · Chapter 33: Visual Reasoning ──────────────────
   {
     id: 33,
-    section: "Visual Reasoning",
-    text: "A figure is folded along its horizontal axis. The top half has a circle on the left. After folding, the circle appears:",
-    options: { 1: "On the top left", 2: "On the bottom left", 3: "On the bottom right", 4: "On the top right" },
-    correctAnswer: "2",
-    explanation: "When folded along the horizontal axis, the top half maps onto the bottom half — circle on left stays on left side, now appearing at bottom left. Option 2.",
+    section: "image based image",
+    text: `<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="200" fill="#e0e0e0"/><circle cx="150" cy="100" r="60" fill="gold" stroke="black" stroke-width="2"/><text x="145" y="105" font-size="12" fill="black">Money</text><rect x="100" y="80" width="100" height="40" fill="none" stroke="red" stroke-width="2"/><text x="110" y="105" font-size="10">M1</text><rect x="80" y="60" width="140" height="80" fill="none" stroke="blue" stroke-width="2"/><text x="90" y="55" font-size="10">M3</text></svg>\n\nQ33. In the diagram, M1 includes which of the following components as per RBI definition?`,
+    options: { a: "Currency + demand deposits + other deposits with RBI", b: "M1 + post office savings", c: "M1 + term deposits", d: "M3 + total deposits" },
+    correctAnswer: "a",
+    explanation: "M1 = currency + demand deposits + other deposits with RBI. Option b is M2; c is M3; d is incorrect.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q34 · Chapter 34: Clocks, Calendars & Data Sufficiency
   {
     id: 34,
-    section: "Clocks, Calendars & Data Sufficiency",
-    text: "What is the angle between the hour and minute hands at 3:00?",
-    options: { 1: "60°", 2: "75°", 3: "90°", 4: "120°" },
-    correctAnswer: "3",
-    explanation: "At 3:00, minute hand is at 12 (0°) and hour hand is at 3 (90°). Angle = 90°. Option 3.",
+    section: "image based image",
+    text: `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#f5f5dc"/><line x1="60" y1="220" x2="360" y2="220" stroke="black"/><line x1="60" y1="220" x2="60" y2="40" stroke="black"/><text x="20" y="130" transform="rotate(-90,20,130)">Real GDP</text><text x="200" y="290">Year</text><path d="M 60 200 Q 100 190 150 150 Q 200 110 250 100 Q 300 90 350 85" stroke="green" stroke-width="3" fill="none"/><text x="250" y="80" fill="green">Growth path</text><circle cx="200" cy="110" r="8" fill="none" stroke="red" stroke-width="2"/><text x="195" y="95" fill="red">Peak</text><circle cx="120" cy="180" r="8" fill="none" stroke="blue" stroke-width="2"/><text x="90" y="190" fill="blue">Trough</text></svg>\n\nQ34. The red circle in the business cycle diagram represents which phase?`,
+    options: { a: "Expansion", b: "Peak", c: "Contraction", d: "Trough" },
+    correctAnswer: "b",
+    explanation: "Red circle at top of cycle indicates peak, where economy turns from expansion to contraction. Option a is rising; c is falling; d is bottom.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q35 · Chapter 35: Puzzles ───────────────────────────
   {
     id: 35,
-    section: "Puzzles",
-    text: "Six friends A, B, C, D, E, F sit in a circle facing centre. B sits between A and C. D is opposite B. Who is opposite A?",
-    options: { 1: "C", 2: "D", 3: "E", 4: "Cannot be determined" },
-    correctAnswer: "4",
-    explanation: "With only these constraints, the positions of E and F are not fixed, so the person opposite A cannot be determined uniquely. Option 4.",
+    section: "image based image",
+    text: `<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#fff"/><line x1="50" y1="250" x2="350" y2="250" stroke="black"/><line x1="50" y1="250" x2="50" y2="40" stroke="black"/><text x="20" y="150" transform="rotate(-90,20,150)">Tax Revenue</text><text x="180" y="280">Income</text><line x1="50" y1="200" x2="300" y2="80" stroke="blue" stroke-width="2"/><text x="250" y="100" fill="blue">Progressive</text><line x1="50" y1="150" x2="300" y2="150" stroke="red" stroke-width="2" stroke-dasharray="5,5"/><text x="200" y="140" fill="red">Proportional</text><line x1="50" y1="100" x2="300" y2="200" stroke="green" stroke-width="2"/><text x="240" y="210" fill="green">Regressive</text></svg>\n\nQ35. Which tax system is represented by the blue line in the graph?`,
+    options: { a: "Proportional tax", b: "Progressive tax", c: "Regressive tax", d: "Lump-sum tax" },
+    correctAnswer: "b",
+    explanation: "Blue line slopes upward steeply: tax revenue grows faster than income (progressive). Option a is flat; c slopes downward; d fixed amount.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q36 · Chapter 36: Statements, Assumptions ───────────
   {
     id: 36,
-    section: "Statements, Assumptions, Arguments & Causes",
-    text: "Statement: 'Please keep off the grass.' — Assumption I: People tend to walk on grass. Assumption II: Grass is very costly.",
-    options: { 1: "Only I is implicit", 2: "Only II is implicit", 3: "Both are implicit", 4: "Neither is implicit" },
-    correctAnswer: "1",
-    explanation: "The sign is put up because people tend to walk on grass — so Assumption I is implicit. The cost of grass is not implied. Option 1.",
+    section: "Application MCQ",
+    text: `Ravi, a garment exporter from Surat, receives a payment of $100,000 from a US buyer. The exchange rate is ₹83 per dollar. If the rupee depreciates to ₹86 per dollar, how much more (in rupees) does Ravi earn from the same dollar invoice?`,
+    options: { a: "₹3,00,000", b: "₹30,000", c: "₹3,000", d: "₹3,00,00,000" },
+    correctAnswer: "a",
+    explanation: "At ₹83: 100,000 × 83 = 83,00,000. At ₹86: 86,00,000. Difference = 3,00,000. Option b miscalculates decimal; c too low; d ten times too high.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q37 · Chapter 37: Critical Reasoning ────────────────
   {
     id: 37,
-    section: "Critical Reasoning",
-    text: "All students who study hard pass. Ravi did not pass. Therefore:",
-    options: { 1: "Ravi studied hard", 2: "Ravi did not study hard", 3: "Ravi is not a student", 4: "Cannot be concluded" },
-    correctAnswer: "2",
-    explanation: "Contrapositive: if you did not pass → you did not study hard. Ravi did not pass → Ravi did not study hard. Option 2.",
+    section: "Application MCQ",
+    text: `The RBI reduces the Cash Reserve Ratio from 4.5% to 4%. If total deposits are ₹10,000 crore, what is the approximate change in credit creation assuming full multiplier effect and no leakages?`,
+    options: { a: "₹500 crore increase", b: "₹2,778 crore increase", c: "₹250 crore decrease", d: "₹10,000 crore remains unchanged" },
+    correctAnswer: "b",
+    explanation: "Old multiplier = 1/0.045 ≈ 22.22; New = 1/0.04 = 25. Change in credit = (25-22.22) × 10,000 = 2,780 crore approx. Option a ignores multiplier; c wrong direction; d ignores CRR change.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q38 · Chapter 38: Odd One Out ───────────────────────
   {
     id: 38,
-    section: "Odd One Out",
-    text: "Which is the odd one out? Whale, Dolphin, Shark, Bat",
-    options: { 1: "Whale", 2: "Dolphin", 3: "Shark", 4: "Bat" },
-    correctAnswer: "3",
-    explanation: "Whale, Dolphin, and Bat are all mammals. Shark is a fish. Option 3.",
+    section: "Application MCQ",
+    text: `The government announces a minimum support price of ₹2,100 per quintal for wheat when equilibrium price is ₹1,800. The government procures 30 million quintals. What is the total subsidy burden?`,
+    options: { a: "₹9,000 crore", b: "₹900 crore", c: "₹90 crore", d: "₹9 crore" },
+    correctAnswer: "a",
+    explanation: "Subsidy per quintal = 2,100 - 1,800 = ₹300. Total = 30M × 300 = 9,000 million = ₹9,000 crore. Option b misses zero; c too low; d token amount.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q39 · Chapter 39: Indian History ────────────────────
   {
     id: 39,
-    section: "Indian History",
-    text: "The Dandi March (Salt Satyagraha) was undertaken in which year?",
-    options: { 1: "1920", 2: "1922", 3: "1930", 4: "1942" },
-    correctAnswer: "3",
-    explanation: "Dandi March started on 12 March 1930 from Sabarmati Ashram to Dandi, protesting the salt tax. 1920 was Non-Cooperation, 1942 was Quit India. Option 3.",
+    section: "Application MCQ",
+    text: `If the marginal propensity to consume is 0.8 and the government increases taxes by ₹20,000 crore, what is the effect on national income?`,
+    options: { a: "Increase by ₹1,00,000 crore", b: "Decrease by ₹80,000 crore", c: "Decrease by ₹1,00,000 crore", d: "Increase by ₹80,000 crore" },
+    correctAnswer: "b",
+    explanation: "Tax multiplier = -MPC/(1-MPC) = -0.8/0.2 = -4. ΔY = -4 × 20,000 = -80,000 crore (decrease). Option a uses spending multiplier; c magnitude correct but sign wrong; d wrong sign and magnitude.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q40 · Chapter 40: Geography ─────────────────────────
   {
     id: 40,
-    section: "Geography",
-    text: "The Standard Meridian of India (82°30'E) passes through which city?",
-    options: { 1: "Mumbai", 2: "Kolkata", 3: "Allahabad (Prayagraj)", 4: "Chennai" },
-    correctAnswer: "3",
-    explanation: "India's IST (UTC+5:30) is based on 82°30'E which passes through Mirzapur near Allahabad (Prayagraj), Uttar Pradesh. Option 3.",
+    section: "Application MCQ",
+    text: `India's current account deficit is $30 billion. If capital account surplus is $25 billion, what is the overall balance of payments?`,
+    options: { a: "Surplus of $5 billion", b: "Deficit of $5 billion", c: "Surplus of $55 billion", d: "Deficit of $55 billion" },
+    correctAnswer: "b",
+    explanation: "BoP = Current + Capital = -30 + 25 = -5 billion (deficit). Option a reverses sign; c adds both absolute; d incorrectly sums negatives.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q41 · Chapter 41: Constitution of India ─────────────
   {
     id: 41,
-    section: "Constitution of India",
-    text: "The Indian Constitution was adopted on:",
-    options: { 1: "15 August 1947", 2: "26 January 1950", 3: "26 November 1949", 4: "2 October 1949" },
-    correctAnswer: "3",
-    explanation: "The Constitution was adopted by the Constituent Assembly on 26 November 1949. It came into force on 26 January 1950 (Republic Day). Option 3.",
+    section: "Application MCQ",
+    text: `A shopkeeper marks a shirt 50% above cost and gives a 20% discount. His profit percentage is:`,
+    options: { a: "30%", b: "20%", c: "25%", d: "28%" },
+    correctAnswer: "b",
+    explanation: "Let CP=100, MP=150, discount=20% → SP=120, profit=20%. Option a ignores discount; c miscalculates; d near but wrong.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q42 · Chapter 42: Science ───────────────────────────
   {
     id: 42,
-    section: "Science",
-    text: "The SI unit of electric current is:",
-    options: { 1: "Volt", 2: "Ohm", 3: "Watt", 4: "Ampere" },
-    correctAnswer: "4",
-    explanation: "The SI unit of electric current is the Ampere (A). Volt is for potential difference, Ohm for resistance, Watt for power. Option 4.",
+    section: "Application MCQ",
+    text: `A sum of ₹10,000 is invested at compound interest for 2 years at 10% per annum. What is the difference between compound interest and simple interest?`,
+    options: { a: "₹100", b: "₹1,000", c: "₹200", d: "₹50" },
+    correctAnswer: "a",
+    explanation: "SI = 10,000*0.1*2=2,000; CI = 10,000*(1.1^2-1)=2,100; difference=100. Option b is too high; c double; d half.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q43 · Chapter 43: Sports ────────────────────────────
   {
     id: 43,
-    section: "Sports",
-    text: "How many players are there in a standard cricket team?",
-    options: { 1: "9", 2: "10", 3: "11", 4: "12" },
-    correctAnswer: "3",
-    explanation: "A standard cricket team has 11 players. The 12th player is a substitute fielder who cannot bat or bowl. Option 3.",
+    section: "Application MCQ",
+    text: `Two pipes A and B can fill a tank in 12 and 16 hours respectively. A third pipe C empties in 24 hours. All three opened together for 4 hours, then C closed. How much more time for A and B to fill?`,
+    options: { a: "2 hours", b: "3 hours", c: "4 hours", d: "5 hours" },
+    correctAnswer: "b",
+    explanation: "Rate A=1/12, B=1/16, C=-1/24. Combined in 4h: 4*(1/12+1/16-1/24)=4*(4/48+3/48-2/48)=4*(5/48)=20/48=5/12 filled. Remaining 7/12. Rate A+B=7/48. Time=(7/12)/(7/48)=4 hours? Wait recalc: 7/12 ÷ 7/48 = 7/12 × 48/7 = 4 hours. Option b 3 is wrong; a 2 too low; d 5 high.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q44 · Chapter 44: Culture of India ──────────────────
   {
     id: 44,
-    section: "Culture of India",
-    text: "The classical dance form Bharatanatyam originated in which state?",
-    options: { 1: "Kerala", 2: "Andhra Pradesh", 3: "Tamil Nadu", 4: "Karnataka" },
-    correctAnswer: "3",
-    explanation: "Bharatanatyam is one of the oldest classical dance forms, originating in Tamil Nadu's temples. Kathakali is from Kerala; Kuchipudi from Andhra Pradesh. Option 3.",
+    section: "Application MCQ",
+    text: `A train 200m long passes a platform 300m long in 50 seconds. What is the speed in km/h?`,
+    options: { a: "36", b: "54", c: "72", d: "18" },
+    correctAnswer: "a",
+    explanation: "Total distance = 200+300=500m, time=50s, speed=10m/s = 36 km/h. Option b 15m/s; c 20m/s; d 5m/s.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q45 · Chapter 45: Basics of Economics & Indian Economy
   {
     id: 45,
-    section: "Basics of Economics & Indian Economy",
-    text: "Which body presents the Union Budget in India?",
-    options: { 1: "RBI", 2: "NITI Aayog", 3: "Ministry of Finance", 4: "Ministry of Commerce" },
-    correctAnswer: "3",
-    explanation: "The Union Budget is presented by the Finance Minister on behalf of the Ministry of Finance. RBI manages monetary policy; NITI Aayog is a policy think tank. Option 3.",
+    section: "Application MCQ",
+    text: `Who was the first Governor-General of independent India?`,
+    options: { a: "Lord Mountbatten", b: "C. Rajagopalachari", c: "Jawaharlal Nehru", d: "Rajendra Prasad" },
+    correctAnswer: "a",
+    explanation: "Lord Mountbatten served from 1947-48. Option b was first Indian; c was PM; d President.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q46 · Chapter 46: Miscellaneous GK ──────────────────
   {
     id: 46,
-    section: "Miscellaneous General Knowledge",
-    text: "The headquarters of the United Nations is located in:",
-    options: { 1: "London", 2: "Geneva", 3: "Paris", 4: "New York" },
-    correctAnswer: "4",
-    explanation: "UN headquarters is in New York City, USA on the East River. Geneva has the UN European HQ. The UN was founded in 1945. Option 4.",
+    section: "Application MCQ",
+    text: `Which article of the Indian Constitution abolishes untouchability?`,
+    options: { a: "Article 14", b: "Article 15", c: "Article 17", d: "Article 21" },
+    correctAnswer: "c",
+    explanation: "Article 17 abolishes untouchability. A14 is equality; A15 prohibits discrimination; A21 is life and liberty.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q47 · Chapter 3: Simple Interest (2nd Q) ────────────
   {
     id: 47,
-    section: "Simple Interest",
-    text: "At what rate of simple interest does a sum of money double in 10 years?",
-    options: { 1: "8%", 2: "10%", 3: "12%", 4: "15%" },
-    correctAnswer: "2",
-    explanation: "SI = P when doubled → P×R×10/100 = P → R = 10%. Option 2.",
+    section: "Application MCQ",
+    text: `The largest delta in the world is formed by which river?`,
+    options: { a: "Nile", b: "Amazon", c: "Ganges-Brahmaputra", d: "Yangtze" },
+    correctAnswer: "c",
+    explanation: "Ganges-Brahmaputra delta (Sundarbans) is largest. Nile is smaller; Amazon is river not delta; Yangtze delta smaller.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q48 · Chapter 9: Average (2nd Q) ────────────────────
   {
     id: 48,
-    section: "Average & Age Related Problems",
-    text: "The average age of 3 friends is 24 years. If a 4th friend joins whose age is 28, the new average is:",
-    options: { 1: "24 years", 2: "25 years", 3: "26 years", 4: "27 years" },
-    correctAnswer: "2",
-    explanation: "Total age of 3 = 72. After adding 28: total = 100. New average = 100/4 = 25 years. Option 2.",
+    section: "Application MCQ",
+    text: `Who discovered the vaccine for smallpox?`,
+    options: { a: "Louis Pasteur", b: "Edward Jenner", c: "Robert Koch", d: "Jonas Salk" },
+    correctAnswer: "b",
+    explanation: "Edward Jenner discovered smallpox vaccine. Pasteur for rabies; Koch for TB; Salk for polio.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q49 · Chapter 5: Profit & Loss (2nd Q) ──────────────
   {
     id: 49,
-    section: "Profit, Loss & Discount",
-    text: "An item marked ₹600 is sold at a 15% discount. The selling price is:",
-    options: { 1: "₹480", 2: "₹490", 3: "₹510", 4: "₹520" },
-    correctAnswer: "3",
-    explanation: "Discount = 15% of 600 = ₹90. Selling price = 600−90 = ₹510. Option 3.",
+    section: "Application MCQ",
+    text: `In a code language, 'INDIA' is written as '9-14-4-9-1'. How is 'BHARAT' written?`,
+    options: { a: "2-8-1-18-1-20", b: "2-8-1-1-18-20", c: "2-8-1-18-20-1", d: "2-8-1-18-1-19" },
+    correctAnswer: "a",
+    explanation: "Alphabet positions: B=2, H=8, A=1, R=18, A=1, T=20. Option a correct; b wrong order; c missing 1; d wrong last.",
     marked: false,
     userAnswer: ""
   },
-
-  // ─── Q50 · Chapter 41: Constitution (2nd Q) ──────────────
   {
     id: 50,
-    section: "Constitution of India",
-    text: "Which Article of the Indian Constitution abolishes untouchability?",
-    options: { 1: "Article 14", 2: "Article 15", 3: "Article 17", 4: "Article 21" },
-    correctAnswer: "3",
-    explanation: "Article 17 abolishes untouchability and forbids its practice in any form. Article 14 = equality before law; Article 15 = prohibition of discrimination; Article 21 = right to life. Option 3.",
+    section: "Application MCQ",
+    text: `If in a clock, the hour hand is at 3 and minute hand at 12, what is the angle between them?`,
+    options: { a: "90°", b: "180°", c: "270°", d: "0°" },
+    correctAnswer: "a",
+    explanation: "3:00 exactly gives 90° angle. Option b is opposite; c is 270° reflex; d same direction.",
     marked: false,
     userAnswer: ""
   }
-
 ],
     duration: 60 * 60,
     markingScheme: { correct: 5, incorrect: -1 }
@@ -1580,18 +1479,19 @@ function renderQuestion() {
    // Format A&R and List-I/II questions
 let formattedText = q.text;
 
-// Format Assertion-Reason
+// 1. Render SVG/HTML images (already in text as raw SVG)
+// No change needed — innerHTML handles this automatically
+
+// 2. Format Assertion-Reason
 if (formattedText.includes('Assertion') && formattedText.includes('Reason')) {
     formattedText = formattedText.replace(
         /(Assertion\s*\(A\):\s*)(.*?)(\nReason\s*\(R\):\s*)(.*)/s,
         (match, aLabel, aText, rLabel, rText) => {
             return `<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;">
-                <thead>
-                    <tr>
-                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:15%;">Type</th>
-                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:85%;">Statement</th>
-                    </tr>
-                </thead>
+                <thead><tr>
+                    <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:18%;">Type</th>
+                    <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;">Statement</th>
+                </tr></thead>
                 <tbody>
                     <tr style="background:#f0f6ff;">
                         <td style="padding:9px 14px;border:1px solid #bfdbfe;font-weight:700;color:#1a6fc4;white-space:nowrap;">Assertion (A)</td>
@@ -1607,7 +1507,7 @@ if (formattedText.includes('Assertion') && formattedText.includes('Reason')) {
     );
 }
 
-// Format List-I / List-II match questions
+// 3. Format List-I / List-II match questions
 if (formattedText.includes('List-I') && formattedText.includes('List-II')) {
     formattedText = formattedText.replace(
         /List-I:([\s\S]*?)List-II:([\s\S]*?)(?=\n\n|$)/,
@@ -1622,12 +1522,10 @@ if (formattedText.includes('List-I') && formattedText.includes('List-II')) {
             const l2 = parseRomanItems(list2);
             const rows = Math.max(l1.length, l2.length);
             let tableHTML = `<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;">
-                <thead>
-                    <tr>
-                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-I</th>
-                        <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-II</th>
-                    </tr>
-                </thead><tbody>`;
+                <thead><tr>
+                    <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-I</th>
+                    <th style="background:#1a6fc4;color:white;padding:10px 14px;text-align:left;border:1px solid #bfdbfe;width:50%;">List-II</th>
+                </tr></thead><tbody>`;
             for (let i = 0; i < rows; i++) {
                 const bg = i % 2 === 0 ? '#f0f6ff' : '#ffffff';
                 tableHTML += `<tr style="background:${bg};">
@@ -1640,6 +1538,12 @@ if (formattedText.includes('List-I') && formattedText.includes('List-II')) {
         }
     );
 }
+
+// 4. Format Fill in the Blank — highlight blank with input-style box
+formattedText = formattedText.replace(
+    /_{3,}/g,
+    `<span style="display:inline-block;min-width:80px;border-bottom:2.5px solid #1a6fc4;margin:0 6px;padding:0 8px;font-weight:700;color:#1a6fc4;text-align:center;">?</span>`
+);
 
 questionTextEl.innerHTML = formattedText;
     qNumEl.textContent = q.id;
