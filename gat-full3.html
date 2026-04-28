@@ -2157,11 +2157,34 @@ return tableHTML;
     ${applyLineBreaks(formatText(passageHTML))}
   </div>
   <div style="width:100%;">
-    <div class="q-text">${applyLineBreaks(formatText(formattedQuestion))}</div>
+    const svgMatch2 = formattedQuestion.match(/(<svg[\s\S]*?<\/svg>)/i);
+    if (svgMatch2) {
+      const svgPart2 = svgMatch2[1];
+      const textPart2 = formattedQuestion.replace(svgMatch2[0], '').trim();
+      html += `
+        <div style="background:#f8fafc;border:1.5px solid #bfdbfe;border-radius:8px;padding:12px;margin-bottom:12px;text-align:center;">
+          ${svgPart2}
+        </div>
+        <div class="q-text">${applyLineBreaks(formatText(textPart2))}</div>`;
+    } else {
+      html += `<div class="q-text">${applyLineBreaks(formatText(formattedQuestion))}</div>`;
+    }
   </div>
 </div>`;
   } else {
-    html += `<div class="q-text">${formatText(formattedQuestion).replace(/\n/g,'<br>')}</div>`;
+    // Detect if question contains an SVG image
+    const svgMatch = formattedQuestion.match(/(<svg[\s\S]*?<\/svg>)/i);
+    if (svgMatch) {
+      const svgPart = svgMatch[1];
+      const textPart = formattedQuestion.replace(svgMatch[0], '').trim();
+      html += `
+        <div style="background:#f8fafc;border:1.5px solid #bfdbfe;border-radius:8px;padding:12px;margin-bottom:12px;text-align:center;">
+          ${svgPart}
+        </div>
+        <div class="q-text">${formatText(textPart).replace(/\n/g,'<br>')}</div>`;
+    } else {
+      html += `<div class="q-text">${formatText(formattedQuestion).replace(/\n/g,'<br>')}</div>`;
+    }
   }
 
   html += `<div class="options-label" style="margin-top:14px;">Options :</div>`;
