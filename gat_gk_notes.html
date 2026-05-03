@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAT General Knowledge Notes — ThunderStudy</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#eef4fb;color:#1a2b45;font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.7;min-height:100vh}
+:root{
+  --sky:#d6eaf8;--skydeep:#b8d9f4;--blue:#1a6fff;--bluedark:#1254cc;--bluelight:#e8f3ff;
+  --white:#ffffff;--text:#1a2b45;--muted:#5a7a9a;--border:#c2d9f0;
+  --gold:#d97706;--green:#059669;--red:#dc2626;
+  --shadow:0 2px 12px rgba(26,111,255,.10);--shadow-lg:0 6px 30px rgba(26,111,255,.16);
+}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:300;background:linear-gradient(135deg,#1a6fff 0%,#1254cc 50%,#0e3fa0 100%);box-shadow:0 3px 20px rgba(26,111,255,.35);padding:0}
+.hdr-in{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:40px;height:40px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-name{font-size:22px;font-weight:800;color:#fff;letter-spacing:.3px}
+.logo-name span{color:#fde68a}
+.badge{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.search-inp{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 14px;color:#fff;font-size:13px;width:200px;outline:none;transition:.2s}
+.search-inp::placeholder{color:rgba(255,255,255,.6)}
+.search-inp:focus{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.7)}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#dbeeff 0%,#eef4fb 100%);border-bottom:2px solid var(--border);padding:28px 24px 20px;text-align:center}
+.hero h1{font-size:28px;font-weight:800;color:#0e3fa0}
+.hero h1 span{color:var(--blue)}
+.hero p{color:var(--muted);font-size:13px;margin-top:4px}
+.stats{display:flex;gap:18px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.stat{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:5px 16px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(26,111,255,.07)}
+.stat strong{color:var(--blue);font-weight:700}
+
+/* CONTROLS */
+.ctrl-bar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px}
+.ctrl-bar-in{max-width:1120px;margin:0 auto;width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:.18s;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--bluedark)}
+.btn-outline{background:var(--white);color:var(--blue);border:1.5px solid var(--blue)}.btn-outline:hover{background:var(--bluelight)}
+.btn-green{background:#059669;color:#fff}.btn-green:hover{background:#047857}
+
+/* NAV PILLS */
+.nav-wrap{background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.nav-wrap::-webkit-scrollbar{display:none}
+.nav-pills{display:flex;gap:6px;padding:10px 24px;max-width:1120px;margin:0 auto;width:max-content}
+.pill{flex-shrink:0;background:var(--bluelight);border:1.5px solid var(--border);color:var(--blue);font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;cursor:pointer;text-decoration:none;transition:.18s;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.pill:hover,.pill.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pill svg{flex-shrink:0}
+
+/* MAIN */
+.main{max-width:1120px;margin:0 auto;padding:16px 20px 80px}
+
+/* CHAPTER */
+.chapter{margin:24px 0 0}
+.chapter-head{display:flex;align-items:center;gap:12px;padding:12px 20px;background:linear-gradient(90deg,var(--blue) 0%,#1e7fd4 100%);border-radius:12px 12px 0 0}
+.ch-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch-title{font-size:19px;font-weight:800;color:#fff;letter-spacing:.2px;flex:1}
+.ch-title span{font-size:12px;font-weight:400;opacity:.75;margin-left:8px;letter-spacing:0}
+.ch-pdf-btn{background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.5);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;cursor:pointer;transition:.18s;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:5px}
+.ch-pdf-btn:hover{background:rgba(255,255,255,.35)}
+
+/* SECTION CARD */
+.section{background:var(--white);border:1.5px solid var(--border);border-top:none;overflow:hidden}
+.section:last-child{border-radius:0 0 12px 12px}
+.section+.section{border-top:1px solid var(--skydeep)}
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;cursor:pointer;background:linear-gradient(90deg,var(--bluelight),var(--white));border-left:3px solid transparent;transition:.18s;user-select:none}
+.sec-head:hover,.section.open .sec-head{background:linear-gradient(90deg,var(--sky),var(--bluelight));border-left-color:var(--blue)}
+.sec-title{font-size:13.5px;font-weight:700;color:#1254cc;display:flex;align-items:center;gap:8px}
+.sec-hi{color:var(--muted);font-size:12px;font-weight:400}
+.sec-right{display:flex;align-items:center;gap:8px}
+.sec-arrow{color:var(--blue);font-size:12px;transition:transform .28s;font-weight:700}
+.section.open .sec-arrow{transform:rotate(180deg)}
+.sec-body{display:none;padding:18px 20px;border-top:1px solid var(--skydeep);background:var(--white)}
+.section.open .sec-body{display:block}
+
+/* TABLES */
+.ftable{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+.ftable th{background:linear-gradient(90deg,var(--blue),#1e7fd4);color:#fff;font-weight:700;padding:8px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.ftable th:first-child{border-radius:6px 0 0 0}.ftable th:last-child{border-radius:0 6px 0 0}
+.ftable td{padding:7px 12px;border-bottom:1px solid var(--sky);vertical-align:top;color:var(--text)}
+.ftable tr:last-child td{border-bottom:none}
+.ftable tr:nth-child(even) td{background:#f5f9ff}
+.ftable tr:hover td{background:var(--sky)}
+
+/* FORMULA/INFO BOXES */
+.fbox{background:linear-gradient(135deg,#f0f7ff,#e8f2ff);border:1.5px solid #c2d9f0;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 16px;margin:8px 0;font-size:13.5px}
+.fbox.highlight{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-color:#fde68a;border-left-color:var(--gold)}
+.fbox.important{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#a7f3d0;border-left-color:var(--green)}
+.fbox.warn{background:#fff5f5;border-color:#fecaca;border-left-color:var(--red)}
+
+/* GRIDS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:8px 0}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* SUBSECTION LABEL */
+.sub-label{font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid var(--border)}
+
+/* SCROLL TOP */
+#stb{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--blue);color:#fff;border:none;border-radius:50%;cursor:pointer;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(10px);transition:.3s;z-index:200;display:flex;align-items:center;justify-content:center}
+#stb.show{opacity:1;transform:translateY(0)}
+
+/* PDF OVERLAY */
+#pdfOverlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:999;display:none;align-items:center;justify-content:center}
+#pdfOverlay.show{display:flex}
+.pdf-box{background:#fff;border-radius:16px;padding:32px 40px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.pdf-spin{width:40px;height:40px;border:4px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+#pdfMsg{font-size:14px;font-weight:600;color:var(--text)}
+
+.hidden-sec{display:none!important}
+
+/* FOOTER */
+.site-footer{background:linear-gradient(135deg,#1a6fff 0%,#1254cc 60%,#0e3fa0 100%);color:#fff;text-align:center;padding:18px 24px;font-size:13px;letter-spacing:.2px;line-height:1.8}
+.site-footer a{color:#fde68a;text-decoration:none;font-weight:700;transition:.18s}
+.site-footer a:hover{color:#fff;text-decoration:underline}
+.site-footer .footer-divider{margin:0 10px;opacity:.5}
+
+/* DONATE POPUP */
+#donateModal{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,20,50,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s}
+#donateModal.show{opacity:1;pointer-events:all}
+.donate-box{position:relative;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.38);border-radius:24px;padding:36px 36px 30px;max-width:420px;width:100%;box-shadow:0 16px 60px rgba(10,40,120,.35),0 0 0 1px rgba(255,255,255,.12) inset;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);animation:popIn .38s cubic-bezier(.34,1.56,.64,1) both;text-align:center;color:#fff}
+@keyframes popIn{from{transform:scale(.85) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.donate-close{position:absolute;top:14px;right:16px;width:30px;height:30px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.35);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s;color:#fff;font-size:16px;font-weight:700;line-height:1}
+.donate-close:hover{background:rgba(255,255,255,.38);transform:scale(1.1)}
+.donate-emoji{font-size:42px;margin-bottom:8px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+.donate-title{font-size:20px;font-weight:800;letter-spacing:.3px;margin-bottom:6px;text-shadow:0 1px 8px rgba(0,0,0,.2)}
+.donate-sub{font-size:13px;opacity:.88;line-height:1.6;margin-bottom:20px}
+.donate-btn{display:inline-block;background:linear-gradient(135deg,#fde68a,#f59e0b);color:#1a2b45;font-weight:800;font-size:14px;padding:11px 28px;border-radius:50px;text-decoration:none;letter-spacing:.4px;transition:.2s;box-shadow:0 4px 16px rgba(245,158,11,.4)}
+.donate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.5);color:#0e3fa0}
+.donate-powered{font-size:10px;opacity:.55;margin-top:14px;letter-spacing:.3px}
+</style>
+</head>
+<body>
+
+<!-- PDF OVERLAY -->
+<div id="pdfOverlay"><div class="pdf-box"><div class="pdf-spin"></div><div id="pdfMsg">Generating PDF…</div></div></div>
+
+<!-- DONATE POPUP -->
+<div id="donateModal">
+  <div class="donate-box">
+    <button class="donate-close" onclick="closeDonate()" title="Close">✕</button>
+    <span class="donate-emoji">💛</span>
+    <div class="donate-title">Support ThunderStudy!</div>
+    <div class="donate-sub">
+      These notes are <strong>free forever</strong> — but keeping them updated takes real effort.<br>
+      If they've helped you, consider supporting the creator. Every bit fuels more content! 🚀
+    </div>
+    <a class="donate-btn" href="https://commercesehoga.github.io/help" target="_blank" rel="noopener">
+      💕 Donate &amp; Support
+    </a>
+    <div class="donate-powered">Made with 💕 by Wondermayank · commercesehoga.github.io</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="logo-name">Thunder<span>Study</span></div>
+      <span class="badge">GAT GK</span>
+    </div>
+    <div class="hdr-right">
+      <input class="search-inp" type="text" id="searchInp" placeholder="Search topics…" oninput="doSearch(this.value)">
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>GAT <span>General Knowledge</span> Notes</h1>
+  <p>Comprehensive CUET GAT prep — History, Science, Constitution, Geography, Sports, Economics &amp; Culture</p>
+  <div class="stats">
+    <div class="stat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><strong>7</strong> Chapters</div>
+    <div class="stat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><strong>40+</strong> Sections</div>
+    <div class="stat"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>CUET Ready</div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="ctrl-bar">
+  <div class="ctrl-bar-in">
+    <button class="btn btn-blue" onclick="expandAll()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      Expand All
+    </button>
+    <button class="btn btn-outline" onclick="collapseAll()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+      Collapse All
+    </button>
+    <button class="btn btn-green" onclick="downloadAllPDF()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Full PDF
+    </button>
+  </div>
+</div>
+
+<!-- NAV PILLS -->
+<div class="nav-wrap">
+  <div class="nav-pills">
+    <a class="pill" href="#ch-history">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>History
+    </a>
+    <a class="pill" href="#ch-science">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/></svg>Science
+    </a>
+    <a class="pill" href="#ch-constitution">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Constitution
+    </a>
+    <a class="pill" href="#ch-geography">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Geography
+    </a>
+    <a class="pill" href="#ch-sports">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M9.17 14.83l-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>Sports
+    </a>
+    <a class="pill" href="#ch-economics">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Economics
+    </a>
+    <a class="pill" href="#ch-culture">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Culture
+    </a>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 1: INDIAN HISTORY
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-history">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <div class="ch-title">Indian History <span>Key Events, Dynasties &amp; Freedom Movement</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-history','Indian_History')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Ancient India -->
+  <div class="section" id="sec-ancient">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Ancient India <span class="sec-hi">Indus Valley · Vedic Period · Buddhism · Jainism</span>
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="fbox highlight"><strong>Indus Valley Civilization:</strong> 3000 BC – 1500 BC (also cited as 2500–1800 BC). Main cities: Harappa, Mohenjo-Daro, Lothal. Key sites: Kalibangan (Rajasthan), Lothal (Gujarat), Banwali (Haryana), Ropar (Punjab), Alamgirpur (Ganga-Yamuna Doab).</div>
+      <div class="fbox">Features: Town planning, drainage system, double-storeyed dwellings, cotton production, agriculture, hunting, fishing.</div>
+      <div class="sub-label">Vedic Period</div>
+      <table class="ftable">
+        <tr><th>Period</th><th>Timeline</th><th>Notes</th></tr>
+        <tr><td>Early Vedic</td><td>1500 BC – 1000 BC</td><td>–</td></tr>
+        <tr><td>Later Vedic</td><td>1000 BC – 700 BC</td><td>Brahmanical Age</td></tr>
+      </table>
+      <div class="fbox">Four Vedas: <strong>Rig Veda, Sam Veda, Yajur Veda, Atharva Veda</strong><br>Two Great Epics: <strong>Mahabharata</strong> (by Ved Vyas), <strong>Ramayana</strong> (by Maharishi Valmiki)</div>
+      <div class="sub-label">Buddhism &amp; Jainism</div>
+      <div class="grid2">
+        <div class="fbox important"><strong>Buddhism:</strong> Founder — Siddhartha Gautama (Buddha). Born at Lumbini (Nepal), enlightenment at Bodh Gaya, first sermon at Sarnath, died at Kusinagar. Sects: Mahayana, Hinayana, Vajrayan.</div>
+        <div class="fbox important"><strong>Jainism:</strong> Founder — Rishabha; peak under Vardhamana Mahavira (24th Tirthankara), born at Kundagrama (540 BC), died at Pawapuri. Sects: Digambars, Shwetambara.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empires & Dynasties -->
+  <div class="section" id="sec-empires">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 21h18"/><path d="M9 8h1"/><path d="M14 8h1"/><path d="M12 8v13"/><path d="M3 21V7l9-4 9 4v14"/></svg>
+        Important Empires &amp; Dynasties
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Empire / Dynasty</th><th>Period</th><th>Prominent Rulers / Features</th></tr>
+        <tr><td>Magadha Empire</td><td>~542 BC</td><td>Bimbisara, Ajatashatru, Shishunaga, Nanda</td></tr>
+        <tr><td>Mauryan Dynasty</td><td>321–232 BC</td><td>Chandragupta Maurya, Ashoka (273–232 BC), Kalinga War (261 BC)</td></tr>
+        <tr><td>Gupta Dynasty (Golden Age)</td><td>AD 320–550</td><td>Chandragupta I, Samudragupta, Chandragupta II</td></tr>
+        <tr><td>Harshavardhana</td><td>AD 606–647</td><td>Last Hindu king of North India</td></tr>
+        <tr><td>Rajputs</td><td>AD 650–1200</td><td>Prithvi Raj Chauhan, Jaichand Rathore</td></tr>
+        <tr><td>Chalukyas</td><td>AD 550–642</td><td>Pulkeshin I and II</td></tr>
+        <tr><td>Cholas</td><td>–</td><td>Rajaraja-I, Rajendra Chola, Rajendra III</td></tr>
+        <tr><td>Rashtrakutas</td><td>AD 753–973</td><td>Krishna I, Amogha Varsha</td></tr>
+        <tr><td>Yadavas</td><td>AD 1191–1318</td><td>Ramachandra, Singhana</td></tr>
+        <tr><td>Vijayanagar Empire</td><td>AD 1336–1646</td><td>Krishnadevaraya</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Medieval India -->
+  <div class="section" id="sec-medieval">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Medieval India — Delhi Sultanate &amp; Mughals
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Dynasty</th><th>Period</th><th>Founder</th><th>Key Rulers &amp; Events</th></tr>
+        <tr><td>Slave Dynasty</td><td>AD 1206–1290</td><td>Qutub-ud-din Aibak</td><td>Iltutmish, Razia Sultana (only Muslim woman ruler)</td></tr>
+        <tr><td>Khilji Dynasty</td><td>AD 1290–1320</td><td>Jalal-ud-din Khilji</td><td>Alaud-din Khilji</td></tr>
+        <tr><td>Tughlak Dynasty</td><td>AD 1320–1414</td><td>Ghiasuddin Tughlak</td><td>Ibn Batuta visited India (1333)</td></tr>
+        <tr><td>Lodhi Dynasty</td><td>AD 1451–1526</td><td>Bahlol Lodhi</td><td>Sikander Lodhi, Ibrahim Lodhi</td></tr>
+        <tr><td>Mughal Dynasty</td><td>1526–1857</td><td>Babur</td><td>Longest reigning dynasty</td></tr>
+      </table>
+      <div class="sub-label">Mughal Rulers — Key Facts</div>
+      <table class="ftable">
+        <tr><th>Ruler</th><th>Reign</th><th>Notable</th></tr>
+        <tr><td>Babur</td><td>1526–1530</td><td>Wrote Tuzuk-i-Babri; defeated Ibrahim Lodhi at Panipat (1526); defeated Rana Sanga at Khanwa (1527)</td></tr>
+        <tr><td>Humayun</td><td>1530–1540</td><td>Defeated by Sher Shah at Chausa (1539) and Kannauj (1540); died in accident (1556)</td></tr>
+        <tr><td>Sher Shah Suri</td><td>1540–1545</td><td>Introduced Rupia coin, Grand Trunk Road, military reforms, standard weights</td></tr>
+        <tr><td>Akbar</td><td>1556–1605</td><td>Most successful Mughal; Din-e-Ilahi; tutor Bairam Khan</td></tr>
+        <tr><td>Jahangir</td><td>1605–1627</td><td>Married Nur Jahan; Sir Thomas Roe visited (1615)</td></tr>
+        <tr><td>Shahjahan</td><td>1627–1658</td><td>Built Taj Mahal, Red Fort, Jama Masjid</td></tr>
+        <tr><td>Aurangzeb</td><td>1659–1707</td><td>Ruled 50 years; executed Guru Teg Bahadur; Khalsa formed by Guru Gobind Singh</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Freedom Movement -->
+  <div class="section" id="sec-freedom">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        British Rule &amp; Freedom Movement
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Year</th><th>Event</th></tr>
+        <tr><td>1857</td><td>First War of Independence (Mutiny of Sepoys); Mangal Pande killed two Britishers at Barrackpore</td></tr>
+        <tr><td>1858</td><td>Government of India Act — direct governance by British crown</td></tr>
+        <tr><td>1885</td><td>Formation of Indian National Congress by A.O. Hume; first session Bombay under W.C. Bonnerjee</td></tr>
+        <tr><td>1905</td><td>Partition of Bengal; Swadeshi Movement launched</td></tr>
+        <tr><td>1906</td><td>Formation of Muslim League by Nawab Salimullah of Dacca</td></tr>
+        <tr><td>1907</td><td>Surat session — Congress split into Moderates and Extremists</td></tr>
+        <tr><td>1911</td><td>Capital shifted from Calcutta to New Delhi (by Lutyens)</td></tr>
+        <tr><td>1916</td><td>Lucknow Pact between Congress and Muslim League; Home Rule League by Annie Besant</td></tr>
+        <tr><td>1917</td><td>Champaran Satyagraha by Mahatma Gandhi (first satyagraha in India)</td></tr>
+        <tr><td>1919</td><td>Rowlatt Act; Jallianwala Bagh massacre (April 13) by General O'Dyer</td></tr>
+        <tr><td>1920</td><td>Khilafat Movement; Non-Cooperation Movement launched by Gandhi</td></tr>
+        <tr><td>1922</td><td>Chauri Chaura incident; Gandhi withdrew NCM; Swaraj Party formed by Motilal Nehru, C.R. Das</td></tr>
+        <tr><td>1929</td><td>Purna Swaraj resolution at Lahore session under Jawaharlal Nehru</td></tr>
+        <tr><td>1930</td><td>Dandi March (Salt Satyagraha) from Sabarmati Ashram to Dandi (April 6)</td></tr>
+        <tr><td>1942</td><td>Quit India Movement (August 8); 'Do or Die' call</td></tr>
+        <tr><td>1947</td><td>Mountbatten Plan (June 3); Independence and Partition (August 15)</td></tr>
+        <tr><td>1948</td><td>Mahatma Gandhi assassinated (January 30)</td></tr>
+        <tr><td>1950</td><td>India became Republic (January 26)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Important Battles -->
+  <div class="section" id="sec-battles">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/><path d="M2 3l4 4"/></svg>
+        Important Battles in Indian History
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Year</th><th>Battle</th><th>Result</th></tr>
+        <tr><td>326 BC</td><td>Battle of Hydaspas</td><td>Alexander defeated Porus</td></tr>
+        <tr><td>261 BC</td><td>Kalinga War</td><td>Ashoka defeated Kalinga</td></tr>
+        <tr><td>1191</td><td>First Battle of Tarain</td><td>Prithviraj Chauhan defeated Mohammad Ghori</td></tr>
+        <tr><td>1192</td><td>Second Battle of Tarain</td><td>Mohammad Ghori defeated Prithviraj Chauhan</td></tr>
+        <tr><td>1526</td><td>First Battle of Panipat</td><td>Babur defeated Ibrahim Lodhi</td></tr>
+        <tr><td>1527</td><td>Battle of Khanua</td><td>Babur defeated Rana Sanga</td></tr>
+        <tr><td>1556</td><td>Second Battle of Panipat</td><td>Bairam Khan (Akbar) defeated Hemu</td></tr>
+        <tr><td>1576</td><td>Battle of Haldighati</td><td>Akbar defeated Maharana Pratap</td></tr>
+        <tr><td>1757</td><td>Battle of Plassey</td><td>English (Robert Clive) defeated Siraj-ud-daula</td></tr>
+        <tr><td>1764</td><td>Battle of Buxar</td><td>English defeated Mir Qasim, Shuja-ud-daula, Shah Alam</td></tr>
+        <tr><td>1761</td><td>Third Battle of Panipat</td><td>Ahmed Shah Abdali defeated Marathas</td></tr>
+        <tr><td>1799</td><td>Fourth Anglo Mysore War</td><td>Tipu Sultan defeated and killed</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Visitors to India -->
+  <div class="section" id="sec-visitors">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Important Visitors to India
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Visitor</th><th>King / Court</th><th>Notable Work</th></tr>
+        <tr><td>Megasthenes (Greek)</td><td>Chandragupta Maurya</td><td>–</td></tr>
+        <tr><td>Fahien (Chinese)</td><td>Chandragupta II</td><td>–</td></tr>
+        <tr><td>Huen Tsang (Chinese)</td><td>Harshavardhan</td><td>–</td></tr>
+        <tr><td>Al-Beruni</td><td>Mahmud of Gazni</td><td>Wrote Tariq-i-Hind (Kitab-i-Hind)</td></tr>
+        <tr><td>Ibn Batuta</td><td>Muhammed bin Tuglak</td><td>African traveller, visited 1333</td></tr>
+        <tr><td>Amir Khusro</td><td>Balban, Alauddin Khilji, Muhammed bin Tuglak</td><td>–</td></tr>
+        <tr><td>Sir Thomas Roe</td><td>Jahangir</td><td>Ambassador of King James of England (1615)</td></tr>
+        <tr><td>Abul Fazal</td><td>Akbar</td><td>Wrote Ain-i-Akbari and Akbar Nama</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 2: SCIENCE
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-science">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/></svg>
+    </div>
+    <div class="ch-title">Science <span>Branches, Discoveries, Inventions, Human Body</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-science','Science')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Branches -->
+  <div class="section" id="sec-branches">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+        Branches of Science
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Branch</th><th>Study Area</th></tr>
+        <tr><td>Acoustics</td><td>Sound and sound waves</td></tr>
+        <tr><td>Aeronautics</td><td>Activities of flying</td></tr>
+        <tr><td>Agronomy</td><td>Production of crops and soil management</td></tr>
+        <tr><td>Anatomy</td><td>Dissectional learning of animal and human body</td></tr>
+        <tr><td>Anthropology</td><td>Origin, cultural and physical development of man</td></tr>
+        <tr><td>Archaeology</td><td>Study of material remains of past as proofs</td></tr>
+        <tr><td>Astronautics</td><td>Space vehicles and travelling in space</td></tr>
+        <tr><td>Astronomy</td><td>Planets (heavenly bodies)</td></tr>
+        <tr><td>Biology</td><td>Science of living organisms</td></tr>
+        <tr><td>Botany</td><td>Plants</td></tr>
+        <tr><td>Cardiology</td><td>Heart and related diseases</td></tr>
+        <tr><td>Ceramics</td><td>Manufacturing of clay objects</td></tr>
+        <tr><td>Cosmology</td><td>Universe</td></tr>
+        <tr><td>Cryogenics</td><td>Studying effects of low temperature</td></tr>
+        <tr><td>Cytology</td><td>Structure and function of cells</td></tr>
+        <tr><td>Dermatology</td><td>Skin</td></tr>
+        <tr><td>Ecology</td><td>Organisms and environment relationship</td></tr>
+        <tr><td>Entomology</td><td>Insects</td></tr>
+        <tr><td>Genetics</td><td>Heredity and its laws</td></tr>
+        <tr><td>Geology</td><td>Earth's (chemical and physical) structure</td></tr>
+        <tr><td>Gerontology</td><td>Ageing process, problems and diseases</td></tr>
+        <tr><td>Gynaecology</td><td>Female diseases of reproductive system</td></tr>
+        <tr><td>Haematology</td><td>Blood and related disorders</td></tr>
+        <tr><td>Immunology</td><td>Body's immune system</td></tr>
+        <tr><td>Nephrology</td><td>Kidney</td></tr>
+        <tr><td>Ornithology</td><td>Birds</td></tr>
+        <tr><td>Orthopaedics</td><td>Human skeletal system</td></tr>
+        <tr><td>Osteology</td><td>Study of bones</td></tr>
+        <tr><td>Paediatrics</td><td>Child diseases</td></tr>
+        <tr><td>Palaeontology</td><td>Fossils and ancient life-forms</td></tr>
+        <tr><td>Pathology</td><td>Mechanisms and manifestation of diseases</td></tr>
+        <tr><td>Pharmacology</td><td>Drugs and their effects on the body</td></tr>
+        <tr><td>Physiology</td><td>Life processes of various organs of living beings</td></tr>
+        <tr><td>Psychiatry</td><td>Mental disorders</td></tr>
+        <tr><td>Seismology</td><td>Earthquakes</td></tr>
+        <tr><td>Toxicology</td><td>Toxic substances and poisons</td></tr>
+        <tr><td>Zoology</td><td>Animal life</td></tr>
+        <tr><td>Zymology</td><td>Fermentation process</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Units -->
+  <div class="section" id="sec-units">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        Units of Measurement
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Unit</th><th>Measures</th></tr>
+        <tr><td>Ampere</td><td>Electric current</td></tr>
+        <tr><td>Angstrom</td><td>Wavelength of light</td></tr>
+        <tr><td>Bar</td><td>Atmospheric pressure</td></tr>
+        <tr><td>Calorie</td><td>Quantity of heat</td></tr>
+        <tr><td>Candela</td><td>Luminous intensity</td></tr>
+        <tr><td>Coulomb</td><td>Electric charge</td></tr>
+        <tr><td>Decibel</td><td>Sound level</td></tr>
+        <tr><td>Dyne</td><td>Force</td></tr>
+        <tr><td>Erg</td><td>Work</td></tr>
+        <tr><td>Fathom</td><td>Depth of water</td></tr>
+        <tr><td>Faraday</td><td>Electric charge (electrolysis) = 96,500 coulomb</td></tr>
+        <tr><td>Gauss</td><td>Magnetic induction / Magnetic flux density</td></tr>
+        <tr><td>Henry</td><td>Inductance</td></tr>
+        <tr><td>Hertz</td><td>Frequency</td></tr>
+        <tr><td>Horsepower</td><td>Power</td></tr>
+        <tr><td>Joule</td><td>Work or Energy</td></tr>
+        <tr><td>Kelvin</td><td>Temperature (SI unit)</td></tr>
+        <tr><td>Light year</td><td>Distance (light travels in one year at 2,97,600 km)</td></tr>
+        <tr><td>Newton</td><td>Force (SI unit)</td></tr>
+        <tr><td>Ohm</td><td>Electrical resistance</td></tr>
+        <tr><td>Pascal</td><td>Pressure</td></tr>
+        <tr><td>Poise</td><td>Viscosity</td></tr>
+        <tr><td>Volt</td><td>Electrical potential</td></tr>
+        <tr><td>Watt</td><td>Power</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Inventions & Discoveries -->
+  <div class="section" id="sec-inventions">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.22-7.78-2.12 2.12M7.34 16.66l-2.12 2.12m0-14.56 2.12 2.12m9.32 9.32 2.12 2.12"/></svg>
+        Inventions &amp; Medical Discoveries
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="grid2">
+        <div>
+          <div class="sub-label">Medical Discoveries</div>
+          <table class="ftable">
+            <tr><th>Discovery</th><th>Discovered by</th></tr>
+            <tr><td>Penicillin</td><td>Alexander Fleming</td></tr>
+            <tr><td>Aspirin</td><td>Felix Hoffmann</td></tr>
+            <tr><td>Blood circulation</td><td>William Harvey</td></tr>
+            <tr><td>Blood group</td><td>K. Landsteiner</td></tr>
+            <tr><td>Cholera germ</td><td>Robert Koch</td></tr>
+            <tr><td>ECG</td><td>Willem Einthoven</td></tr>
+            <tr><td>Heart transplant surgery</td><td>Christian Barnard</td></tr>
+            <tr><td>Malaria germs</td><td>A. Laveran</td></tr>
+            <tr><td>Ultrasound</td><td>Ian Donald</td></tr>
+          </table>
+          <div class="sub-label">Vaccines</div>
+          <table class="ftable">
+            <tr><th>Vaccine</th><th>Discovered by</th></tr>
+            <tr><td>Smallpox</td><td>Edward Jenner</td></tr>
+            <tr><td>Cholera, Rabies</td><td>Louis Pasteur</td></tr>
+            <tr><td>TB vaccine</td><td>Leon Calmette &amp; Camille Guerin</td></tr>
+            <tr><td>Polio vaccine</td><td>Jonas E. Salk</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="sub-label">Scientific Inventions</div>
+          <table class="ftable">
+            <tr><th>Invention</th><th>Inventor</th></tr>
+            <tr><td>Aeroplane</td><td>Wright Brothers</td></tr>
+            <tr><td>Bicycle</td><td>K. Macmillan</td></tr>
+            <tr><td>Computer</td><td>Charles Babbage</td></tr>
+            <tr><td>Diesel engine</td><td>Rudolf Diesel</td></tr>
+            <tr><td>Dynamite</td><td>Alfred Nobel</td></tr>
+            <tr><td>Dynamo</td><td>Michael Faraday</td></tr>
+            <tr><td>Electric lamp</td><td>Thomas Alva Edison</td></tr>
+            <tr><td>Gramophone</td><td>Thomas Alva Edison</td></tr>
+            <tr><td>Jet engine</td><td>Sir Frank Whittle</td></tr>
+            <tr><td>Microphone</td><td>David Hughes</td></tr>
+            <tr><td>Microscope</td><td>Z. Jansen</td></tr>
+            <tr><td>Radium</td><td>Marie and Pierre Curie</td></tr>
+            <tr><td>Steam engine (condenser)</td><td>James Watt</td></tr>
+            <tr><td>Telephone</td><td>Alexander Graham Bell</td></tr>
+            <tr><td>Television</td><td>John Logie Baird</td></tr>
+            <tr><td>Thermometer</td><td>Galileo Galilei</td></tr>
+            <tr><td>X-ray</td><td>Wilhelm Roentgen</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instruments -->
+  <div class="section" id="sec-instruments">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Scientific Instruments
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Instrument</th><th>Function</th></tr>
+        <tr><td>Ammeter</td><td>Measuring strength of electric current</td></tr>
+        <tr><td>Barometer</td><td>Measuring atmospheric pressure</td></tr>
+        <tr><td>Calorimeter</td><td>Measuring quantities of heat</td></tr>
+        <tr><td>Cardiograph (ECG)</td><td>Measuring movements of the heart</td></tr>
+        <tr><td>Dynamo</td><td>Converts mechanical energy into electrical energy</td></tr>
+        <tr><td>Electroencephalograph (EEG)</td><td>Records and interprets electrical waves of the brain</td></tr>
+        <tr><td>Endoscope</td><td>Examines internal organs of the body</td></tr>
+        <tr><td>Fathometer</td><td>Measuring depth of the ocean</td></tr>
+        <tr><td>Galvanometer</td><td>Measuring the electric current</td></tr>
+        <tr><td>Hydrometer</td><td>Measuring the relative density of liquids</td></tr>
+        <tr><td>Hygrometer</td><td>Measuring the level of humidity in the atmosphere</td></tr>
+        <tr><td>Lactometer</td><td>Measuring the relative density of milk to determine purity</td></tr>
+        <tr><td>Manometer</td><td>Measuring the pressure of gases</td></tr>
+        <tr><td>Microscope</td><td>Obtaining a magnified view of small objects</td></tr>
+        <tr><td>Periscope</td><td>Viewing objects above sea level (used in submarines)</td></tr>
+        <tr><td>Polygraph</td><td>Recording changes in physiological processes; lie detector</td></tr>
+        <tr><td>Pyrometer</td><td>Measuring very high temperature</td></tr>
+        <tr><td>Sphygmomanometer</td><td>Measuring blood pressure</td></tr>
+        <tr><td>Stethoscope</td><td>Hear and analyze heart and lung sounds</td></tr>
+        <tr><td>Telescope</td><td>Viewing distant objects in space</td></tr>
+        <tr><td>Viscometer</td><td>Measuring the viscosity of liquid</td></tr>
+        <tr><td>Voltmeter</td><td>Measuring electric potential difference between two points</td></tr>
+        <tr><td>Wattmeter</td><td>Measuring the power of an electric circuit</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Human Body -->
+  <div class="section" id="sec-humanbody">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Human Body, Vitamins &amp; Diseases
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="fbox important">
+        <strong>Key Facts:</strong> Blood ~5 litres | Blood = Plasma + RBC + WBC | RBC contains haemoglobin (iron = red colour) | WBC fights infection | Blood groups: A, B, AB (universal recipient), O (universal donor) | 206 bones in adult | Largest bone: Femur (thigh) | Shortest bone: Stirrup (middle ear) | Largest organ: Skin | Heart beat: 72 bpm (adult males) | Largest gland: Liver | Master gland: Pituitary
+      </div>
+      <div class="sub-label">Vitamins, Sources &amp; Deficiency Diseases</div>
+      <table class="ftable">
+        <tr><th>Vitamin</th><th>Main Source</th><th>Deficiency Disease</th></tr>
+        <tr><td>Vitamin A</td><td>Milk, carrot, egg, animal fat</td><td>Night blindness</td></tr>
+        <tr><td>Vitamin B1 (Thiamine)</td><td>Cereals, pulses, carrots</td><td>Beriberi</td></tr>
+        <tr><td>Vitamin B2 (Riboflavin)</td><td>Liver, kidney, milk</td><td>Chilosis, dermatitis</td></tr>
+        <tr><td>Vitamin B6 (Pyridoxine)</td><td>Yeast, cereals, liver</td><td>Anaemia</td></tr>
+        <tr><td>Folic Acid</td><td>Green leafy vegetables, meat, egg</td><td>Anaemia</td></tr>
+        <tr><td>Vitamin B12 (Cyanocobalamin)</td><td>Milk, liver, meat</td><td>Pernicious anaemia</td></tr>
+        <tr><td>Vitamin C (Ascorbic acid)</td><td>Lemons, oranges, fresh fruits</td><td>Scurvy, sore mouth and gums bleeding</td></tr>
+        <tr><td>Vitamin D (Calciferol)</td><td>Dairy products, sun rays, eggs</td><td>Rickets in children, osteomalacia</td></tr>
+        <tr><td>Vitamin E (Tocopherol)</td><td>Milk, soyabeans, egg yolk</td><td>Reproduction interference, menstrual irregularities</td></tr>
+        <tr><td>Vitamin K (Menadione)</td><td>Fish, peas and green vegetables</td><td>Delayed clotting of blood</td></tr>
+      </table>
+      <div class="sub-label">Diseases &amp; Affected Parts</div>
+      <table class="ftable">
+        <tr><th>Disease</th><th>Cause</th><th>Affected Part</th></tr>
+        <tr><td>Anaemia</td><td>Deficiency of haemoglobin</td><td>–</td></tr>
+        <tr><td>AIDS</td><td>Virus</td><td>Weakness in immune system</td></tr>
+        <tr><td>Asthma</td><td>Allergens</td><td>Lungs</td></tr>
+        <tr><td>Diabetes</td><td>Less production of insulin</td><td>Pancreas and blood</td></tr>
+        <tr><td>Diphtheria</td><td>Bacteria</td><td>Throat</td></tr>
+        <tr><td>Glaucoma</td><td>High pressure in the eyes</td><td>Eyes</td></tr>
+        <tr><td>Goitre</td><td>Deficiency of iodine</td><td>Throat</td></tr>
+        <tr><td>Hepatitis</td><td>Virus (mainly)</td><td>Jaundice</td></tr>
+        <tr><td>Malaria</td><td>Plasmodium</td><td>–</td></tr>
+        <tr><td>Polio</td><td>Virus</td><td>Legs</td></tr>
+        <tr><td>Rheumatism</td><td>Streptococcus bacteria</td><td>Joints</td></tr>
+        <tr><td>Tuberculosis</td><td>Bacteria</td><td>Lungs</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 3: CONSTITUTION OF INDIA
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-constitution">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    </div>
+    <div class="ch-title">Constitution of India <span>Key Features, Articles &amp; Amendments</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-constitution','Constitution')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Basic Facts -->
+  <div class="section" id="sec-constbasic">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Basic Facts &amp; Sources
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="grid2">
+        <div class="fbox highlight">
+          <strong>Drafted in:</strong> 2 years, 11 months and 17 days (Dec 9, 1946 – Nov 26, 1949)<br>
+          <strong>Initial:</strong> 395 Articles, 8 Schedules<br>
+          <strong>Current:</strong> 444 Articles, 12 Schedules<br>
+          <strong>Adopted:</strong> November 26, 1949 (Law Day)<br>
+          <strong>Enforced:</strong> January 26, 1950 (Republic Day)<br>
+          <strong>Members signed:</strong> 284
+        </div>
+        <div class="fbox">
+          <strong>First Chairman:</strong> Sir Sachchidananda Sinha<br>
+          <strong>Permanent Chairman:</strong> Dr. Rajendra Prasad<br>
+          <strong>Drafting Committee:</strong> Dr. B.R. Ambedkar (Aug 29, 1947)<br>
+          <strong>Constitutional Advisor:</strong> B.N. Rau<br>
+          <strong>National Flag Adopted:</strong> July 22, 1947<br>
+          <strong>National Anthem:</strong> Jan 24, 1950 — Jana Gana Mana (Rabindranath Tagore) — plays in 52 sec<br>
+          <strong>Satyameva Jayate:</strong> From Mundaka Upanishad
+        </div>
+      </div>
+      <div class="sub-label">Sources of the Indian Constitution</div>
+      <table class="ftable">
+        <tr><th>Source</th><th>Borrowed Features</th></tr>
+        <tr><td>Government of India Act, 1935</td><td>Centre/State List System, Federal Set-up, centre-state autonomies</td></tr>
+        <tr><td>British Constitution</td><td>Parliamentary Privileges, Unitary Citizenship, Rule of Law</td></tr>
+        <tr><td>Australian Constitution</td><td>Preamble, Concurrent List, Freedom of trade and commerce</td></tr>
+        <tr><td>American Constitution</td><td>Fundamental Rights, Judicial Review, Impeachment of the President</td></tr>
+        <tr><td>Japanese Constitution</td><td>Procedure established by the Law</td></tr>
+        <tr><td>South African Constitution</td><td>Amendment clauses</td></tr>
+        <tr><td>Irish Constitution</td><td>Directive Principles, Nominations to Rajya Sabha</td></tr>
+        <tr><td>Russian Constitution</td><td>Fundamental Duties</td></tr>
+        <tr><td>Canadian Constitution</td><td>Federal structure</td></tr>
+        <tr><td>German Constitution</td><td>Emergency Provisions</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Fundamental Rights -->
+  <div class="section" id="sec-frights">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Fundamental Rights (Part III)
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Right</th><th>Article(s)</th><th>Details</th></tr>
+        <tr><td>Right to Equality</td><td>14–18</td><td>Equal protection before law; no discrimination; equal opportunities; ban untouchability; abolition of royal titles</td></tr>
+        <tr><td>Right to Freedom</td><td>19–22</td><td>Six freedoms (speech, assembly, association, movement, settlement, profession); protection against ex-post facto laws, double jeopardy, self-incrimination</td></tr>
+        <tr><td>Right against Exploitation</td><td>23–24</td><td>Prohibition of human trafficking and forced labour; prohibition of child labour in hazardous employment</td></tr>
+        <tr><td>Right to Freedom of Religion</td><td>25–28</td><td>Freedom of conscience, manage religious affairs, no taxes for religion, no religious instructions in govt schools</td></tr>
+        <tr><td>Cultural &amp; Educational Rights</td><td>29–30</td><td>Minorities protect language/culture; establish educational institutions</td></tr>
+        <tr><td>Right to Constitutional Remedies</td><td>32</td><td>Writs: Habeas Corpus, Mandamus, Prohibition, Certiorari, Quo-warranto</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Emergency & Presidents -->
+  <div class="section" id="sec-emergency">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Emergency Provisions, Presidents &amp; PMs
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="sub-label">Emergency Provisions</div>
+      <table class="ftable">
+        <tr><th>Type</th><th>Article</th><th>Details</th></tr>
+        <tr><td>National Emergency</td><td>Article 352</td><td>Security threatened by war, external aggression, or internal armed rebellion</td></tr>
+        <tr><td>President's Rule</td><td>Article 356</td><td>Constitutional machinery failure in States; first in Punjab (June 20, 1951)</td></tr>
+        <tr><td>Financial Emergency</td><td>Article 360</td><td>Financial ability / credit worthiness threatened</td></tr>
+      </table>
+      <div class="sub-label">Presidents of India</div>
+      <table class="ftable">
+        <tr><th>#</th><th>Name</th><th>Period</th></tr>
+        <tr><td>1</td><td>Dr. Rajendra Prasad</td><td>Jan 30, 1950 – May 13, 1962</td></tr>
+        <tr><td>2</td><td>Sarvepalli Radhakrishnan</td><td>May 13, 1962 – May 13, 1967</td></tr>
+        <tr><td>3</td><td>Zakir Hussain</td><td>May 13, 1967 – May 3, 1969</td></tr>
+        <tr><td>7</td><td>Fakhruddin Ali Ahmed</td><td>Aug 24, 1974 – Feb 11, 1977</td></tr>
+        <tr><td>11</td><td>Ramaswamy Venkataraman</td><td>Jul 25, 1987 – Jul 25, 1992</td></tr>
+        <tr><td>14</td><td>A.P.J. Abdul Kalam</td><td>Jul 25, 2002 – Jul 25, 2007</td></tr>
+        <tr><td>15</td><td>Smt. Pratibha Patil</td><td>Jul 25, 2007 – Jul 25, 2012</td></tr>
+        <tr><td>16</td><td>Shri Pranab Mukherjee</td><td>Jul 25, 2012 – Jul 25, 2017</td></tr>
+        <tr><td>17</td><td>Shri Ram Nath Kovind</td><td>Jul 25, 2017 – till date</td></tr>
+      </table>
+      <div class="sub-label">Prime Ministers of India</div>
+      <table class="ftable">
+        <tr><th>#</th><th>Name</th><th>Period</th><th>Party</th></tr>
+        <tr><td>1</td><td>Jawaharlal Nehru</td><td>15-Aug-47 – 27-May-64</td><td>INC</td></tr>
+        <tr><td>3</td><td>Lal Bahadur Shastri</td><td>9-Jun-64 – 11-Jan-66</td><td>INC</td></tr>
+        <tr><td>5</td><td>Indira Gandhi</td><td>24-Jan-66 – 24-Mar-77</td><td>INC</td></tr>
+        <tr><td>6</td><td>Morarji Desai</td><td>24-Mar-77 – 28-Jul-79</td><td>Janata Party</td></tr>
+        <tr><td>9</td><td>Rajiv Gandhi</td><td>31-Oct-84 – 2-Dec-89</td><td>INC (Indira)</td></tr>
+        <tr><td>12</td><td>P.V. Narasimha Rao</td><td>21-Jun-91 – 16-May-96</td><td>INC</td></tr>
+        <tr><td>16</td><td>Atal Bihari Vajpayee</td><td>19-Mar-98 – 22-May-04</td><td>BJP</td></tr>
+        <tr><td>17</td><td>Dr. Manmohan Singh</td><td>22-May-04 – 26-May-14</td><td>INC</td></tr>
+        <tr><td>18</td><td>Narendra Damodardas Modi</td><td>26-May-14 – Incumbent</td><td>BJP</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 4: GEOGRAPHY
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-geography">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="ch-title">Geography <span>World &amp; India</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-geography','Geography')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Solar System -->
+  <div class="section" id="sec-solar">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        Solar System, Continents &amp; Oceans
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="sub-label">Planets</div>
+      <table class="ftable">
+        <tr><th>Planet</th><th>Key Fact</th></tr>
+        <tr><td>Mercury</td><td>Closest to the Sun; fastest to revolve</td></tr>
+        <tr><td>Venus</td><td>Brightest and hottest planet</td></tr>
+        <tr><td>Earth</td><td>Only known planet with life; 3rd from Sun; 70% water, 30% land</td></tr>
+        <tr><td>Mars</td><td>Red planet; explored for life similarities with Earth</td></tr>
+        <tr><td>Jupiter</td><td>Largest planet</td></tr>
+        <tr><td>Saturn</td><td>System of rings</td></tr>
+        <tr><td>Pluto</td><td>Discarded as planet (dwarf planet)</td></tr>
+      </table>
+      <div class="fbox">
+        <strong>Earth facts:</strong> Mean distance from Sun: 1,49,407,000 km | Revolution: 365 days, 5 hrs, 48 min, 45.51 sec | Rotation: 23 hrs 56 min 4.09 sec | Shape: Oblate spheroid | Moon first visited: July 20, 1969 (Neil Armstrong)
+      </div>
+      <div class="sub-label">Atmosphere Layers</div>
+      <table class="ftable">
+        <tr><th>Layer</th><th>Height</th></tr>
+        <tr><td>Troposphere</td><td>Up to 15 km</td></tr>
+        <tr><td>Stratosphere</td><td>15–50 km (Ozone layer: 12–30 km)</td></tr>
+        <tr><td>Mesosphere</td><td>50–80 km</td></tr>
+        <tr><td>Ionosphere</td><td>80–400 km (Radio communication)</td></tr>
+      </table>
+      <div class="grid2">
+        <div>
+          <div class="sub-label">Continents</div>
+          <table class="ftable">
+            <tr><th>Continent</th><th>Key Fact</th></tr>
+            <tr><td>Asia</td><td>Largest (~30% land, 59% population)</td></tr>
+            <tr><td>Africa</td><td>Largest desert — Sahara</td></tr>
+            <tr><td>Antarctica</td><td>Covered with ice (coldest); island continent</td></tr>
+            <tr><td>Europe</td><td>Westernmost peninsula of Eurasia</td></tr>
+            <tr><td>Oceania (Australia)</td><td>Smallest continent; island continent</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="sub-label">Oceans</div>
+          <table class="ftable">
+            <tr><th>Ocean</th><th>Key Fact</th></tr>
+            <tr><td>Pacific</td><td>Largest; 35.25% of Earth's surface</td></tr>
+            <tr><td>Atlantic</td><td>–</td></tr>
+            <tr><td>Indian</td><td>–</td></tr>
+            <tr><td>Arctic</td><td>–</td></tr>
+            <tr><td>Antarctic</td><td>–</td></tr>
+          </table>
+          <div class="fbox warn" style="font-size:12px">South China Sea has maximum area among all seas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- India Geography -->
+  <div class="section" id="sec-indiageo">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Geographical Facts of India
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="fbox important">
+        Location: Northern Hemisphere | 8°4'–37°6' N, 68°7'–97°25' E | Covers 2.4% of Earth's surface | Land Area: 32,87,263 sq.km | East-West: 2,933 km | North-South: 3,214 km | Coastline (mainland): ~6,300 km | Total Coastline (with islands): 7,516.6 km
+      </div>
+      <div class="fbox"><strong>Neighbours:</strong> West: Pakistan | South: Sri Lanka | North: Nepal, China | East: Bangladesh, Myanmar</div>
+      <div class="fbox"><strong>Longest River:</strong> Ganga (2,640 km) | <strong>Major Rivers:</strong> Indus, Brahmaputra, Godavari, Krishna, Narmada, Tapti, Cauvery, Mahanadi | <strong>Largest Delta:</strong> Sundarbans | <strong>Oldest Mountain Range:</strong> Aravallis</div>
+      <div class="sub-label">Soils of India</div>
+      <table class="ftable">
+        <tr><th>Soil Type</th><th>Major Areas</th><th>Features</th></tr>
+        <tr><td>Black soils</td><td>Maharashtra, AP, Tamil Nadu, MP (W), Gujarat</td><td>Most suitable for cotton cultivation</td></tr>
+        <tr><td>Laterite soils</td><td>AP, Deccan, Eastern Ghats, Tamil Nadu, Mysore</td><td>Originated from weathering</td></tr>
+        <tr><td>Alluvial soils</td><td>Haryana, West Bengal, Punjab, Bihar, UP</td><td>Very fertile; ~25% of Indian soil</td></tr>
+        <tr><td>Red soils</td><td>MP, Andhra Pradesh, Odisha</td><td>Good for coarse grains and pulses; high iron content</td></tr>
+      </table>
+      <div class="sub-label">Agricultural Revolutions</div>
+      <table class="ftable">
+        <tr><th>Revolution</th><th>Year</th><th>Focus</th></tr>
+        <tr><td>Green Revolution</td><td>1967–68</td><td>Agricultural productivity</td></tr>
+        <tr><td>White Revolution</td><td>1970</td><td>Operation Flood — milk production</td></tr>
+        <tr><td>Yellow Revolution</td><td>–</td><td>Oil seed production</td></tr>
+        <tr><td>Blue Revolution</td><td>–</td><td>Fisheries</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- World Rivers & Countries -->
+  <div class="section" id="sec-worldgeo">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        World Rivers &amp; Countries
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="sub-label">Important Rivers of the World</div>
+      <table class="ftable">
+        <tr><th>River</th><th>Length (km)</th><th>Country / Continent</th></tr>
+        <tr><td>Nile</td><td>6,690</td><td>Egypt, Africa (longest river)</td></tr>
+        <tr><td>Amazon</td><td>6,570</td><td>Brazil, South America (largest by volume)</td></tr>
+        <tr><td>Mississippi-Missouri</td><td>6,020</td><td>USA, North America</td></tr>
+        <tr><td>Yangtze-Kiang</td><td>5,980</td><td>China, Asia</td></tr>
+        <tr><td>Hwang Ho</td><td>4,840</td><td>China, Asia</td></tr>
+        <tr><td>Congo</td><td>4,800</td><td>Zaire, Africa</td></tr>
+        <tr><td>Volga</td><td>3,700</td><td>Russia, Asia</td></tr>
+        <tr><td>Indus</td><td>3,180</td><td>India and Pakistan, Asia</td></tr>
+        <tr><td>Brahmaputra</td><td>2,960</td><td>India, Asia</td></tr>
+      </table>
+      <div class="sub-label">Countries, Capitals &amp; Currencies (Selected)</div>
+      <table class="ftable">
+        <tr><th>Country</th><th>Capital</th><th>Currency</th><th>Continent</th></tr>
+        <tr><td>Afghanistan</td><td>Kabul</td><td>Afghani</td><td>Asia</td></tr>
+        <tr><td>Australia</td><td>Canberra</td><td>Australian Dollar</td><td>Australia</td></tr>
+        <tr><td>Bangladesh</td><td>Dhaka</td><td>Taka</td><td>Asia</td></tr>
+        <tr><td>Brazil</td><td>Brasilia</td><td>Cruzeiro Real</td><td>South America</td></tr>
+        <tr><td>China</td><td>Beijing</td><td>Renminbi Yuan</td><td>Asia</td></tr>
+        <tr><td>France</td><td>Paris</td><td>Euro</td><td>Europe</td></tr>
+        <tr><td>Germany</td><td>Berlin</td><td>Euro</td><td>Europe</td></tr>
+        <tr><td>India</td><td>New Delhi</td><td>Indian Rupee</td><td>Asia</td></tr>
+        <tr><td>Japan</td><td>Tokyo</td><td>Yen</td><td>Asia</td></tr>
+        <tr><td>Nepal</td><td>Kathmandu</td><td>Nepalese Rupee</td><td>Asia</td></tr>
+        <tr><td>Pakistan</td><td>Islamabad</td><td>Pakistan Rupee</td><td>Asia</td></tr>
+        <tr><td>Russia</td><td>Moscow</td><td>Rouble</td><td>Asia/Europe</td></tr>
+        <tr><td>Saudi Arabia</td><td>Riyadh</td><td>Saudi Arabian Riyal</td><td>Asia</td></tr>
+        <tr><td>UK</td><td>London</td><td>Pound Sterling</td><td>Europe</td></tr>
+        <tr><td>USA</td><td>Washington, DC</td><td>US Dollar</td><td>North America</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 5: SPORTS
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-sports">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M9.17 14.83l-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+    </div>
+    <div class="ch-title">Sports <span>Olympics, Trophies &amp; Terms</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-sports','Sports')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Olympics -->
+  <div class="section" id="sec-olympics">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        Olympic Games
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="fbox highlight">
+        <strong>Origin:</strong> Ancient Greece | <strong>Father of Modern Olympics:</strong> Baron Pierre de Coubertin<br>
+        <strong>First Modern Olympics:</strong> 1896, Athens, Greece | <strong>Winter Olympics Started:</strong> 1924, France<br>
+        <strong>Frequency:</strong> Every 4 years | <strong>Motto:</strong> 'Citius, Altius, Fortius' — Swifter, Higher, Stronger<br>
+        <strong>Olympic Flag:</strong> White with five intertwined rings representing five continents<br>
+        <strong>India hosting:</strong> India has never hosted Olympic Games<br>
+        <strong>Tokyo 2020:</strong> Postponed to 2021 due to COVID-19; motto 'Discover Tomorrow'; mascot Miraitowa
+      </div>
+      <div class="sub-label">Other Major Sports Festivals</div>
+      <table class="ftable">
+        <tr><th>Event</th><th>Details</th></tr>
+        <tr><td>Commonwealth Games</td><td>First held 1930 at Canada; every 4 years (midway between Olympics)</td></tr>
+        <tr><td>Asian Games</td><td>First held 1951 at New Delhi; J.L. Nehru instrumental; every 4 years</td></tr>
+        <tr><td>2019 South Asian Games</td><td>Held in Kathmandu, Pokhara, Janakpur (Nepal); India won 312 medals (174 gold)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trophies & Terms -->
+  <div class="section" id="sec-trophies">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        Cups, Trophies &amp; Sports Terms
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="grid2">
+        <div>
+          <div class="sub-label">International Cups &amp; Trophies</div>
+          <table class="ftable">
+            <tr><th>Cup / Trophy</th><th>Sport</th></tr>
+            <tr><td>Davis Cup (M) / Federation Cup (W)</td><td>Lawn Tennis</td></tr>
+            <tr><td>Wimbledon Trophy</td><td>Lawn Tennis</td></tr>
+            <tr><td>Thomas Cup (M) / Uber Cup (W)</td><td>Badminton</td></tr>
+            <tr><td>Champions Trophy / Sultan Azlan Shah Cup</td><td>Hockey</td></tr>
+            <tr><td>Walker Cup / Ryder Cup / Canada Cup</td><td>Golf</td></tr>
+            <tr><td>William Jones Cup</td><td>Basketball</td></tr>
+            <tr><td>Champions League</td><td>Football</td></tr>
+          </table>
+          <div class="sub-label">National Cups (India)</div>
+          <table class="ftable">
+            <tr><th>Cup / Trophy</th><th>Sport</th></tr>
+            <tr><td>Duleep / Ranji / Irani / Vijay Hazare Trophy</td><td>Cricket</td></tr>
+            <tr><td>Durand / Santosh / Subroto / Rovers Cup</td><td>Football</td></tr>
+            <tr><td>Rangaswami / Nehru / Aga Khan / Beighton / Dhyan Chand</td><td>Hockey</td></tr>
+            <tr><td>Ezar Cup</td><td>Polo</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="sub-label">Important Terms in Sports</div>
+          <table class="ftable">
+            <tr><th>Sport</th><th>Terms</th></tr>
+            <tr><td>Badminton</td><td>Luv, deuce, drop, smash, double touch</td></tr>
+            <tr><td>Basketball</td><td>Pivot, dribble, basket, block, held ball</td></tr>
+            <tr><td>Billiards</td><td>Spider, baulk, cue, scratch, cannon</td></tr>
+            <tr><td>Boxing</td><td>Hook, rounds, punch, jab, knockout, flyweight, middleweight, heavyweight</td></tr>
+            <tr><td>Chess</td><td>Knight, king, Sicilian defence, gambit, checkmate, rook, stalemate, queen, bishop, pawn</td></tr>
+            <tr><td>Cricket</td><td>Gully, hat-trick, pull, beamer, hook, googly, flick, follow-on, maiden, declare</td></tr>
+            <tr><td>Golf</td><td>Tee, birdie, club, course, iron, eagle, links, caddie, putt, hole, bogey</td></tr>
+            <tr><td>Hockey</td><td>Centre, penalty-stroke, free-hit, foul, carry, stick, corner, dribble, trapping</td></tr>
+            <tr><td>Table Tennis</td><td>Deuce, drop, spin, smash, let</td></tr>
+            <tr><td>Tennis</td><td>Grand slam, lob, ace, passing shot, top-spin, forehand, deuce, slice</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 6: ECONOMICS
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-economics">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <div class="ch-title">Economics <span>Key Concepts, Banking, Stock Market</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-economics','Economics')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Economic Terms -->
+  <div class="section" id="sec-econterms">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Economic Terms &amp; Concepts
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Sectors</td><td>Agriculture (Primary), Industry (Secondary), Service (Tertiary)</td></tr>
+        <tr><td>Demand</td><td>Ability to purchase + willingness to purchase; affected by income, consumer choice, price</td></tr>
+        <tr><td>Ceteris Paribus</td><td>Assumption that all other factors remain constant when studying a specific factor's effect</td></tr>
+        <tr><td>Equilibrium Price</td><td>Price where demand and supply are equal (also called market price)</td></tr>
+        <tr><td>Monopoly</td><td>Single seller controls entire supply; no close substitutes; no perfect substitutes</td></tr>
+        <tr><td>Oligopoly</td><td>Few firms control large portion of market; interdependent decisions</td></tr>
+        <tr><td>Monopsony</td><td>Single buyer (frequently the government)</td></tr>
+        <tr><td>Fiscal Policy</td><td>Use of government spending and taxation to influence the economy</td></tr>
+        <tr><td>Monetary Policy</td><td>Central bank (RBI) manages money supply and interest rates</td></tr>
+        <tr><td>MPC</td><td>MPC + MPS = 1 (MPS = marginal propensity to save)</td></tr>
+        <tr><td>GNP</td><td>GDP + Net foreign income from abroad</td></tr>
+        <tr><td>NNP</td><td>GNP − Depreciation; National Income at market prices</td></tr>
+        <tr><td>NDP</td><td>GDP − Depreciation</td></tr>
+        <tr><td>NI at Factor Cost</td><td>National Income at market prices − Net indirect taxes</td></tr>
+        <tr><td>Per Capita Income</td><td>Total National Income / Total Population</td></tr>
+        <tr><td>Direct Taxes</td><td>Corporate Tax, Income Tax, Wealth Tax, Capital Gains Tax, Securities Transaction Tax</td></tr>
+        <tr><td>Indirect Taxes</td><td>GST (CGST, SGST, IGST), Customs Duty, Excise Duty, VAT (subsumed under GST)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Banking -->
+  <div class="section" id="sec-banking">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+        Indian Banking &amp; Stock Market
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="fbox important"><strong>RBI:</strong> Central bank; formed April 1, 1935; Mumbai HQ; nationalized Jan 1, 1949<br><strong>SBI:</strong> Largest commercial bank; formed July 1, 1955; 18th in global banking<br><strong>Bank Rate:</strong> Standard rate at which RBI buys/rediscounts bills of exchange/commercial papers</div>
+      <div class="sub-label">Stock Market</div>
+      <table class="ftable">
+        <tr><th>Term</th><th>Details</th></tr>
+        <tr><td>BSE</td><td>Bombay Stock Exchange; Asia's oldest; formed 1875; 30 companies on BSE SENSEX</td></tr>
+        <tr><td>NSE</td><td>National Stock Exchange; established 1992; recognized 1993; fully demutualized</td></tr>
+        <tr><td>SENSEX</td><td>Weighted average of 30 select company stock prices listed on BSE</td></tr>
+        <tr><td>NIFTY-50</td><td>Index of 50 major companies on NSE</td></tr>
+        <tr><td>Large Cap</td><td>₹10,000+ crore market cap</td></tr>
+        <tr><td>Mid Cap</td><td>₹2,000–10,000 crore market cap</td></tr>
+        <tr><td>Small Cap</td><td>&lt;₹2,000 crore market cap</td></tr>
+        <tr><td>Primary Market</td><td>New issues / IPOs</td></tr>
+        <tr><td>Secondary Market</td><td>Existing securities</td></tr>
+      </table>
+      <div class="fbox highlight"><strong>India's GDP (FY 2020–21):</strong> ₹134.09 lakh crore ($2.62 trillion); contracted 8% due to COVID-19; 5th largest globally</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 7: CULTURE OF INDIA
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-culture">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    </div>
+    <div class="ch-title">Culture of India <span>Literature, Dance, Music, Architecture</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-culture','Culture')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- Literature -->
+  <div class="section" id="sec-literature">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Ancient Indian Literature
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Text</th><th>Details</th></tr>
+        <tr><td>Rig Veda</td><td>Oldest text; contains hymns to nature and deities; preserved orally for centuries</td></tr>
+        <tr><td>Sam Veda</td><td>Contains melodic content for chanting the Rig Vedic hymns</td></tr>
+        <tr><td>Yajur Veda</td><td>Contains prose mantras for rituals</td></tr>
+        <tr><td>Atharva Veda</td><td>Religious and folk traditions; contains charms, spells, hymns</td></tr>
+        <tr><td>Upanishads</td><td>Called Vedanta (end of Vedas); philosophical texts exploring ultimate reality</td></tr>
+        <tr><td>Ramayana</td><td>7 books; composed before Mahabharata; legends added over time</td></tr>
+        <tr><td>Mahabharata</td><td>Epic poem; 6 times longer than Iliad and Odyssey combined</td></tr>
+        <tr><td>Tolkappiyam</td><td>Tamil; oldest work in Tamil literature; earliest extant Tamil grammar</td></tr>
+        <tr><td>Arthashastra</td><td>Kautilya (Chanakya); treatise on statecraft, economic policy, military strategy</td></tr>
+        <tr><td>Natyashastra</td><td>Earliest and most respected text on performing arts</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Dance -->
+  <div class="section" id="sec-dance">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="4" r="1"/><path d="M12 8c-1 0-3 1-4 3s-1 4 0 6 3 3 4 3 3-1 4-3 1-4 0-6-3-3-4-3z"/><path d="M8 11c-1 2-2 4-1 6"/><path d="M16 11c1 2 2 4 1 6"/></svg>
+        Classical &amp; Folk Dances
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="sub-label">Classical Dances of India</div>
+      <table class="ftable">
+        <tr><th>Dance Form</th><th>Origin / Region</th><th>Key Features</th></tr>
+        <tr><td>Bharatnatyam</td><td>Tamil Nadu</td><td>Oldest classical dance; performed on Carnatic music; associated with Gods and Goddesses</td></tr>
+        <tr><td>Kathakali</td><td>Kerala</td><td>Based on themes from epics and Puranas; Rajasuya and Kalamandalam famous troupes</td></tr>
+        <tr><td>Kathak</td><td>Uttar Pradesh</td><td>Bollywood style; storytelling through dance; one of six classical Indian dance forms</td></tr>
+        <tr><td>Manipuri</td><td>Manipur</td><td>Based on Vaishnava themes; famous for Raslila dance</td></tr>
+        <tr><td>Mohiniyattam</td><td>Kerala</td><td>Solo dance by women; graceful sensuous dance</td></tr>
+        <tr><td>Odissi</td><td>Odisha</td><td>Known as 'mobile sculpture'; based on Jayadev's Gita Govinda; themes from Lord Krishna's life</td></tr>
+        <tr><td>Sattriya</td><td>Assam</td><td>Classical dance form</td></tr>
+        <tr><td>Kuchipudi</td><td>Andhra Pradesh</td><td>One of ten major Indian classical dances</td></tr>
+      </table>
+      <div class="sub-label">Folk Dances of India</div>
+      <table class="ftable">
+        <tr><th>Dance</th><th>State</th></tr>
+        <tr><td>Bhangra / Giddha</td><td>Punjab</td></tr>
+        <tr><td>Garba / Dandiya</td><td>Gujarat</td></tr>
+        <tr><td>Ghoomar</td><td>Rajasthan</td></tr>
+        <tr><td>Rouf</td><td>Kashmir</td></tr>
+        <tr><td>Bihu</td><td>Assam</td></tr>
+        <tr><td>Lavani</td><td>Maharashtra</td></tr>
+        <tr><td>Chhau</td><td>Odisha, West Bengal, Jharkhand</td></tr>
+        <tr><td>Dollu Kunitha</td><td>Karnataka</td></tr>
+        <tr><td>Fugdi</td><td>Goa</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Architecture -->
+  <div class="section" id="sec-architecture">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Architecture of India
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Monument / Style</th><th>Period</th><th>Details</th></tr>
+        <tr><td>Cave Temples</td><td>Ancient</td><td>Practical accommodation; often carved from cliff faces</td></tr>
+        <tr><td>Mauryan Period</td><td>322–185 BC</td><td>Chaityas (prayer halls), Viharas (residences), Stupas (relic mounds); used stone and wood</td></tr>
+        <tr><td>Sanchi Stupa</td><td>–</td><td>Most famous; remnants of Buddhism in India</td></tr>
+        <tr><td>Ajanta Caves</td><td>–</td><td>30 rock-cut Buddhist cave monuments; paintings and sculptures</td></tr>
+        <tr><td>Ellora Caves</td><td>–</td><td>Buddhist, Hindu, Jain monuments; Kailasa Temple</td></tr>
+        <tr><td>Sun Temple Konark</td><td>–</td><td>UNESCO World Heritage Site</td></tr>
+        <tr><td>Mahabalipuram</td><td>–</td><td>Pallava dynasty; Shore Temple, rock-cut temples, rathas</td></tr>
+        <tr><td>Khajuraho</td><td>–</td><td>Hindu and Jain temples; Nagara style</td></tr>
+        <tr><td>Taj Mahal</td><td>Mughal</td><td>Agra; built by Shah Jahan</td></tr>
+        <tr><td>Red Fort</td><td>Mughal</td><td>Delhi; built by Shah Jahan</td></tr>
+        <tr><td>Jama Masjid</td><td>Mughal</td><td>Delhi; built by Shah Jahan</td></tr>
+        <tr><td>Nalanda, Taxila, Vikramashila</td><td>–</td><td>Notable institutions built of brick and stone</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHAPTER 8: MISCELLANEOUS GK (Organizations & Awards)
+═══════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-misc">
+  <div class="chapter-head">
+    <div class="ch-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="ch-title">Miscellaneous GK <span>Organizations, Awards &amp; Nobel Prizes</span></div>
+    <button class="ch-pdf-btn" onclick="downloadChapterPDF('ch-misc','Misc_GK')">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF
+    </button>
+  </div>
+
+  <!-- International Orgs -->
+  <div class="section" id="sec-orgs">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        International Organizations
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <table class="ftable">
+        <tr><th>Organization</th><th>Headquarters</th><th>Key Details</th></tr>
+        <tr><td>United Nations (UN)</td><td>New York</td><td>Formed Oct 24, 1945; 193 members; 5 permanent SC members: China, UK, USA, Russia, France</td></tr>
+        <tr><td>UNESCO</td><td>Paris</td><td>United Nations Educational, Scientific and Cultural Organization</td></tr>
+        <tr><td>WHO</td><td>Geneva</td><td>World Health Organization</td></tr>
+        <tr><td>ILO</td><td>Geneva</td><td>International Labour Organization</td></tr>
+        <tr><td>FAO</td><td>Rome</td><td>Food and Agricultural Organization</td></tr>
+        <tr><td>IMF</td><td>Washington DC</td><td>International Monetary Fund; formed 1944; 190 members</td></tr>
+        <tr><td>World Bank (IBRD)</td><td>Washington DC</td><td>International Bank for Reconstruction and Development; 189 members</td></tr>
+        <tr><td>WTO</td><td>Geneva</td><td>World Trade Organization (replaced GATT Jan 1, 1995)</td></tr>
+        <tr><td>UNICEF</td><td>New York</td><td>United Nations Children's Emergency Fund</td></tr>
+        <tr><td>IAEA</td><td>Vienna</td><td>International Atomic Energy Agency</td></tr>
+        <tr><td>NATO</td><td>Brussels</td><td>North Atlantic Treaty Organization; formed April 4, 1949; 29 members</td></tr>
+        <tr><td>SAARC</td><td>Kathmandu</td><td>South Asian Association for Regional Cooperation; formed Dec 8, 1985; 8 members</td></tr>
+        <tr><td>OPEC</td><td>Vienna</td><td>Organization of Petroleum Exporting Countries; formed Sept 14, 1960</td></tr>
+        <tr><td>EU</td><td>Brussels</td><td>European Union; formed 1957; 27 members (UK left 2020)</td></tr>
+        <tr><td>ASEAN</td><td>Jakarta</td><td>Association of South East Asian Nations; formed Aug 9, 1967</td></tr>
+        <tr><td>Red Cross</td><td>Geneva</td><td>Formed 1863 by J.H. Durant; Red Cross Day: May 8</td></tr>
+        <tr><td>Interpol</td><td>Lyons, France</td><td>International Police Organization; formed 1923; 190 member countries</td></tr>
+        <tr><td>Amnesty International</td><td>London</td><td>Formed May 28, 1961 by Peter Berenson</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Awards -->
+  <div class="section" id="sec-awards">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        Nobel Prizes (2020) &amp; Bharat Ratna
+      </div>
+      <div class="sec-right"><span class="sec-arrow">&#9660;</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="sub-label">Nobel Prizes 2020</div>
+      <table class="ftable">
+        <tr><th>Category</th><th>Winner(s)</th></tr>
+        <tr><td>Physics</td><td>Roger Penrose (black hole formation); Reinhard Genzel &amp; Andrea Ghez (supermassive compact object)</td></tr>
+        <tr><td>Chemistry</td><td>Emmanuelle Charpentier &amp; Jennifer A. Doudna (CRISPR/Cas9 genetic scissors)</td></tr>
+        <tr><td>Literature</td><td>Louise Glück (unmistakable poetic voice)</td></tr>
+        <tr><td>Peace</td><td>World Food Programme (WFP)</td></tr>
+        <tr><td>Economic Sciences</td><td>Paul R. Milgrom &amp; Robert B. Wilson (auction theory and new auction formats)</td></tr>
+      </table>
+      <div class="sub-label">Bharat Ratna Awardees (Selected)</div>
+      <table class="ftable">
+        <tr><th>Name</th><th>Year</th><th>Field / Role</th></tr>
+        <tr><td>Dr. Rajendra Prasad</td><td>1954</td><td>First President</td></tr>
+        <tr><td>Sir C.V. Raman</td><td>1954</td><td>Physicist, Nobel Prize Winner (1930)</td></tr>
+        <tr><td>Sarvepalli Radhakrishnan</td><td>1954</td><td>Philosopher, First VP, Second President</td></tr>
+        <tr><td>Jawaharlal Nehru</td><td>1955</td><td>First Prime Minister</td></tr>
+        <tr><td>Lal Bahadur Shastri</td><td>1966</td><td>Second Prime Minister (posthumous)</td></tr>
+        <tr><td>Indira Gandhi</td><td>1971</td><td>Third Prime Minister</td></tr>
+        <tr><td>Mother Teresa</td><td>1980</td><td>Catholic nun, Missionaries of Charity</td></tr>
+        <tr><td>B.R. Ambedkar</td><td>1990</td><td>Chief architect of Constitution (posthumous)</td></tr>
+        <tr><td>Nelson Mandela</td><td>1990</td><td>Anti-Apartheid movement leader</td></tr>
+        <tr><td>Rajiv Gandhi</td><td>1991</td><td>Sixth Prime Minister (posthumous)</td></tr>
+        <tr><td>Vallabhbhai Patel</td><td>1991</td><td>First Home Minister (posthumous)</td></tr>
+        <tr><td>A.P.J. Abdul Kalam</td><td>1997</td><td>Aeronautical Engineer, 11th President</td></tr>
+        <tr><td>Sachin Tendulkar</td><td>2013</td><td>First sportsperson and youngest recipient</td></tr>
+        <tr><td>Atal Bihari Vajpayee</td><td>2014</td><td>Former Prime Minister</td></tr>
+        <tr><td>Pranab Mukherjee</td><td>2019</td><td>Former President</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  Made With 💕 By <a href="https://wondermayank.github.io" target="_blank" rel="noopener">Wondermayank</a>
+  <span class="footer-divider">|</span>
+  Free Mocks & Resources at <a href="https://commercesehoga.github.io" target="_blank" rel="noopener">CommerceSeHoga.github.io</a>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+function toggleSec(head){
+  head.closest('.section').classList.toggle('open');
+}
+function expandAll(){
+  document.querySelectorAll('.section').forEach(s=>s.classList.add('open'));
+}
+function collapseAll(){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('open'));
+}
+function doSearch(q){
+  q=q.trim().toLowerCase();
+  document.querySelectorAll('.chapter').forEach(ch=>{
+    let anyMatch=false;
+    ch.querySelectorAll('.section').forEach(sec=>{
+      if(!q){sec.classList.remove('hidden-sec');return;}
+      const txt=sec.textContent.toLowerCase();
+      if(txt.includes(q)){sec.classList.remove('hidden-sec');sec.classList.add('open');anyMatch=true;}
+      else{sec.classList.add('hidden-sec');}
+    });
+    if(!q){ch.style.display='';return;}
+    ch.style.display=anyMatch?'':'none';
+  });
+  if(!q)document.querySelectorAll('.chapter').forEach(c=>c.style.display='');
+}
+window.addEventListener('scroll',()=>{
+  document.getElementById('stb').classList.toggle('show',window.scrollY>500);
+});
+function showPDFOverlay(msg='Generating PDF…'){
+  document.getElementById('pdfOverlay').classList.add('show');
+  document.getElementById('pdfMsg').textContent=msg;
+}
+function hidePDFOverlay(){document.getElementById('pdfOverlay').classList.remove('show');}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+async function captureAsPDF(el,filename){
+  showPDFOverlay('Rendering content…');
+  const wasClosed=!el.classList.contains('open');
+  el.classList.add('open');
+  const body=el.querySelector('.sec-body');
+  const origDisplay=body?body.style.display:'';
+  if(body)body.style.display='block';
+  await sleep(400);
+  try{
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
+    const pageW=210,pageH=297,margin=10,printW=pageW-margin*2;
+    const targets=el.querySelectorAll('.sec-body');
+    let first=true;
+    for(const tgt of (targets.length?targets:[el])){
+      showPDFOverlay('Capturing section…');
+      const canvas=await html2canvas(tgt,{scale:1.8,backgroundColor:'#ffffff',useCORS:true,logging:false,windowWidth:900});
+      const imgW=canvas.width,imgH=canvas.height;
+      let srcY=0,remainH=imgH;
+      while(remainH>0){
+        const sliceH=Math.min(remainH,(pageH-margin*2)*(imgW/printW));
+        const tmp=document.createElement('canvas');
+        tmp.width=imgW;tmp.height=sliceH;
+        tmp.getContext('2d').drawImage(canvas,0,srcY,imgW,sliceH,0,0,imgW,sliceH);
+        const slice=tmp.toDataURL('image/jpeg',0.88);
+        const slicePrintH=(sliceH/imgW)*printW;
+        if(!first)pdf.addPage();first=false;
+        pdf.addImage(slice,'JPEG',margin,margin,printW,slicePrintH);
+        srcY+=sliceH;remainH-=sliceH;
+      }
+    }
+    showPDFOverlay('Saving…');await sleep(200);
+    pdf.save(filename+'.pdf');
+  }catch(e){console.error(e);alert('PDF error: '+e.message);}
+  if(wasClosed)el.classList.remove('open');
+  if(body)body.style.display=origDisplay;
+  hidePDFOverlay();
+}
+async function downloadChapterPDF(chapterId,name){
+  const el=document.getElementById(chapterId);
+  if(!el)return;
+  showPDFOverlay('Preparing chapter PDF…');
+  const sections=el.querySelectorAll('.section');
+  sections.forEach(s=>s.classList.add('open'));
+  await sleep(600);
+  try{
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
+    const pageW=210,pageH=297,margin=10,printW=pageW-margin*2;
+    let first=true;
+    for(const sec of sections){
+      const body=sec.querySelector('.sec-body');if(!body)continue;
+      showPDFOverlay('Capturing: '+sec.querySelector('.sec-title')?.textContent?.slice(0,30)+'…');
+      await sleep(150);
+      const canvas=await html2canvas(body,{scale:1.8,backgroundColor:'#ffffff',useCORS:true,logging:false,windowWidth:900});
+      let srcY=0,remainH=canvas.height;
+      while(remainH>0){
+        const sliceH=Math.min(remainH,(pageH-margin*2)*(canvas.width/printW));
+        const tmp=document.createElement('canvas');tmp.width=canvas.width;tmp.height=sliceH;
+        tmp.getContext('2d').drawImage(canvas,0,srcY,canvas.width,sliceH,0,0,canvas.width,sliceH);
+        const slice=tmp.toDataURL('image/jpeg',0.88);
+        const printH=(sliceH/canvas.width)*printW;
+        if(!first)pdf.addPage();first=false;
+        pdf.addImage(slice,'JPEG',margin,margin,printW,printH);
+        srcY+=sliceH;remainH-=sliceH;
+      }
+    }
+    showPDFOverlay('Saving…');await sleep(200);
+    pdf.save('ThunderStudy_GAT_'+name+'.pdf');
+  }catch(e){console.error(e);alert('PDF error: '+e.message);}
+  hidePDFOverlay();
+}
+async function downloadAllPDF(){
+  showPDFOverlay('Preparing full GK notes PDF…');
+  expandAll();await sleep(800);
+  try{
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
+    const pageW=210,pageH=297,margin=10,printW=pageW-margin*2;
+    let first=true;
+    const bodies=document.querySelectorAll('.sec-body');let i=0;
+    for(const body of bodies){
+      i++;showPDFOverlay(`Capturing section ${i} of ${bodies.length}…`);await sleep(80);
+      const canvas=await html2canvas(body,{scale:1.6,backgroundColor:'#ffffff',useCORS:true,logging:false,windowWidth:900});
+      let srcY=0,remainH=canvas.height;
+      while(remainH>0){
+        const sliceH=Math.min(remainH,(pageH-margin*2)*(canvas.width/printW));
+        const tmp=document.createElement('canvas');tmp.width=canvas.width;tmp.height=sliceH;
+        tmp.getContext('2d').drawImage(canvas,0,srcY,canvas.width,sliceH,0,0,canvas.width,sliceH);
+        const slice=tmp.toDataURL('image/jpeg',0.85);
+        const printH=(sliceH/canvas.width)*printW;
+        if(!first)pdf.addPage();first=false;
+        pdf.addImage(slice,'JPEG',margin,margin,printW,printH);
+        srcY+=sliceH;remainH-=sliceH;
+      }
+    }
+    showPDFOverlay('Saving full PDF…');await sleep(200);
+    pdf.save('ThunderStudy_GAT_Full_GK_Notes.pdf');
+  }catch(e){console.error(e);alert('PDF error: '+e.message);}
+  hidePDFOverlay();
+}
+
+// DONATE POPUP
+function closeDonate(){
+  document.getElementById('donateModal').classList.remove('show');
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    document.getElementById('donateModal').classList.add('show');
+  },800);
+});
+// Close on backdrop click
+document.getElementById('donateModal')?.addEventListener('click',function(e){
+  if(e.target===this)closeDonate();
+});
+</script>
+</body>
+</html>
