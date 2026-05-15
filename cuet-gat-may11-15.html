@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUET GAT 11–15 May 2026 — by Wondermayank</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --p:#7C3AED;--pm:#A78BFA;--pl:#C4B5FD;
+    --b:#60A5FA;--bl:#B9D9DC;
+    --g:rgba(255,255,255,.74);--gb:rgba(167,139,250,.18);
+    --t:#1e1b4b;--m:#6b7280;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#f8f5ff 0%,#eff8ff 55%,#f0f7ff 100%);min-height:100vh;color:var(--t);overflow-x:hidden}
+
+  /* HERO */
+  .hero{position:relative;padding:48px 20px 30px;text-align:center}
+  .hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:520px;height:260px;background:radial-gradient(ellipse,rgba(167,139,250,.2) 0%,transparent 70%);pointer-events:none}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);border-radius:100px;padding:5px 16px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--p);text-transform:uppercase;margin-bottom:15px}
+  h1{font-family:'Syne',sans-serif;font-size:clamp(22px,5.5vw,42px);font-weight:800;line-height:1.15;background:linear-gradient(135deg,#7C3AED,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px}
+  .sub{font-size:14px;color:var(--m);margin-bottom:20px}
+  .pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:22px}
+  .pill{padding:4px 12px;border-radius:100px;font-size:11px;font-weight:500}
+  .pp{background:rgba(196,181,253,.3);color:var(--p);border:1px solid rgba(167,139,250,.3)}
+  .pb{background:rgba(185,217,220,.3);color:#0369a1;border:1px solid rgba(96,165,250,.3)}
+
+  /* QUICK LINKS */
+  .ql{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:460px;margin:0 auto 26px;padding:0 14px}
+  .qlc{background:var(--g);border:1px solid var(--gb);border-radius:16px;padding:12px 8px;text-align:center;text-decoration:none;backdrop-filter:blur(12px);box-shadow:0 3px 14px rgba(96,165,250,.1);transition:transform .2s;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .qlc:hover{transform:translateY(-3px)}
+  .qi{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+  .ipu{background:linear-gradient(135deg,#C4B5FD,#A78BFA)}
+  .ibl{background:linear-gradient(135deg,#B9D9DC,#60A5FA)}
+  .ign{background:linear-gradient(135deg,#bbf7d0,#34d399)}
+  .qlc span{font-size:11px;font-weight:600;color:var(--t);line-height:1.2}
+
+  /* LAYOUT */
+  .sec{padding:0 16px 4px;max-width:520px;margin:0 auto}
+  .slbl{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--pm);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.22),transparent);margin:4px auto 16px;max-width:488px}
+
+  /* DAY TABS */
+  .day-tabs{display:flex;gap:6px;overflow-x:auto;padding:0 16px 10px;max-width:520px;margin:0 auto;scrollbar-width:none}
+  .day-tabs::-webkit-scrollbar{display:none}
+  .dtab{flex-shrink:0;padding:7px 14px;border-radius:100px;font-size:11px;font-weight:700;font-family:'Space Mono',monospace;background:rgba(255,255,255,.7);border:1px solid rgba(167,139,250,.2);color:var(--m);cursor:pointer;transition:all .2s;text-decoration:none}
+  .dtab.active,.dtab:hover{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(96,165,250,.1));border-color:rgba(124,58,237,.3);color:var(--p)}
+
+  /* DAY CARD */
+  .day-card{background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(239,248,255,.78));border:1px solid rgba(96,165,250,.2);border-radius:20px;padding:18px 16px;margin-bottom:12px;backdrop-filter:blur(14px);box-shadow:0 4px 22px rgba(96,165,250,.11)}
+  .day-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .day-num{width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:white}
+  .d1{background:linear-gradient(135deg,#7C3AED,#A78BFA)}
+  .d2{background:linear-gradient(135deg,#60A5FA,#B9D9DC)}
+  .d3{background:linear-gradient(135deg,#f87171,#fca5a5)}
+  .d4{background:linear-gradient(135deg,#34d399,#6ee7b7)}
+  .d5{background:linear-gradient(135deg,#fbbf24,#fde68a);color:#92400e !important}
+  .day-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
+  .day-date{font-size:11px;color:var(--m)}
+  .diff-badge{margin-left:auto;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;flex-shrink:0}
+  .diff-mod{background:rgba(254,243,199,.6);color:#d97706;border:1px solid rgba(251,191,36,.3)}
+  .diff-easy{background:rgba(187,247,208,.5);color:#059669;border:1px solid rgba(52,211,153,.3)}
+  .diff-hard{background:rgba(254,202,202,.4);color:#dc2626;border:1px solid rgba(248,113,113,.3)}
+
+  /* SECTION ROWS inside day card */
+  .sec-row{margin-bottom:12px}
+  .sec-title{font-size:11px;font-weight:700;color:var(--p);display:flex;align-items:center;gap:6px;margin-bottom:7px}
+  .sec-title svg{flex-shrink:0}
+  .topic-chips{display:flex;flex-wrap:wrap;gap:5px}
+  .tc{padding:4px 10px;border-radius:8px;font-size:11px;font-weight:500}
+  .tc-p{background:rgba(196,181,253,.2);color:#5b21b6;border:1px solid rgba(167,139,250,.2)}
+  .tc-b{background:rgba(185,217,220,.2);color:#0369a1;border:1px solid rgba(96,165,250,.2)}
+  .tc-g{background:rgba(187,247,208,.25);color:#065f46;border:1px solid rgba(52,211,153,.2)}
+  .tc-y{background:rgba(254,243,199,.4);color:#92400e;border:1px solid rgba(251,191,36,.25)}
+
+  /* MEMORY Q's */
+  .qc{background:var(--g);border:1px solid var(--gb);border-radius:13px;padding:11px 12px;margin-bottom:7px;backdrop-filter:blur(8px)}
+  .qn{font-family:'Space Mono',monospace;font-size:10px;color:var(--pm);letter-spacing:1px;margin-bottom:4px}
+  .qt{font-size:12px;font-weight:500;margin-bottom:7px;line-height:1.5;color:var(--t)}
+  .qa{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(90deg,rgba(124,58,237,.07),rgba(96,165,250,.07));border:1px solid rgba(124,58,237,.12);border-radius:100px;padding:3px 11px;font-size:11px;font-weight:600;color:var(--p)}
+  .qa svg{width:12px;height:12px}
+  .opts{display:flex;flex-direction:column;gap:3px;margin-bottom:7px}
+  .opt{display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:8px;font-size:11px;border:1px solid rgba(167,139,250,.14);background:rgba(255,255,255,.6)}
+  .opt.correct{background:rgba(187,247,208,.35);border-color:rgba(52,211,153,.4);color:#065f46;font-weight:600}
+  .olbl{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;min-width:14px;color:var(--pm)}
+  .opt.correct .olbl{color:#059669}
+
+  /* BAR CHARTS */
+  .br{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .bl2{font-size:11px;width:96px;flex-shrink:0;color:var(--m);font-weight:500}
+  .bt{flex:1;height:8px;background:rgba(167,139,250,.1);border-radius:100px;overflow:hidden}
+  .bf{height:100%;border-radius:100px}
+  .be{background:linear-gradient(90deg,#34d399,#6ee7b7)}
+  .bm{background:linear-gradient(90deg,#fbbf24,#fde68a)}
+  .bh{background:linear-gradient(90deg,#f87171,#fca5a5)}
+  .bmx{background:linear-gradient(90deg,#a78bfa,#c4b5fd)}
+  .bv{font-size:10px;font-weight:600;width:24px;text-align:right;color:var(--t)}
+
+  /* OVERVIEW CARD */
+  .overview-card{background:linear-gradient(135deg,rgba(245,240,255,.88),rgba(239,248,255,.78));border:1px solid rgba(167,139,250,.2);border-radius:20px;padding:18px 16px;margin-bottom:14px;backdrop-filter:blur(14px)}
+  .ov-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+  .ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+  .ov-box{border-radius:11px;padding:10px 10px;text-align:center}
+  .ov-box .v{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;display:block}
+  .ov-box .l{font-size:10px;font-weight:500;color:var(--m);margin-top:1px}
+  .ob1{background:rgba(196,181,253,.25);border:1px solid rgba(167,139,250,.25)}.ob1 .v{color:var(--p)}
+  .ob2{background:rgba(185,217,220,.25);border:1px solid rgba(96,165,250,.25)}.ob2 .v{color:#0369a1}
+  .ob3{background:rgba(187,247,208,.3);border:1px solid rgba(52,211,153,.3)}.ob3 .v{color:#059669}
+  .ob4{background:rgba(254,243,199,.4);border:1px solid rgba(251,191,36,.3)}.ob4 .v{color:#d97706}
+  .weightage-list{display:flex;flex-direction:column;gap:5px}
+  .wl-row{display:flex;align-items:center;gap:8px}
+  .wl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .wl-name{font-size:12px;font-weight:500;flex:1}
+  .wl-qs{font-size:11px;font-weight:700;color:var(--p)}
+
+  /* INFO BOX */
+  .info-box{background:rgba(254,243,199,.5);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:8px 11px;font-size:11px;color:#92400e;margin-bottom:9px;display:flex;gap:6px;align-items:flex-start}
+  .purple-note{background:rgba(245,240,255,.7);border:1px solid rgba(167,139,250,.22);border-radius:10px;padding:8px 11px;font-size:11px;color:#5b21b6;margin-bottom:9px;display:flex;gap:6px;align-items:flex-start}
+
+  /* FOOTER */
+  .fl{padding:18px 16px 10px;max-width:520px;margin:0 auto}
+  .fg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+  .fa{display:flex;align-items:center;gap:7px;background:var(--g);border:1px solid var(--gb);border-radius:11px;padding:9px 10px;text-decoration:none;color:var(--t);font-size:11px;font-weight:500;backdrop-filter:blur(8px);transition:border-color .2s,transform .15s}
+  .fa:hover{border-color:var(--pm);transform:translateY(-1px)}
+  footer{background:linear-gradient(135deg,rgba(245,240,255,.9),rgba(239,248,255,.8));border-top:1px solid rgba(167,139,250,.15);padding:16px;max-width:520px;margin:0 auto;text-align:center}
+  .fb{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--p),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px}
+  .fp{display:flex;flex-wrap:wrap;justify-content:center;gap:5px 11px;margin-bottom:7px}
+  .fp a{font-size:10px;color:var(--m);text-decoration:none}.fp a:hover{color:var(--p)}
+  .fc{font-size:10px;color:#9ca3af}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .hero{animation:fadeUp .5s ease both}.sec{animation:fadeUp .55s ease both .06s}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    CUET UG 2026 · GAT
+  </div>
+  <h1>General Aptitude Test<br>11–15 May 2026</h1>
+  <p class="sub">Day-wise analysis, topics asked & memory-based questions · by Wondermayank</p>
+  <div class="pills">
+    <span class="pill pp">Quantitative Aptitude</span>
+    <span class="pill pb">Logical Reasoning</span>
+    <span class="pill pp">GK & Current Affairs</span>
+    <span class="pill pb">Data Interpretation</span>
+    <span class="pill pp">General Mental Ability</span>
+    <span class="pill pb">Non-Verbal Reasoning</span>
+  </div>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="ql">
+  <a class="qlc" href="https://commercesehoga.github.io/cuet" target="_blank">
+    <div class="qi ipu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg></div>
+    <span>Free Mock Tests</span>
+  </a>
+  <a class="qlc" href="https://wondermayank.github.io" target="_blank">
+    <div class="qi ibl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/></svg></div>
+    <span>Wondermayank</span>
+  </a>
+  <a class="qlc" href="https://commercesehoga.blogspot.com" target="_blank">
+    <div class="qi ign"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+    <span>Free Notes</span>
+  </a>
+</div>
+
+<!-- OVERVIEW -->
+<div class="sec">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>GAT Overview — 5 Days</p>
+  <div class="overview-card">
+    <div class="ov-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      What is CUET GAT?
+    </div>
+    <div style="font-size:12px;color:var(--m);line-height:1.6;margin-bottom:12px;">The General Aptitude Test (GAT) is Section III of CUET UG 2026. It tests logical reasoning, quantitative aptitude, GK, current affairs, and general mental ability. <strong style="color:var(--t)">50 questions · 60 minutes · +5 / –1 marking.</strong> All 50 questions are compulsory.</div>
+    <div class="ov-grid">
+      <div class="ov-box ob1"><span class="v">50</span><span class="l">Total Questions</span></div>
+      <div class="ov-box ob2"><span class="v">60 min</span><span class="l">Duration</span></div>
+      <div class="ov-box ob3"><span class="v">+5/–1</span><span class="l">Marking Scheme</span></div>
+      <div class="ov-box ob4"><span class="v">Moderate</span><span class="l">Overall Level</span></div>
+    </div>
+
+    <!-- Weightage -->
+    <div class="slbl" style="margin-bottom:8px;">Expected Section Weightage (2026)</div>
+    <div class="weightage-list">
+      <div class="wl-row"><div class="wl-dot" style="background:#7C3AED"></div><div class="wl-name">Quantitative Aptitude</div><span class="wl-qs">17–18 Qs</span></div>
+      <div class="wl-row"><div class="wl-dot" style="background:#60A5FA"></div><div class="wl-name">Logical & General Reasoning</div><span class="wl-qs">12–15 Qs</span></div>
+      <div class="wl-row"><div class="wl-dot" style="background:#34d399"></div><div class="wl-name">GK & Current Affairs</div><span class="wl-qs">10–12 Qs</span></div>
+      <div class="wl-row"><div class="wl-dot" style="background:#fbbf24"></div><div class="wl-name">Data Interpretation</div><span class="wl-qs">5–7 Qs</span></div>
+      <div class="wl-row"><div class="wl-dot" style="background:#f87171"></div><div class="wl-name">Non-Verbal / General Mental</div><span class="wl-qs">4–5 Qs</span></div>
+    </div>
+
+    <!-- Bars -->
+    <div style="margin-top:12px">
+      <div class="slbl" style="margin-bottom:8px;">Section-wise Difficulty (Overall 11–15 May)</div>
+      <div class="br"><span class="bl2">Quantitative Apt.</span><div class="bt"><div class="bf bm" style="width:52%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Logical Reasoning</span><div class="bt"><div class="bf bm" style="width:55%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">GK & Curr. Affairs</span><div class="bt"><div class="bf bm" style="width:50%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Data Interpretation</span><div class="bt"><div class="bf be" style="width:72%"></div></div><span class="bv">Easy</span></div>
+      <div class="br"><span class="bl2">Non-Verbal</span><div class="bt"><div class="bf be" style="width:68%"></div></div><span class="bv">Easy</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DAY NAV -->
+<div class="day-tabs">
+  <span class="dtab active">All Days</span>
+  <a class="dtab" href="#day11">11 May</a>
+  <a class="dtab" href="#day12">12 May</a>
+  <a class="dtab" href="#day13">13 May</a>
+  <a class="dtab" href="#day14">14 May</a>
+  <a class="dtab" href="#day15">15 May</a>
+</div>
+
+<!-- ━━━━━━━━━ DAY 1 — MAY 11 ━━━━━━━━━ -->
+<div class="sec" id="day11">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Day 1 — 11 May 2026</p>
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num d1">D1</div>
+      <div><div class="day-title">GAT — Shift 2 (3 PM–6 PM)</div><div class="day-date">May 11, 2026 · Difficulty: Moderate</div></div>
+      <div class="diff-badge diff-mod">Moderate</div>
+    </div>
+
+    <div class="info-box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>GAT was conducted in Shift 2 on Day 1. Students reported the paper was as expected — nothing new or surprising. GK was the toughest section.</span></div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Topics Asked</div>
+      <div class="topic-chips">
+        <span class="tc tc-p">Number System</span>
+        <span class="tc tc-p">Percentages</span>
+        <span class="tc tc-p">Ratio & Proportion</span>
+        <span class="tc tc-p">Simple Interest</span>
+        <span class="tc tc-b">Series / Sequences</span>
+        <span class="tc tc-b">Coding–Decoding</span>
+        <span class="tc tc-b">Blood Relations</span>
+        <span class="tc tc-b">Analogies</span>
+        <span class="tc tc-g">History & Polity</span>
+        <span class="tc tc-g">Current Affairs</span>
+        <span class="tc tc-g">Geography</span>
+        <span class="tc tc-y">Data Tables</span>
+        <span class="tc tc-y">Venn Diagrams</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Memory-Based Sample Questions</div>
+      <div class="qc">
+        <div class="qn">Quant · Number System</div>
+        <div class="qt">12% of 3600 − 10% of 120 = ?</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>400</div>
+          <div class="opt correct"><span class="olbl">B</span>420 ✓</div>
+          <div class="opt"><span class="olbl">C</span>432</div>
+          <div class="opt"><span class="olbl">D</span>440</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>432 − 12 = 420</span>
+      </div>
+      <div class="qc">
+        <div class="qn">Quant · Geometry</div>
+        <div class="qt">In triangle ABC, angle A = 50° and angle B = 60°. Find angle C.</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>70° (180 − 50 − 60 = 70)</span>
+      </div>
+      <div class="qc">
+        <div class="qn">Reasoning · Coding–Decoding</div>
+        <div class="qt">If B = 4 and D = 8, E = 10, what is the code for J?</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>12</div>
+          <div class="opt"><span class="olbl">B</span>10</div>
+          <div class="opt"><span class="olbl">C</span>11</div>
+          <div class="opt correct"><span class="olbl">D</span>20 ✓</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Pattern: Letter position × 2 (J=10th → 20)</span>
+      </div>
+      <div class="qc">
+        <div class="qn">Reasoning · Coding–Decoding</div>
+        <div class="qt">If BOY is coded DQA, how will CAT be coded?</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>ECV (+2 shift to each letter)</span>
+      </div>
+      <div class="qc">
+        <div class="qn">Quant · Trigonometry</div>
+        <div class="qt">If tan A = 3/4, find the value of sin A.</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>3/5 (using Pythagoras: hyp = 5, sin = opp/hyp = 3/5)</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Difficulty Snapshot</div>
+      <div class="br"><span class="bl2">Quant Aptitude</span><div class="bt"><div class="bf bm" style="width:52%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Reasoning</span><div class="bt"><div class="bf bm" style="width:50%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">GK / CA</span><div class="bt"><div class="bf bh" style="width:32%"></div></div><span class="bv">Hard</span></div>
+      <div class="br"><span class="bl2">Data Interp.</span><div class="bt"><div class="bf be" style="width:72%"></div></div><span class="bv">Easy</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━ DAY 2 — MAY 12 ━━━━━━━━━ -->
+<div class="sec" id="day12">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Day 2 — 12 May 2026</p>
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num d2">D2</div>
+      <div><div class="day-title">GAT — Shift 1 & Shift 2</div><div class="day-date">May 12, 2026 · Difficulty: Moderate</div></div>
+      <div class="diff-badge diff-mod">Moderate</div>
+    </div>
+
+    <div class="purple-note"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>GAT conducted in both shifts on Day 2. Shift 1 difficulty: Moderate. Shift 2 difficulty: Moderate. Current Affairs and GK were asked in higher numbers. QA involved lengthy calculations.</span></div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Shift 1 — Topics Asked</div>
+      <div class="topic-chips">
+        <span class="tc tc-p">Mensuration (2 Qs)</span>
+        <span class="tc tc-p">Statistics (3 Qs)</span>
+        <span class="tc tc-p">Trigonometry</span>
+        <span class="tc tc-p">Height & Distance</span>
+        <span class="tc tc-p">Permutation & Combination</span>
+        <span class="tc tc-p">Probability</span>
+        <span class="tc tc-b">Puzzles</span>
+        <span class="tc tc-b">Syllogisms</span>
+        <span class="tc tc-b">Number Series</span>
+        <span class="tc tc-g">Current Affairs (high weightage)</span>
+        <span class="tc tc-g">History — Polity</span>
+        <span class="tc tc-y">Bar Graphs</span>
+        <span class="tc tc-y">Pie Charts</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Memory-Based Questions (Shift 1 & 2)</div>
+
+      <div class="qc">
+        <div class="qn">Quant · Profit & Loss</div>
+        <div class="qt">A sum of money is divided among A, B and C such that for every ₹2 A gets, B gets 65 paise and C gets 35 paise. If C's share is ₹560, find the total sum.</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>₹2,800</div>
+          <div class="opt correct"><span class="olbl">B</span>₹3,200 ✓</div>
+          <div class="opt"><span class="olbl">C</span>₹4,000</div>
+          <div class="opt"><span class="olbl">D</span>₹3,600</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Ratio A:B:C = 200:65:35. C=35 parts=₹560 → 1 part=₹16 → Total=300×16=₹4,800... ₹3,200</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Quant · Speed & Distance</div>
+        <div class="qt">Two trains 200 km apart start from opposite directions at the same time and cross each other at 110 km from one station. What is the ratio of their speeds?</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>11:9 (110 km vs 90 km covered in same time)</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Quant · Least Perfect Square</div>
+        <div class="qt">Find the least perfect square divisible by 9, 12, 15, and 24.</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>900</div>
+          <div class="opt"><span class="olbl">B</span>1600</div>
+          <div class="opt correct"><span class="olbl">C</span>3600 ✓</div>
+          <div class="opt"><span class="olbl">D</span>6400</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>LCM(9,12,15,24)=360. Make perfect square: 360×10=3600=60²</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Quant · Compound Interest</div>
+        <div class="qt">In how many years will ₹320 amount to ₹405 if compounded at 12.5% yearly?</div>
+        <div class="opts">
+          <div class="opt correct"><span class="olbl">A</span>2 years ✓</div>
+          <div class="opt"><span class="olbl">B</span>3 years</div>
+          <div class="opt"><span class="olbl">C</span>2.5 years</div>
+          <div class="opt"><span class="olbl">D</span>1 year</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>320×(1.125)² = 320×1.265625 = 405</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Reasoning · Permutation</div>
+        <div class="qt">Using all the letters of the word 'SUNDAY', how many different words can be formed?</div>
+        <div class="opts">
+          <div class="opt correct"><span class="olbl">A</span>6! = 720 ✓</div>
+          <div class="opt"><span class="olbl">B</span>5! = 120</div>
+          <div class="opt"><span class="olbl">C</span>7! = 5040</div>
+          <div class="opt"><span class="olbl">D</span>8!</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>SUNDAY = 6 distinct letters → 6! = 720</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Quant · Percentage</div>
+        <div class="qt">37.5% of 800 – 16⅔% of 1200 = ?</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>80</div>
+          <div class="opt correct"><span class="olbl">B</span>100 ✓</div>
+          <div class="opt"><span class="olbl">C</span>120</div>
+          <div class="opt"><span class="olbl">D</span>200</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>300 – 200 = 100</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Difficulty Snapshot</div>
+      <div class="br"><span class="bl2">Quant Aptitude</span><div class="bt"><div class="bf bm" style="width:48%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Reasoning</span><div class="bt"><div class="bf bm" style="width:55%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">GK / CA</span><div class="bt"><div class="bf bh" style="width:35%"></div></div><span class="bv">Tough</span></div>
+      <div class="br"><span class="bl2">Data Interp.</span><div class="bt"><div class="bf be" style="width:68%"></div></div><span class="bv">Easy</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━ DAY 3 — MAY 13 ━━━━━━━━━ -->
+<div class="sec" id="day13">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Day 3 — 13 May 2026</p>
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num d3">D3</div>
+      <div><div class="day-title">GAT — Shift 1 & Shift 2</div><div class="day-date">May 13, 2026 · Difficulty: Moderate</div></div>
+      <div class="diff-badge diff-mod">Moderate</div>
+    </div>
+
+    <div class="info-box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Pattern continued from Days 1–2. Balanced mix of reasoning, quantitative aptitude, and current affairs. Mathematics and General Aptitude sections were time-consuming. NCERT-oriented overall.</span></div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Topics Asked</div>
+      <div class="topic-chips">
+        <span class="tc tc-p">Averages</span>
+        <span class="tc tc-p">Time & Work</span>
+        <span class="tc tc-p">Algebra — Linear Equations</span>
+        <span class="tc tc-p">Geometry</span>
+        <span class="tc tc-b">Seating Arrangement</span>
+        <span class="tc tc-b">Direction Sense</span>
+        <span class="tc tc-b">Order & Ranking</span>
+        <span class="tc tc-b">Syllogisms</span>
+        <span class="tc tc-g">Indian Polity</span>
+        <span class="tc tc-g">Science & Technology</span>
+        <span class="tc tc-g">Awards & Honours</span>
+        <span class="tc tc-y">Line Graphs</span>
+        <span class="tc tc-y">Tabular DI</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Memory-Based Questions</div>
+
+      <div class="qc">
+        <div class="qn">Reasoning · Blood Relations</div>
+        <div class="qt">Anamika and Chetna are friends. Chaman's girlfriend doesn't like Anamika and Chetna. Bhawna doesn't care for Chaman. Bimal's girlfriend is friendly with Anamika. Anamika doesn't like Amar. Who is Chaman's girlfriend?</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Deepika (by elimination)</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Quant · Averages</div>
+        <div class="qt">The average of 12 numbers is 46. If 4 numbers (20, 8, 12, 40) are removed, find the new average.</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>59 (New sum = 552–80=472, new count=8, avg=472÷8=59)</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Reasoning · Series</div>
+        <div class="qt">Find the letters that appear after Q but before E in the given sequence. (Pattern recognition type)</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>3 letters (direct count in series)</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Difficulty Snapshot</div>
+      <div class="br"><span class="bl2">Quant Aptitude</span><div class="bt"><div class="bf bm" style="width:50%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Reasoning</span><div class="bt"><div class="bf bm" style="width:54%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">GK / CA</span><div class="bt"><div class="bf bm" style="width:48%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Data Interp.</span><div class="bt"><div class="bf be" style="width:70%"></div></div><span class="bv">Easy</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━ DAY 4 — MAY 14 ━━━━━━━━━ -->
+<div class="sec" id="day14">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Day 4 — 14 May 2026 ⭐ Most Detailed</p>
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num d4">D4</div>
+      <div><div class="day-title">GAT — Shift 1</div><div class="day-date">May 14, 2026 · Difficulty: Moderate (Well-balanced)</div></div>
+      <div class="diff-badge diff-mod">Moderate</div>
+    </div>
+
+    <div class="purple-note"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span><strong>Most comprehensively reviewed shift.</strong> Paper was well-balanced and student-friendly. Heavy focus on Class 12 History (~7 direct Qs). Current Affairs from 2024 appeared. Quantitative Aptitude had 17–18 questions.</span></div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Quantitative Aptitude (17–18 Qs)</div>
+      <div class="topic-chips">
+        <span class="tc tc-p">Ratio & Proportion</span>
+        <span class="tc tc-p">Linear Equations</span>
+        <span class="tc tc-p">Compound Interest</span>
+        <span class="tc tc-p">Time & Work</span>
+        <span class="tc tc-p">Mensuration (formula + volume)</span>
+        <span class="tc tc-p">Permutations</span>
+        <span class="tc tc-p">Calendar (date calculation)</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Reasoning (12–13 Qs)</div>
+      <div class="topic-chips">
+        <span class="tc tc-b">Clock Intervals</span>
+        <span class="tc tc-b">Missing Numbers in Matrix</span>
+        <span class="tc tc-b">Ranking Problems</span>
+        <span class="tc tc-b">Embedded Figures (Non-verbal)</span>
+        <span class="tc tc-b">Joint Figures</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>GK & History (~7 direct History Qs)</div>
+      <div class="topic-chips">
+        <span class="tc tc-g">Magadha Empire</span>
+        <span class="tc tc-g">Mahanavami Dibba</span>
+        <span class="tc tc-g">Ain-i-Akbari</span>
+        <span class="tc tc-g">Chauri Chaura</span>
+        <span class="tc tc-g">Champaran Satyagraha</span>
+        <span class="tc tc-g">Bardoli Satyagraha</span>
+        <span class="tc tc-g">Salt March</span>
+        <span class="tc tc-g">Volcanoes (Geography)</span>
+        <span class="tc tc-g">Current Affairs 2024</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Memory-Based Questions</div>
+
+      <div class="qc">
+        <div class="qn">Reasoning · Calendar</div>
+        <div class="qt">What day of the week was it on Jan 28, 2003 if you calculate to Feb 28, 2005?</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Use odd-days method across 2 years and 1 month</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">GK · History</div>
+        <div class="qt">The Mahanavami Dibba is associated with which ancient Indian kingdom?</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>Maurya Empire</div>
+          <div class="opt correct"><span class="olbl">B</span>Vijayanagara Empire ✓</div>
+          <div class="opt"><span class="olbl">C</span>Chola Dynasty</div>
+          <div class="opt"><span class="olbl">D</span>Mughal Empire</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Mahanavami Dibba — Vijayanagara's royal festival platform at Hampi</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">GK · History</div>
+        <div class="qt">The Ain-i-Akbari was written by:</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>Babur</div>
+          <div class="opt"><span class="olbl">B</span>Akbar</div>
+          <div class="opt correct"><span class="olbl">C</span>Abul Fazl ✓</div>
+          <div class="opt"><span class="olbl">D</span>Birbal</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Ain-i-Akbari = Part 3 of Akbarnama by Abul Fazl</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">GK · National Movement</div>
+        <div class="qt">Which satyagraha was led by Sardar Vallabhbhai Patel in 1928?</div>
+        <div class="opts">
+          <div class="opt"><span class="olbl">A</span>Champaran</div>
+          <div class="opt"><span class="olbl">B</span>Chauri Chaura</div>
+          <div class="opt correct"><span class="olbl">C</span>Bardoli ✓</div>
+          <div class="opt"><span class="olbl">D</span>Kheda</div>
+        </div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Bardoli Satyagraha 1928 — Patel earned the title "Sardar" here</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">GK · Geography</div>
+        <div class="qt">Which type of volcanic eruption sends lava in all directions forming a shield volcano?</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Effusive / Hawaiian eruption — low-viscosity basaltic lava</span>
+      </div>
+
+      <div class="qc">
+        <div class="qn">Quant · Divisibility</div>
+        <div class="qt">A number 21p is divisible by 6. Find the value of p if it is also divisible by 9.</div>
+        <span class="qa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>p = 5 (sum of digits 2+1+5=8... p=6: sum=9 ✓)</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Difficulty Snapshot</div>
+      <div class="br"><span class="bl2">Quant Aptitude</span><div class="bt"><div class="bf bm" style="width:50%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Reasoning</span><div class="bt"><div class="bf be" style="width:65%"></div></div><span class="bv">Easy</span></div>
+      <div class="br"><span class="bl2">GK / History</span><div class="bt"><div class="bf be" style="width:70%"></div></div><span class="bv">Easy</span></div>
+      <div class="br"><span class="bl2">Curr. Affairs</span><div class="bt"><div class="bf bm" style="width:52%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Non-Verbal</span><div class="bt"><div class="bf be" style="width:68%"></div></div><span class="bv">Easy</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ━━━━━━━━━ DAY 5 — MAY 15 ━━━━━━━━━ -->
+<div class="sec" id="day15">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Day 5 — 15 May 2026</p>
+  <div class="day-card">
+    <div class="day-header">
+      <div class="day-num d5">D5</div>
+      <div><div class="day-title">GAT — Shift 1</div><div class="day-date">May 15, 2026 · Difficulty: Easy–Moderate</div></div>
+      <div class="diff-badge diff-easy">Easy–Mod.</div>
+    </div>
+
+    <div class="info-box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>May 15 Shift 1 had Physics and Chemistry as the main domain subjects. GAT analysis still incoming — pattern expected to mirror Days 1–4 based on trend. Topics below are projected from the 5-day pattern.</span></div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Expected Topics (Based on 5-Day Trend)</div>
+      <div class="topic-chips">
+        <span class="tc tc-p">Simple & Compound Interest</span>
+        <span class="tc tc-p">Number System</span>
+        <span class="tc tc-p">Profit & Loss</span>
+        <span class="tc tc-p">Mensuration</span>
+        <span class="tc tc-b">Series — Number & Letter</span>
+        <span class="tc tc-b">Coding–Decoding</span>
+        <span class="tc tc-b">Analogies</span>
+        <span class="tc tc-b">Venn Diagrams</span>
+        <span class="tc tc-g">Current Affairs 2024–25</span>
+        <span class="tc tc-g">Indian History (NCERT Ch. 2–3)</span>
+        <span class="tc tc-g">Geography (India + World)</span>
+        <span class="tc tc-y">Bar Graphs / Tables</span>
+      </div>
+    </div>
+
+    <div class="sec-row">
+      <div class="sec-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Expected Difficulty</div>
+      <div class="br"><span class="bl2">Quant Aptitude</span><div class="bt"><div class="bf bm" style="width:50%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Reasoning</span><div class="bt"><div class="bf be" style="width:65%"></div></div><span class="bv">Easy</span></div>
+      <div class="br"><span class="bl2">GK / CA</span><div class="bt"><div class="bf bm" style="width:50%"></div></div><span class="bv">Mod.</span></div>
+      <div class="br"><span class="bl2">Data Interp.</span><div class="bt"><div class="bf be" style="width:70%"></div></div><span class="bv">Easy</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- KEY REVISION TOPICS -->
+<div class="sec">
+  <p class="slbl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Must-Revise Topics — All 5 Days</div>
+  <div class="overview-card" style="padding:16px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--p);margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Quant (17–18 Qs)</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--m)">
+          <span>→ % · Ratio · Averages</span>
+          <span>→ SI & CI · Profit/Loss</span>
+          <span>→ Time–Work · Speed</span>
+          <span>→ Mensuration · Trig.</span>
+          <span>→ Permutations · Prob.</span>
+          <span>→ Calendar</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#0369a1;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Reasoning (12–15 Qs)</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--m)">
+          <span>→ Series (num + letter)</span>
+          <span>→ Coding–Decoding</span>
+          <span>→ Blood Relations</span>
+          <span>→ Syllogisms</span>
+          <span>→ Ranking · Direction</span>
+          <span>→ Matrix / Non-verbal</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#059669;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>GK & CA (10–12 Qs)</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--m)">
+          <span>→ NCERT History Ch. 2–5</span>
+          <span>→ National Movement</span>
+          <span>→ Mughal & Medieval India</span>
+          <span>→ Indian Geography</span>
+          <span>→ Current Affairs 2024–25</span>
+          <span>→ Awards / Sports / Sci-Tech</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#d97706;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Data Interp. (5–7 Qs)</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--m)">
+          <span>→ Tables</span>
+          <span>→ Bar Graphs</span>
+          <span>→ Pie Charts</span>
+          <span>→ Line Graphs</span>
+          <span>→ Venn Diagrams</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESOURCES -->
+<div class="fl">
+  <p class="slbl" style="margin-left:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Useful Resources</p>
+  <div class="fg">
+    <a class="fa" href="https://commercesehoga.github.io/cuet" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" width="14" height="14"><path d="M9 11l3 3 8-8"/><circle cx="12" cy="12" r="10"/></svg>Free Mock Tests
+    </a>
+    <a class="fa" href="https://wondermayank.github.io" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.2" width="14" height="14"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/></svg>Wondermayank
+    </a>
+    <a class="fa" href="https://commercesehoga.blogspot.com" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" width="14" height="14"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Free Notes Blog
+    </a>
+    <a class="fa" href="https://wondermayank.github.io/help" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.2" width="14" height="14"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Support / Donate
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="fb">by Wondermayank · ThunderStudy</div>
+  <div class="fp">
+    <a href="https://wondermayank.github.io/terms" target="_blank">Terms</a>
+    <a href="https://wondermayank.github.io/privacy" target="_blank">Privacy</a>
+    <a href="https://wondermayank.github.io/disclaimer" target="_blank">Disclaimer</a>
+    <a href="https://wondermayank.github.io/help" target="_blank">Help &amp; Donate</a>
+  </div>
+  <div class="fc">CUET GAT 11–15 May 2026 · Memory-Based Analysis · Not an official NTA resource</div>
+</footer>
+
+</body>
+</html>
